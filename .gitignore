@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+dist/
+build/
+.venv/
+venv/
+.env
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Build outputs
+output/
+.workspaces/
+*.apk
+*.aab
+
+# Secrets — never commit
+*.jks
+*.keystore
+*.p12
+*.pem
+secrets/
+signing/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+.DS_Store
+
+# Local overrides
+local.config.yaml

@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "app_id": "{{ app_id }}",
+  "display_name": "{{ display_name }}",
+  "package_name_android": "{{ package_name_android }}",
+  "public_app_id": "{{ public_app_id }}",
+  "tenant_package": "{{ tenant_package }}",
+  "branding": {
+    "theme": "{{ theme }}",
+    "primary_color": "{{ primary_color }}",
+    "secondary_color": "{{ secondary_color }}"
+  }
+}

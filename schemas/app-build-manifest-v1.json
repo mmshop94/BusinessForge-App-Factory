@@ -1,0 +1,149 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://businessforge.dev/schemas/app-build-manifest-v1.json",
+  "title": "BusinessForge App Build Manifest v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "app",
+    "tenant",
+    "branding",
+    "features",
+    "release",
+    "source",
+    "api_base_url"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "app": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "display_name", "package_name_android"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]{1,62}[a-z0-9]$"
+        },
+        "display_name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "package_name_android": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)+$"
+        },
+        "bundle_id_ios": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9.-]*[a-zA-Z0-9]$"
+        }
+      }
+    },
+    "tenant": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["public_app_id", "package", "package_version"],
+      "properties": {
+        "public_app_id": {
+          "type": "string",
+          "pattern": "^app_[0-9A-Z]{26}$"
+        },
+        "package": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "package_version": {
+          "type": "string",
+          "pattern": "^v[0-9]+$"
+        }
+      }
+    },
+    "branding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["theme", "primary_color", "secondary_color", "logo_asset"],
+      "properties": {
+        "theme": {
+          "type": "string",
+          "enum": ["warm", "modern", "classic", "minimal"]
+        },
+        "primary_color": {
+          "type": "string",
+          "pattern": "^#[0-9A-Fa-f]{6}$"
+        },
+        "secondary_color": {
+          "type": "string",
+          "pattern": "^#[0-9A-Fa-f]{6}$"
+        },
+        "logo_asset": {
+          "type": "string",
+          "minLength": 1
+        },
+        "splash_asset": {
+          "type": "string",
+          "minLength": 1
+        },
+        "icon_asset": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "features": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "boolean"
+      }
+    },
+    "release": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["channel", "app_version", "build_number"],
+      "properties": {
+        "channel": {
+          "type": "string",
+          "enum": ["dev", "pilot", "production"]
+        },
+        "app_version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+        },
+        "build_number": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["customer_app_ref"],
+      "properties": {
+        "customer_app_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "customer_app_repo": {
+          "type": "string",
+          "minLength": 1
+        },
+        "factory_compat_version": {
+          "type": "string",
+          "pattern": "^[0-9]+$"
+        }
+      }
+    },
+    "api_base_url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "backend_origin": {
+      "type": "string",
+      "format": "uri"
+    }
+  }
+}

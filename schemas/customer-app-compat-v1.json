@@ -1,0 +1,14 @@
+{
+  "factory_version": "0.1.0",
+  "supported_schema_versions": [1],
+  "packages": {
+    "village_store": {
+      "min_customer_app_version": "0.5.0",
+      "supported_customer_app_refs": ["v0.5.9", "main", "feat/village-store-pilot"]
+    },
+    "restaurant": {
+      "min_customer_app_version": "0.5.0",
+      "supported_customer_app_refs": ["v0.5.9", "main"]
+    }
+  }
+}
