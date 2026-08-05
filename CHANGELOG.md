@@ -6,6 +6,7 @@ All notable changes to BusinessForge App Factory are documented here.
 
 ### Added
 
+- GitHub repository [BusinessForge-App-Factory](https://github.com/mmshop94/BusinessForge-App-Factory) on branch `main`
 - Initial repository structure (`app_factory/`, `schemas/`, `manifests/`, `templates/`, `tests/`, `docs/`)
 - Domain model: `AppBuildManifest`, `BuildRequest`, `BuildResult`, and related types
 - JSON Schema `app-build-manifest-v1.json` with strict validation

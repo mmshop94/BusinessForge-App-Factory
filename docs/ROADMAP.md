@@ -78,13 +78,11 @@
 
 ---
 
-## Naming migration (optional)
+## Naming migration
 
-Align repository names with target architecture:
+| Local folder (legacy) | GitHub repository | Status |
+|-----------------------|-------------------|--------|
+| `BusinessForge App_Generator` | [BusinessForge-App-Factory](https://github.com/mmshop94/BusinessForge-App-Factory) | ✅ published |
+| `BusinessForge FlutterApp` | [BusinessForge-FlutterApp](https://github.com/mmshop94/BusinessForge-FlutterApp) | ✅ published |
 
-| Current | Target |
-|---------|--------|
-| `BusinessForge FlutterApp` | `BusinessForge-Customer-App` |
-| `BusinessForge App_Generator` | `BusinessForge-App-Factory` |
-
-Renaming is cosmetic and can happen when CI paths are updated.
+Optional future rename: `BusinessForge-FlutterApp` → `BusinessForge-Customer-App` (cosmetic; requires CI path updates).

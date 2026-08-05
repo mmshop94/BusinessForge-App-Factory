@@ -1,5 +1,6 @@
 # Architecture — BusinessForge App Factory
 
+> **Repository:** [BusinessForge-App-Factory](https://github.com/mmshop94/BusinessForge-App-Factory)  
 > **Stand:** 2026-08-05  
 > **Slice:** 1 — Foundation  
 > **Status:** Initial implementation
@@ -24,10 +25,10 @@ Tenant App Manifest + Branding Assets + Customer App @ ref
 
 | Repository | Responsibility | Must NOT contain |
 |------------|----------------|------------------|
-| **BusinessForge Customer App** | Product runtime, features, UI, runtime branding API | Generator logic, signing keys, tenant manifests |
-| **BusinessForge App Factory** (this repo) | Validate manifests, apply build config, orchestrate Flutter builds | Flutter feature code, business logic |
-| **BusinessForge Backend** | Authoritative tenant/package/branding configuration | Client build artifacts |
-| **BusinessForge Dashboard** | Admin UI for operators | Build pipeline execution |
+| [BusinessForge-FlutterApp](https://github.com/mmshop94/BusinessForge-FlutterApp) | Product runtime, features, UI, runtime branding API | Generator logic, signing keys, tenant manifests |
+| [BusinessForge-App-Factory](https://github.com/mmshop94/BusinessForge-App-Factory) (this repo) | Validate manifests, apply build config, orchestrate Flutter builds | Flutter feature code, business logic |
+| [BusinessForge](https://github.com/mmshop94/BusinessForge) | Authoritative tenant/package/branding configuration | Client build artifacts |
+| [BusinessForge-Dashboard](https://github.com/mmshop94/BusinessForge-Dashboard) | Admin UI for operators | Build pipeline execution |
 
 This separation follows the decision documented in the Customer App's [WHITE_LABEL.md](../../BusinessForge%20FlutterApp/docs/architecture/WHITE_LABEL.md), renamed from "AppForge" to **App Factory** for clarity.
 

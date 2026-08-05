@@ -1,6 +1,8 @@
 # BusinessForge App Factory
 
-White-label build and release infrastructure for the [BusinessForge Customer App](../BusinessForge%20FlutterApp).
+**Repository:** [BusinessForge-App-Factory](https://github.com/mmshop94/BusinessForge-App-Factory)
+
+White-label build and release infrastructure for the [BusinessForge Customer App](https://github.com/mmshop94/BusinessForge-FlutterApp).
 
 This repository **does not** contain Flutter product code. It orchestrates tenant-specific Android builds from:
 
@@ -11,15 +13,16 @@ This repository **does not** contain Flutter product code. It orchestrates tenan
 ## Quick start
 
 ```powershell
-cd "d:\projekte\BusinessForge App_Generator"
+git clone https://github.com/mmshop94/BusinessForge-App-Factory.git
+cd BusinessForge-App-Factory
 pip install -e ".[dev]"
 
 # Validate example manifest
 app-factory validate manifests/examples/dorfladen-hutthurm.yaml
 
-# Deterministic build plan
+# Deterministic build plan (adjust --customer-app to your local checkout)
 app-factory plan manifests/examples/dorfladen-hutthurm.yaml `
-  --customer-app "d:\projekte\BusinessForge FlutterApp"
+  --customer-app "..\BusinessForge FlutterApp"
 
 # Dry-run build (no Flutter execution)
 app-factory build-android manifests/examples/dorfladen-hutthurm.yaml --dry-run
@@ -55,10 +58,10 @@ output/               Build artifacts and reports (gitignored)
 
 | Repository | Role |
 |------------|------|
-| `BusinessForge FlutterApp` | Customer App — single generic Flutter codebase |
-| `BusinessForge` | Backend platform — tenant/app configuration source of truth |
-| `BusinessForge Dashboard` | Admin UI for tenants and packages |
-| **BusinessForge App Factory** (this repo) | Build orchestration |
+| [BusinessForge-FlutterApp](https://github.com/mmshop94/BusinessForge-FlutterApp) | Customer App — single generic Flutter codebase |
+| [BusinessForge](https://github.com/mmshop94/BusinessForge) | Backend platform — tenant/app configuration source of truth |
+| [BusinessForge-Dashboard](https://github.com/mmshop94/BusinessForge-Dashboard) | Admin UI for tenants and packages |
+| **[BusinessForge-App-Factory](https://github.com/mmshop94/BusinessForge-App-Factory)** (this repo) | Build orchestration |
 
 ## Versioning
 
