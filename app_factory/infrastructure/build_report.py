@@ -19,14 +19,25 @@ class BuildReportWriter:
         report_path = output_dir / f"{app_id}-{timestamp}-build-report.json"
         payload = {
             "status": result.status.value,
+            "contract_version": "1",
             "started_at": result.started_at.isoformat(),
             "finished_at": result.finished_at.isoformat() if result.finished_at else None,
             "duration_seconds": result.duration_seconds,
+            "manifest": {
+                "schema_version": result.request.manifest.schema_version,
+                "app_id": result.request.manifest.app.id,
+                "app_version": result.request.manifest.release.app_version,
+                "build_number": result.request.manifest.release.build_number,
+                "customer_app_ref": result.request.manifest.source.customer_app_ref,
+                "public_app_id": result.request.manifest.tenant.public_app_id,
+                "package_id": result.request.manifest.tenant.package,
+            },
             "manifest_hash": result.request.manifest_hash,
             "manifest_path": result.request.manifest.manifest_path,
             "customer_app_commit": result.customer_app_commit,
             "flutter_version": result.flutter_version,
             "dart_version": result.dart_version,
+            "dart_defines": _extract_dart_defines(result.steps),
             "error_message": result.error_message,
             "artifacts": [
                 {
@@ -72,3 +83,12 @@ def collect_android_artifact(
 
 def utc_now() -> datetime:
     return datetime.now(timezone.utc)
+
+
+def _extract_dart_defines(steps: list) -> dict[str, str]:
+    for step in steps:
+        if step.get("name") == "apply_manifest" and "dart_defines" in step:
+            defines = step["dart_defines"]
+            if isinstance(defines, dict):
+                return defines
+    return {}

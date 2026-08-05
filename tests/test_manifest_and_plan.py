@@ -99,6 +99,8 @@ def test_deterministic_build_plan(valid_manifest_data: dict, tmp_path: Path) -> 
 
     assert plan_a.to_dict() == plan_b.to_dict()
     assert plan_a.dart_defines["PUBLIC_APP_ID"] == manifest.tenant.public_app_id
+    assert plan_a.dart_defines["PACKAGE_ID"] == manifest.tenant.package
+    assert plan_a.dart_defines["APP_NAME"] == manifest.app.display_name
     assert plan_a.dart_defines["FEATURE_LOYALTY"] == "false"
 
 

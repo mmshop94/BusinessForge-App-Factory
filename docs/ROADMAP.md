@@ -21,16 +21,33 @@
 
 ---
 
-## Slice 2 — Backend integration
+## Contract v1 — Build integration gate ⏳ (next milestone)
 
-**Goal:** Manifests exported from BusinessForge platform, not hand-written YAML.
+**Goal:** Stabilize the Factory ↔ Customer App boundary before Slice 2 implementation.
 
-- [ ] `GET /internal/app-factory/manifests/{tenant_id}` API
-- [ ] Dashboard action: "Generate build manifest"
-- [ ] Customer App: adopt `PUBLIC_APP_ID` and `FEATURE_*` dart-defines
+- [x] Document [CUSTOMER_APP_BUILD_CONTRACT_V1.md](CUSTOMER_APP_BUILD_CONTRACT_V1.md)
+- [ ] Customer App: `AppConfiguration.load()` entry point (replaces scattered `fromEnvironment`)
+- [ ] Customer App: adopt `PUBLIC_APP_ID`, `APP_PACKAGE`, `FEATURE_*` defines
+- [ ] Customer App: declare `assets/branding/` in pubspec
+- [ ] Update compat matrix with contract-adopted Customer App tag
+- [ ] Review and sign-off from both repo maintainers
+
+**Exit criteria:** Contract v1 accepted; Factory Slice 2 work may begin.
+
+---
+
+## Slice 2 — Reproducible builds + platform hooks
+
+**Goal:** End-to-end white-label APK/AAB from manifest; backend manifest export optional.
+
+- [ ] First production tenant build against contract-adopted Customer App tag
 - [ ] Icon rasterization pipeline (SVG → mipmap)
-- [ ] iOS bundle ID application (`Info.plist`, Xcode project)
-- [ ] GitHub Actions workflow template
+- [ ] Splash screen native injection
+- [ ] `GET /internal/app-factory/manifests/{tenant_id}` API (optional)
+- [ ] Dashboard action: "Generate build manifest" (optional)
+- [ ] GitHub Actions workflow with pinned Flutter
+
+**Not in Slice 2:** Play Store upload, iOS, signing key storage.
 
 ---
 
@@ -71,8 +88,9 @@
 
 | Factory slice | Customer App requirement |
 |---------------|-------------------------|
+| Contract v1 gate | [CUSTOMER_APP_BUILD_CONTRACT_V1.md](CUSTOMER_APP_BUILD_CONTRACT_V1.md) adoption |
 | Slice 1 | Stable Android Gradle/Manifest structure |
-| Slice 2 | `PUBLIC_APP_ID`, feature flags, branding asset loading |
+| Slice 2 | `AppConfiguration.load()`, `PUBLIC_APP_ID`, feature flags, branding assets |
 | Slice 3 | Push notification Firebase per-tenant config surface |
 | Slice 4 | Package capability API alignment |
 

@@ -1,8 +1,11 @@
-# Customer App Integration Contract
+# Customer App Integration — Implementation Notes
 
-> **Customer App:** [BusinessForge FlutterApp](../../BusinessForge%20FlutterApp)  
+> **Canonical contract:** [CUSTOMER_APP_BUILD_CONTRACT_V1.md](CUSTOMER_APP_BUILD_CONTRACT_V1.md)  
+> **Customer App:** [BusinessForge-FlutterApp](https://github.com/mmshop94/BusinessForge-FlutterApp)  
 > **Factory version:** 0.1.0  
 > **Compat version:** 1
+
+This document describes **Slice 1 implementation details**. For the binding build contract (inputs, outputs, allowed mutations, defines, toolchain), see **CUSTOMER_APP_BUILD_CONTRACT_V1.md**.
 
 ---
 
@@ -136,6 +139,7 @@ Customer App tests must pass **without modification** in the isolated workspace.
 
 ## References
 
-- Customer App white-label architecture: [WHITE_LABEL.md](../../BusinessForge%20FlutterApp/docs/architecture/WHITE_LABEL.md)
-- Runtime branding: [BRANDING.md](../../BusinessForge%20FlutterApp/docs/architecture/BRANDING.md)
-- Multi-tenant model: [MULTI_TENANT.md](../../BusinessForge%20FlutterApp/docs/architecture/MULTI_TENANT.md)
+- **Build contract (canonical):** [CUSTOMER_APP_BUILD_CONTRACT_V1.md](CUSTOMER_APP_BUILD_CONTRACT_V1.md)
+- Customer App white-label architecture: [WHITE_LABEL.md](https://github.com/mmshop94/BusinessForge-FlutterApp/blob/main/docs/architecture/WHITE_LABEL.md)
+- Runtime branding: [BRANDING.md](https://github.com/mmshop94/BusinessForge-FlutterApp/blob/main/docs/architecture/BRANDING.md)
+- Multi-tenant model: [MULTI_TENANT.md](https://github.com/mmshop94/BusinessForge-FlutterApp/blob/main/docs/architecture/MULTI_TENANT.md)

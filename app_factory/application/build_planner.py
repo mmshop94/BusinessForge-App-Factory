@@ -103,15 +103,36 @@ class BuildPlanner:
             "API_BASE_URL": manifest.api_base_url,
             "BACKEND_ORIGIN": manifest.resolved_backend_origin,
             "PUBLIC_APP_ID": manifest.tenant.public_app_id,
-            "APP_PACKAGE": manifest.tenant.package,
-            "APP_PACKAGE_VERSION": manifest.tenant.package_version,
-            "BRAND_THEME": manifest.branding.theme,
-            "BRAND_PRIMARY_COLOR": manifest.branding.primary_color,
-            "BRAND_SECONDARY_COLOR": manifest.branding.secondary_color,
+            "PACKAGE_ID": manifest.tenant.package,
+            "PACKAGE_VERSION": manifest.tenant.package_version,
+            "APP_NAME": manifest.app.display_name,
+            "PRIMARY_COLOR": manifest.branding.primary_color,
+            "SECONDARY_COLOR": manifest.branding.secondary_color,
         }
         for name, enabled in sorted(manifest.features.flags.items()):
-            defines[f"FEATURE_{name.upper()}"] = "true" if enabled else "false"
+            feature_key = name.upper()
+            if feature_key == "VILLAGE_STORE" or name == "village_store":
+                defines["FEATURE_VILLAGE_STORE"] = "true" if enabled else "false"
+            elif feature_key == "RESTAURANT" or name == "restaurant_menu":
+                defines["FEATURE_RESTAURANT_MENU"] = "true" if enabled else "false"
+            else:
+                defines[f"FEATURE_{feature_key}"] = "true" if enabled else "false"
+
+        BuildPlanner._apply_package_features(defines, manifest.tenant.package)
         return defines
+
+    @staticmethod
+    def _apply_package_features(defines: dict[str, str], package_id: str) -> None:
+        """Package slug implies compile-time module flags unless explicitly disabled."""
+        if package_id == "village_store":
+            defines.setdefault("FEATURE_VILLAGE_STORE", "true")
+            defines.setdefault("FEATURE_NOTIFICATIONS", "true")
+            defines.setdefault("FEATURE_PAYMENTS", "true")
+        elif package_id == "restaurant":
+            defines.setdefault("FEATURE_RESTAURANT_MENU", "true")
+            defines.setdefault("FEATURE_SCHEDULING", "true")
+            defines.setdefault("FEATURE_NOTIFICATIONS", "true")
+            defines.setdefault("FEATURE_PAYMENTS", "true")
 
     @staticmethod
     def _steps(artifact_format: AndroidArtifactFormat) -> list[BuildPlanStep]:

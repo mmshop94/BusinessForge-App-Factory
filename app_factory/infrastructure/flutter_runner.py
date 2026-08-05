@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-import json
+import os
 import subprocess
 from dataclasses import dataclass
 from pathlib import Path
@@ -45,6 +45,7 @@ class FlutterRunner:
             capture_output=True,
             text=True,
             check=False,
+            env=os.environ.copy(),
         )
         result = CommandResult(
             command=command,
@@ -62,11 +63,18 @@ class FlutterRunner:
     def version_info(self) -> tuple[str | None, str | None]:
         try:
             flutter = self.run(["--version"], cwd=Path.cwd(), check=False)
-            dart = self.run(["dart", "--version"], cwd=Path.cwd(), check=False)
+            flutter_bin = Path(self._flutter).resolve().parent
+            dart_exe = flutter_bin / ("dart.exe" if flutter_bin.joinpath("dart.exe").exists() else "dart")
+            dart = subprocess.run(
+                [str(dart_exe), "--version"],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
         except OSError:
             return None, None
         flutter_line = flutter.stdout.splitlines()[0] if flutter.stdout else None
-        dart_line = dart.stdout.strip() or dart.stderr.strip() if dart.stdout or dart.stderr else None
+        dart_line = (dart.stdout or dart.stderr).strip() if dart.stdout or dart.stderr else None
         return flutter_line, dart_line
 
     @staticmethod

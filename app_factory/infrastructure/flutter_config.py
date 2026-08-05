@@ -28,6 +28,7 @@ class FlutterConfigApplier:
         changed.extend(self._write_build_config(workspace, manifest, dart_defines))
         changed.extend(self._patch_pubspec(workspace, manifest))
         changed.extend(self._patch_android(workspace, manifest))
+        changed.extend(self._patch_gradle_properties(workspace))
         if branding_assets_root:
             changed.extend(self._copy_branding_assets(workspace, manifest, branding_assets_root))
         return changed
@@ -142,3 +143,15 @@ class FlutterConfigApplier:
             shutil.copy2(source, target)
             copied.append(str(target.relative_to(workspace)))
         return copied
+
+    def _patch_gradle_properties(self, workspace: Path) -> list[str]:
+        """Windows cross-drive Kotlin cache fix for Factory workspaces."""
+        gradle_props = workspace / "android" / "gradle.properties"
+        if not gradle_props.is_file():
+            return []
+        content = gradle_props.read_text(encoding="utf-8")
+        marker = "kotlin.incremental=false"
+        if marker not in content:
+            content = content.rstrip() + f"\n{marker}\n"
+            gradle_props.write_text(content, encoding="utf-8")
+        return [str(gradle_props.relative_to(workspace))]

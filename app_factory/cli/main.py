@@ -14,6 +14,7 @@ from app_factory.domain.build import BuildRequest
 from app_factory.domain.enums import AndroidArtifactFormat
 from app_factory.domain.errors import AppFactoryError
 from app_factory.infrastructure.build_report import BuildReportWriter
+from app_factory.infrastructure.flutter_runner import FlutterRunner
 from app_factory.infrastructure.paths import compat_path, repo_root, schema_path
 
 
@@ -134,6 +135,11 @@ def plan_cmd(
 @click.option("--skip-tests", is_flag=True, help="Skip flutter test")
 @click.option("--skip-analyze", is_flag=True, help="Skip flutter analyze")
 @click.option("--dry-run", is_flag=True, help="Plan only — do not execute Flutter")
+@click.option(
+    "--flutter-path",
+    type=click.Path(exists=True, dir_okay=False, path_type=Path),
+    help="Path to flutter executable (default: flutter on PATH)",
+)
 def build_android_cmd(
     manifest: Path,
     customer_app: Path | None,
@@ -142,6 +148,7 @@ def build_android_cmd(
     skip_tests: bool,
     skip_analyze: bool,
     dry_run: bool,
+    flutter_path: Path | None,
 ) -> None:
     """Build a tenant Android APK/AAB from manifest + customer app."""
     validator = ManifestValidator(schema_path(), compat_path())
@@ -166,7 +173,9 @@ def build_android_cmd(
         run_analyze=not skip_analyze,
         dry_run=dry_run,
     )
-    result = BuildOrchestrator().build_android(request)
+    result = BuildOrchestrator(
+        flutter_runner=FlutterRunner(str(flutter_path) if flutter_path else "flutter")
+    ).build_android(request)
     click.echo(json.dumps({"status": result.status.value, "report": result.report_path}, indent=2))
     if result.status.value != "succeeded" and result.status.value != "planned":
         sys.exit(1)

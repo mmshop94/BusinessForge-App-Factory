@@ -3,7 +3,7 @@
 > **Repository:** [BusinessForge-App-Factory](https://github.com/mmshop94/BusinessForge-App-Factory)  
 > **Stand:** 2026-08-05  
 > **Slice:** 1 — Foundation  
-> **Status:** Initial implementation
+> **Status:** ✅ Runtime v1 qualified ([FACTORY_RUNTIME_V1.md](FACTORY_RUNTIME_V1.md))
 
 ---
 
@@ -30,7 +30,9 @@ Tenant App Manifest + Branding Assets + Customer App @ ref
 | [BusinessForge](https://github.com/mmshop94/BusinessForge) | Authoritative tenant/package/branding configuration | Client build artifacts |
 | [BusinessForge-Dashboard](https://github.com/mmshop94/BusinessForge-Dashboard) | Admin UI for operators | Build pipeline execution |
 
-This separation follows the decision documented in the Customer App's [WHITE_LABEL.md](../../BusinessForge%20FlutterApp/docs/architecture/WHITE_LABEL.md), renamed from "AppForge" to **App Factory** for clarity.
+This separation follows the decision documented in the Customer App's [WHITE_LABEL.md](https://github.com/mmshop94/BusinessForge-FlutterApp/blob/main/docs/architecture/WHITE_LABEL.md), renamed from "AppForge" to **App Factory** for clarity.
+
+The **binding build contract** between Factory and Customer App is [CUSTOMER_APP_BUILD_CONTRACT_V1.md](CUSTOMER_APP_BUILD_CONTRACT_V1.md) — **Approved** and qualified against Customer App `v0.5.10`.
 
 ---
 

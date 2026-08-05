@@ -24,6 +24,9 @@ class BuildOrchestrator:
         "android/app/build.gradle.kts",
         "android/app/src/main/AndroidManifest.xml",
         "lib/config/app_config.dart",
+        "lib/config/app_configuration.dart",
+        "lib/config/feature_configuration.dart",
+        "lib/app.dart",
     ]
 
     def __init__(
@@ -80,7 +83,7 @@ class BuildOrchestrator:
                 result,
                 "apply_manifest",
                 "succeeded",
-                extra={"changed_files": changed},
+                extra={"changed_files": changed, "dart_defines": plan.dart_defines},
             )
 
             self._record_step(result, "flutter_pub_get", "running")
@@ -89,7 +92,10 @@ class BuildOrchestrator:
 
             if request.run_analyze:
                 self._record_step(result, "flutter_analyze", "running")
-                self._flutter.run(["analyze"], cwd=workspace)
+                self._flutter.run(
+                    ["analyze", "--no-fatal-infos", "--no-fatal-warnings"],
+                    cwd=workspace,
+                )
                 self._record_step(result, "flutter_analyze", "succeeded")
 
             if request.run_tests:

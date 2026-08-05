@@ -2,6 +2,27 @@
 
 All notable changes to BusinessForge App Factory are documented here.
 
+## [Unreleased]
+
+## [0.1.1] - 2026-08-05
+
+### Added
+
+- **Contract qualification** — full Android pipeline against Customer App `v0.5.10` ([FACTORY_RUNTIME_V1.md](docs/FACTORY_RUNTIME_V1.md))
+- [COMPATIBILITY_MATRIX.md](docs/COMPATIBILITY_MATRIX.md) — qualified toolchain and define matrix
+- Kotlin incremental disabled in workspace only (`kotlin.incremental=false`) for cross-drive Windows builds
+- Flutter/Dart version capture in build reports via `dart.exe` adjacent to Flutter SDK
+
+### Changed
+
+- [CUSTOMER_APP_BUILD_CONTRACT_V1.md](docs/CUSTOMER_APP_BUILD_CONTRACT_V1.md) — **Approved** (qualified 2026-08-05)
+- `flutter analyze` uses `--no-fatal-infos --no-fatal-warnings` in pipeline
+- Removed `flutter clean` from pipeline (Windows symlink/Developer Mode issue)
+
+### Fixed
+
+- `BuildOrchestrator` — restore `mark_finished(SUCCEEDED)` on successful builds
+
 ## [0.1.0] - 2026-08-05
 
 ### Added

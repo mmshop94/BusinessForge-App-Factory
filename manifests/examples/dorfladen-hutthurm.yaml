@@ -20,6 +20,7 @@ branding:
   icon_asset: branding/icon.png
 
 features:
+  village_store: true
   news: true
   ordering: true
   loyalty: false
@@ -30,7 +31,7 @@ release:
   build_number: 1
 
 source:
-  customer_app_ref: v0.5.9
+  customer_app_ref: v0.5.10
   customer_app_repo: ../BusinessForge FlutterApp
   factory_compat_version: "1"
 
