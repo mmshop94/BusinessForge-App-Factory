@@ -1,0 +1,41 @@
+schema_version: 1
+
+app:
+  id: dorfladen-hutthurm
+  display_name: Dorfladen Hutthurm
+  package_name_android: de.bforge.dorfladenhutthurm
+  bundle_id_ios: de.bforge.dorfladenhutthurm
+
+tenant:
+  public_app_id: app_EJ8JNB10VP3CSPPF0GVY4HP7QF
+  package: village_store
+  package_version: v1
+
+branding:
+  theme: warm
+  primary_color: "#8B4A2F"
+  secondary_color: "#F2E3D5"
+  logo_asset: branding/logo.svg
+  splash_asset: branding/splash.png
+  icon_asset: branding/icon.png
+
+features:
+  village_store: true
+  news: true
+  ordering: true
+  notifications: true
+  inventory_warnings: true
+  sales_workflow: true
+
+release:
+  channel: pilot
+  app_version: 1.0.0
+  build_number: 1
+
+source:
+  customer_app_ref: v0.5.10
+  customer_app_repo: ../BusinessForge FlutterApp
+  factory_compat_version: "1"
+
+api_base_url: https://api.bforge.de/api/v1
+backend_origin: https://api.bforge.de

@@ -4,6 +4,11 @@ All notable changes to BusinessForge App Factory are documented here.
 
 ## [Unreleased]
 
+### Added
+
+- Dorfladen #1 pilot manifest: `manifests/dorfladen-1-pilot.yaml` + production export JSON
+- Qualified APK build against `api.bforge.de` (`output/dorfladen-hutthurm-app-release.apk`)
+
 ## [0.1.1] - 2026-08-05
 
 ### Added
