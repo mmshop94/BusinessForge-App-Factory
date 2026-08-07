@@ -1,11 +1,14 @@
 from __future__ import annotations
 
+import fnmatch
 import shutil
+import subprocess
+import sys
 from pathlib import Path
 
 from app_factory.domain.errors import WorkspaceError
 
-_COPY_IGNORE = shutil.ignore_patterns(
+_IGNORE_PATTERNS = (
     ".git",
     ".dart_tool",
     "build",
@@ -13,7 +16,45 @@ _COPY_IGNORE = shutil.ignore_patterns(
     ".vscode",
     "android/.gradle",
     "android/local.properties",
+    "android/build",
+    "android/app/build",
+    "ios/Pods",
+    "node_modules",
 )
+
+
+def _copy_ignore(directory: str, names: list[str]) -> set[str]:
+    ignored: set[str] = set()
+    for pattern in _IGNORE_PATTERNS:
+        ignored.update(fnmatch.filter(names, pattern))
+    return ignored
+
+
+def _robocopy(source: Path, destination: Path) -> None:
+    destination.mkdir(parents=True, exist_ok=True)
+    excluded = [".git", ".dart_tool", "build", ".idea", ".vscode", "node_modules"]
+    cmd = [
+        "robocopy",
+        str(source),
+        str(destination),
+        "/E",
+        "/XJ",
+        "/R:1",
+        "/W:1",
+        "/NFL",
+        "/NDL",
+        "/NJH",
+        "/NJS",
+        "/nc",
+        "/ns",
+        "/np",
+    ]
+    for name in excluded:
+        cmd.extend(["/XD", name])
+    cmd.extend(["/XF", "local.properties"])
+    completed = subprocess.run(cmd, check=False)
+    if completed.returncode >= 8:
+        raise WorkspaceError(f"robocopy failed with exit code {completed.returncode}")
 
 
 class WorkspaceManager:
@@ -32,12 +73,15 @@ class WorkspaceManager:
         if self._workspace_path.exists():
             self.cleanup()
         self._workspace_path.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copytree(
-            customer_app_path,
-            self._workspace_path,
-            ignore=_COPY_IGNORE,
-            dirs_exist_ok=False,
-        )
+        if sys.platform == "win32":
+            _robocopy(customer_app_path, self._workspace_path)
+        else:
+            shutil.copytree(
+                customer_app_path,
+                self._workspace_path,
+                ignore=_copy_ignore,
+                dirs_exist_ok=False,
+            )
         marker = self._workspace_path / "build_config" / ".app_factory_workspace"
         marker.parent.mkdir(parents=True, exist_ok=True)
         marker.write_text("generated-by=businessforge-app-factory\n", encoding="utf-8")

@@ -27,6 +27,7 @@ class FlutterConfigApplier:
         changed: list[str] = []
         changed.extend(self._write_build_config(workspace, manifest, dart_defines))
         changed.extend(self._patch_pubspec(workspace, manifest))
+        changed.extend(self._patch_pubspec_assets(workspace))
         changed.extend(self._patch_android(workspace, manifest))
         changed.extend(self._patch_gradle_properties(workspace))
         if branding_assets_root:
@@ -49,6 +50,8 @@ class FlutterConfigApplier:
             "package_name_android": manifest.app.package_name_android,
             "bundle_id_ios": manifest.app.bundle_id_ios,
             "public_app_id": manifest.tenant.public_app_id,
+            "api_base_url": manifest.api_base_url,
+            "backend_origin": manifest.backend_origin,
             "tenant_package": manifest.tenant.package,
             "tenant_package_version": manifest.tenant.package_version,
             "branding": {
@@ -89,6 +92,40 @@ class FlutterConfigApplier:
         if count == 0:
             raise BuildExecutionError("Could not patch pubspec.yaml version")
         pubspec.write_text(updated, encoding="utf-8")
+        return ["pubspec.yaml"]
+
+    def _patch_pubspec_assets(self, workspace: Path) -> list[str]:
+        """Register Factory build_config JSON as Flutter asset."""
+        pubspec = workspace / "pubspec.yaml"
+        if not pubspec.is_file():
+            raise BuildExecutionError("pubspec.yaml not found in customer app workspace")
+        content = pubspec.read_text(encoding="utf-8")
+        asset_entry = "    - build_config/app_factory_config.json"
+        if asset_entry.strip() in content:
+            return []
+        flutter_block = re.search(r"(?m)^flutter:\r?\n", content)
+        if not flutter_block:
+            content = content.rstrip() + (
+                "\nflutter:\n  uses-material-design: true\n  assets:\n"
+                f"{asset_entry}\n"
+            )
+            pubspec.write_text(content, encoding="utf-8")
+            return ["pubspec.yaml"]
+        insert_at = flutter_block.end()
+        if re.search(r"(?m)^  assets:\n", content[insert_at:]):
+            content = content.replace(
+                "  assets:\n",
+                f"  assets:\n{asset_entry}\n",
+                1,
+            )
+        else:
+            content = (
+                content[:insert_at]
+                + "  assets:\n"
+                + f"{asset_entry}\n"
+                + content[insert_at:]
+            )
+        pubspec.write_text(content, encoding="utf-8")
         return ["pubspec.yaml"]
 
     def _patch_android(self, workspace: Path, manifest: AppBuildManifest) -> list[str]:

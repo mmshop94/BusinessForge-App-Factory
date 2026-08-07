@@ -30,7 +30,7 @@ features:
 release:
   channel: pilot
   app_version: 1.0.0
-  build_number: 1
+  build_number: 5
 
 source:
   customer_app_ref: v0.5.10

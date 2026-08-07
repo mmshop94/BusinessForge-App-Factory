@@ -55,6 +55,19 @@ class BuildPlan:
 class BuildPlanner:
     """Deterministic build plan from manifest + factory defaults."""
 
+    FLUTTER_FEATURE_FLAGS = {
+        "ordering",
+        "news",
+        "loyalty",
+        "scheduling",
+        "notifications",
+        "payments",
+        "catalog",
+        "restaurant_menu",
+        "village_store",
+        "documents",
+    }
+
     GENERATED_FILES = [
         "build_config/app_factory_config.json",
         "build_config/dart_defines.json",
@@ -110,6 +123,8 @@ class BuildPlanner:
             "SECONDARY_COLOR": manifest.branding.secondary_color,
         }
         for name, enabled in sorted(manifest.features.flags.items()):
+            if name not in BuildPlanner.FLUTTER_FEATURE_FLAGS:
+                continue
             feature_key = name.upper()
             if feature_key == "VILLAGE_STORE" or name == "village_store":
                 defines["FEATURE_VILLAGE_STORE"] = "true" if enabled else "false"
