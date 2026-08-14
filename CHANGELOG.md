@@ -9,6 +9,12 @@ All notable changes to BusinessForge App Factory are documented here.
 - Dorfladen #1 pilot manifest: `manifests/dorfladen-1-pilot.yaml` + production export JSON
 - Qualified APK build against `api.bforge.de` (`output/dorfladen-hutthurm-app-release.apk`)
 
+### Notes
+
+- Rechtstexte sind Runtime-Daten der Customer App (Bootstrap / Public Legal API). Die Factory backt keine Tenant- oder Platform-Rechtstexte in die APK.
+- Legal Activation (Readiness, Templates, Review-Metadaten): siehe Backend [LEGAL_COMPLIANCE_V1.md](../BusinessForge/docs/architecture/LEGAL_COMPLIANCE_V1.md) und [LEGAL_READINESS_REPORT.md](../BusinessForge/docs/pilot/LEGAL_READINESS_REPORT.md). Verdict: `NOT LEGALLY CLEARED`.
+
+
 ## [0.1.1] - 2026-08-05
 
 ### Added

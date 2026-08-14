@@ -47,6 +47,8 @@ const publicAppId = String.fromEnvironment('PUBLIC_APP_ID');
 
 **No secret tenant keys** in the client — only the public `app_id`. Mandant resolution remains server-side.
 
+Legal documents are **not** a factory concern: the Customer App loads published tenant texts at runtime via bootstrap / `GET /public/apps/{public_app_id}/legal`. Do not inject imprint, privacy, or terms into generated Dart or native files.
+
 ---
 
 ## Native patch points
