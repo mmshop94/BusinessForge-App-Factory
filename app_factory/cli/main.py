@@ -9,7 +9,12 @@ import click
 from app_factory import __version__
 from app_factory.application.build_orchestrator import BuildOrchestrator
 from app_factory.application.build_planner import BuildPlanner
+from app_factory.application.export_materializer import materialize_export
 from app_factory.application.manifest_validator import ManifestLoader, ManifestValidator
+from app_factory.application.signing import signing_status
+from app_factory.domain.build import BuildRequest
+from app_factory.domain.enums import AndroidArtifactFormat
+from app_factory.domain.errors import AppFactoryError
 from app_factory.domain.build import BuildRequest
 from app_factory.domain.enums import AndroidArtifactFormat
 from app_factory.domain.errors import AppFactoryError
@@ -187,6 +192,29 @@ def inspect_build_cmd(build_report: Path) -> None:
     """Pretty-print a build report JSON file."""
     payload = BuildReportWriter.load(build_report)
     click.echo(json.dumps(payload, indent=2, sort_keys=True))
+
+
+@cli.command("signing-status")
+def signing_status_cmd() -> None:
+    """Show whether Android signing env is configured (no secrets)."""
+    click.echo(json.dumps(signing_status().to_public_dict(), indent=2, sort_keys=True))
+
+
+@cli.command("materialize-export")
+@click.argument("export_file", type=click.Path(exists=True, dir_okay=False, path_type=Path))
+@click.option(
+    "--output-dir",
+    type=click.Path(file_okay=False, path_type=Path),
+    required=True,
+)
+def materialize_export_cmd(export_file: Path, output_dir: Path) -> None:
+    """Write a backend factory export to a local manifest directory."""
+    payload = json.loads(export_file.read_text(encoding="utf-8"))
+    try:
+        manifest_path = materialize_export(payload, output_dir)
+    except AppFactoryError as exc:
+        raise click.ClickException(str(exc)) from exc
+    click.echo(json.dumps({"manifest": str(manifest_path)}, indent=2))
 
 
 if __name__ == "__main__":

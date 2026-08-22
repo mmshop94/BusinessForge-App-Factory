@@ -32,6 +32,7 @@ class FlutterConfigApplier:
         changed.extend(self._patch_gradle_properties(workspace))
         if branding_assets_root:
             changed.extend(self._copy_branding_assets(workspace, manifest, branding_assets_root))
+        changed.extend(self._apply_native_branding(workspace, manifest, branding_assets_root))
         return changed
 
     def _write_build_config(
@@ -180,6 +181,46 @@ class FlutterConfigApplier:
             shutil.copy2(source, target)
             copied.append(str(target.relative_to(workspace)))
         return copied
+
+    def _apply_native_branding(
+        self,
+        workspace: Path,
+        manifest: AppBuildManifest,
+        branding_assets_root: Path | None,
+    ) -> list[str]:
+        from app_factory.application.image_assets import generate_default_icon, validate_icon_file
+        from app_factory.application.native_branding import NativeBrandingApplier
+        from app_factory.domain.errors import AssetNotFoundError
+
+        icon_path = None
+        logo_path = None
+        if branding_assets_root:
+            if manifest.branding.icon_asset:
+                candidate = branding_assets_root / manifest.branding.icon_asset
+                if candidate.is_file():
+                    icon_path = candidate
+            if manifest.branding.logo_asset:
+                candidate = branding_assets_root / manifest.branding.logo_asset
+                if candidate.is_file():
+                    logo_path = candidate
+        production = manifest.release.channel == "production"
+        if icon_path is None:
+            if production:
+                raise AssetNotFoundError("Production app delivery requires a customer app icon")
+            icon_bytes = generate_default_icon(primary_color=manifest.branding.primary_color)
+        else:
+            validate_icon_file(icon_path)
+            icon_bytes = icon_path.read_bytes()
+        logo_bytes = None
+        if logo_path and logo_path.suffix.lower() in {".png", ".jpg", ".jpeg", ".webp"}:
+            logo_bytes = logo_path.read_bytes()
+        return NativeBrandingApplier().apply(
+            workspace,
+            manifest,
+            icon_bytes=icon_bytes,
+            logo_bytes=logo_bytes,
+            allow_default_icon=not production,
+        )
 
     def _patch_gradle_properties(self, workspace: Path) -> list[str]:
         """Windows cross-drive Kotlin cache fix for Factory workspaces."""

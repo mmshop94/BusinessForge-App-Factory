@@ -89,6 +89,8 @@ class ManifestLoader:
             api_base_url=data["api_base_url"],
             backend_origin=data.get("backend_origin"),
             manifest_path=str(manifest_path) if manifest_path else None,
+            delivery_job_id=data.get("delivery_job_id"),
+            design_template_id=data.get("design_template_id"),
         )
 
 
@@ -166,6 +168,12 @@ class ManifestValidator:
         android_id = data["app"]["package_name_android"]
         if not ANDROID_ID_PATTERN.match(android_id):
             raise ManifestValidationError(f"Invalid Android application ID: {android_id}")
+        from app_factory.application.package_identity import ANDROID_APPLICATION_ID_PATTERN
+
+        if not ANDROID_APPLICATION_ID_PATTERN.match(android_id):
+            raise ManifestValidationError(
+                "Android application ID must be de.bforge.app.{public_app_ulid}"
+            )
 
     @classmethod
     def _assert_no_secrets(cls, data: Any, path: str = "$") -> None:

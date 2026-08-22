@@ -144,6 +144,24 @@
     "backend_origin": {
       "type": "string",
       "format": "uri"
+    },
+    "delivery_job_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "design_template_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "build_target": {
+      "type": "string",
+      "enum": ["android", "apk", "aab"]
+    },
+    "generated_at": {
+      "type": "string",
+      "minLength": 1
     }
   }
 }

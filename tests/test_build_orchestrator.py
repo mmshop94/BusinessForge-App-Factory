@@ -80,7 +80,7 @@ def test_config_applier_patches_workspace(
     assert "pubspec.yaml" in changed
     assert "1.0.0+1" in (workspace / "pubspec.yaml").read_text(encoding="utf-8")
     gradle = (workspace / "android" / "app" / "build.gradle.kts").read_text(encoding="utf-8")
-    assert "de.bforge.dorfladenhutthurm" in gradle
+    assert "de.bforge.app.u01jabcdefghjkmnpqrstvwxyz0" in gradle
 
 
 def test_build_orchestrator_dry_run(

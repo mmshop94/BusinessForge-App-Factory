@@ -1,6 +1,6 @@
 # Security — BusinessForge App Factory
 
-> **Stand:** 2026-08-05
+> **Stand:** 2026-08-14 (Wave 1 store-ready foundation)
 
 ---
 
@@ -8,11 +8,10 @@
 
 | Asset | Risk | Mitigation |
 |-------|------|------------|
-| Android signing keys | Forge malicious APKs | **Never stored in this repo** — CI secrets / vault only |
-| Play Store service accounts | Unauthorized uploads | Out of scope Slice 1; scoped credentials in CI |
-| Tenant secrets | Client or manifest leak | Manifest validator rejects secret-like keys/values |
-| Customer App source | Tampering during build | Workspace isolation + post-build source integrity check |
-| Build reports | Information disclosure | Reports contain public config only — no secrets |
+| Android signing keys | Forge malicious APKs | **Never stored in this repo** — env `BF_ANDROID_*` / vault only; reports reject secret markers |
+| Play Store service accounts | Unauthorized uploads | Out of scope; Store remains MANUAL_OPERATION |
+| Tenant secrets | Client or manifest leak | Manifest validator rejects secret-like keys/values; export has no credentials |
+| Build reports / Build Result | Information disclosure | Public fields only — no keystore paths, passwords, or local secret paths |
 
 ---
 

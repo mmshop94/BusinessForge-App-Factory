@@ -80,6 +80,8 @@ class AppBuildManifest:
     api_base_url: str
     backend_origin: Optional[str] = None
     manifest_path: Optional[str] = None
+    delivery_job_id: Optional[str] = None
+    design_template_id: Optional[str] = None
 
     @property
     def flutter_version_name(self) -> str:

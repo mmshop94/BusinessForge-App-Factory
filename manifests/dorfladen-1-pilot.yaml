@@ -3,8 +3,8 @@ schema_version: 1
 app:
   id: dorfladen-hutthurm
   display_name: Dorfladen Hutthurm
-  package_name_android: de.bforge.dorfladenhutthurm
-  bundle_id_ios: de.bforge.dorfladenhutthurm
+  package_name_android: de.bforge.app.uej8jnb10vp3csppf0gvy4hp7qf
+  bundle_id_ios: de.bforge.app.uej8jnb10vp3csppf0gvy4hp7qf
 
 tenant:
   public_app_id: app_EJ8JNB10VP3CSPPF0GVY4HP7QF
