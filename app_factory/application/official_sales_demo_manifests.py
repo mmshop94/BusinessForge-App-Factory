@@ -220,7 +220,11 @@ def materialize_demo_manifest_dir(
         "phone_screenshot_status": "MISSING",
         "tablet_screenshot_status": "MISSING",
         "release_notes": "Official Sales Demo — internal demo plane build",
-        "api_release_gap": "Demo uses LAN HTTP endpoint; public HTTPS demo API required for store release",
+        "api_release_gap": (
+            None
+            if str(api_base_url).startswith("https://demo-api.bforge.de")
+            else "Demo uses LAN HTTP endpoint; public HTTPS demo API required for store release"
+        ),
     }
     (metadata_dir / "play_store.json").write_text(
         json.dumps(store_metadata, indent=2) + "\n",

@@ -7,14 +7,17 @@ All notable changes to BusinessForge App Factory are documented here.
 ### Added
 
 - Official Sales Demo public API origin: `https://demo-api.bforge.de/api/v1`
-- CLI flag `--public-api` for HTTPS rebuild after Owner DNS/TLS
+- CLI flag `--public-api` sets `API_BASE_URL=https://demo-api.bforge.de/api/v1` (fail-closed HTTPS)
+- Output channels: `BusinessForge-Demo-Apps/lan/` vs `.../public/`; legacy top-level `demo-*` trees are moved into `lan/` without overwrite
+- Public artefact origin scan (Dart snapshot / Flutter assets + `app_factory_config.json`): require `demo-api.bforge.de`, block LAN `192.168.*` / `:8090` and Production `api.bforge.de` (token-aware). Flutter snapshot loopback defaults are not treated as LAN API origins.
 - Guard: official sales demo builds refuse Production `api.bforge.de`
-- Docs: public demo hosts in [OFFICIAL_SALES_DEMO_APP_FACTORY.md](docs/OFFICIAL_SALES_DEMO_APP_FACTORY.md)
+- Docs: public demo hosts and lan/public layout in [OFFICIAL_SALES_DEMO_APP_FACTORY.md](docs/OFFICIAL_SALES_DEMO_APP_FACTORY.md)
 
 ### Changed
 
-- LAN `http://192.168.178.95:8090` remains the default until `demo-api.bforge.de` exists
-- Existing LAN APKs stay valid; public rebuild is the next slice after TLS
+- `--public-api` default output is `BusinessForge-Demo-Apps/public/`; LAN default remains `.../lan/`
+- Existing LAN APKs are preserved under `lan/` and are not overwritten by public rebuilds
+- Public store metadata `api_release_gap` is cleared when the API origin is `https://demo-api.bforge.de`
 
 ## [0.1.2] — 2026-08-28
 

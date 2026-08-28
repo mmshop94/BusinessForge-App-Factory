@@ -14,6 +14,8 @@ from app_factory.application.manifest_validator import ManifestLoader, ManifestV
 from app_factory.application.demo_api_origins import (
     LAN_DEMO_API_BASE_URL,
     assert_official_sales_demo_api_origin,
+    assert_public_artifact_origins,
+    assert_public_demo_api_origin,
 )
 from app_factory.application.official_sales_demo_discovery import (
     OFFICIAL_SALES_DEMO_SLUGS,
@@ -167,8 +169,12 @@ def build_official_sales_demo_apps(
     build_aab: bool = True,
     flutter_path: str = "flutter",
     manifest_only: bool = False,
+    require_public_origins: bool = False,
 ) -> BatchBuildResult:
-    api_base_url = assert_official_sales_demo_api_origin(api_base_url)
+    if require_public_origins:
+        api_base_url = assert_public_demo_api_origin(api_base_url)
+    else:
+        api_base_url = assert_official_sales_demo_api_origin(api_base_url)
     password_path = env_demo_path or (repo_root().parent / "BusinessForge" / ".env.demo")
     owner_password = _load_demo_password(password_path)
     records = discover_official_sales_demos(
@@ -236,6 +242,8 @@ def build_official_sales_demo_apps(
                     apk_dir.mkdir(parents=True, exist_ok=True)
                     target = apk_dir / f"{record.slug}-release.apk"
                     shutil.copy2(artifact, target)
+                    if require_public_origins:
+                        assert_public_artifact_origins(target)
                     entry.apk_path = target
                     entry.apk_sha256 = digest
 
@@ -253,6 +261,8 @@ def build_official_sales_demo_apps(
                     aab_dir.mkdir(parents=True, exist_ok=True)
                     target = aab_dir / f"{record.slug}-release.aab"
                     shutil.copy2(artifact, target)
+                    if require_public_origins:
+                        assert_public_artifact_origins(target)
                     entry.aab_path = target
                     entry.aab_sha256 = digest
 

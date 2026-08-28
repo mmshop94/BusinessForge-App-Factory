@@ -218,15 +218,14 @@ def materialize_export_cmd(export_file: Path, output_dir: Path) -> None:
 @click.option(
     "--output-root",
     type=click.Path(file_okay=False, path_type=Path),
-    default=lambda: repo_root().parent / "BusinessForge-Demo-Apps",
-    show_default=True,
-    help="Root directory for demo app packages (outside git)",
+    default=None,
+    help="Output root. Default: BusinessForge-Demo-Apps/public with --public-api, else .../lan",
 )
 @click.option(
     "--api-base-url",
     default="http://192.168.178.95:8090/api/v1",
     show_default=True,
-    help="Demo API origin. LAN default until demo-api.bforge.de TLS exists.",
+    help="Demo API origin. LAN default; --public-api overrides to https://demo-api.bforge.de/api/v1.",
 )
 @click.option(
     "--public-api",
@@ -271,12 +270,27 @@ def build_official_sales_demos_cmd(
     flutter_path: Path | None,
 ) -> None:
     """Discover Official Sales Demos and batch-build Android APK/AAB packages."""
-    from app_factory.application.demo_api_origins import PUBLIC_DEMO_API_BASE_URL
+    from app_factory.application.demo_api_origins import (
+        PUBLIC_DEMO_API_BASE_URL,
+        assert_public_demo_api_origin,
+    )
+    from app_factory.application.demo_apps_layout import (
+        CHANNEL_LAN,
+        CHANNEL_PUBLIC,
+        channel_output_root,
+        preserve_legacy_lan_builds,
+    )
     from app_factory.application.official_sales_demo_batch import build_official_sales_demo_apps
     from app_factory.application.official_sales_demo_discovery import OFFICIAL_SALES_DEMO_SLUGS
 
+    preserve_legacy_lan_builds()
+    require_public = False
     if public_api:
-        api_base_url = PUBLIC_DEMO_API_BASE_URL
+        api_base_url = assert_public_demo_api_origin(PUBLIC_DEMO_API_BASE_URL)
+        require_public = True
+
+    if output_root is None:
+        output_root = channel_output_root(CHANNEL_PUBLIC if public_api else CHANNEL_LAN)
 
     customer_path = customer_app or (repo_root().parent / "BusinessForge-FlutterApp-main")
     if not customer_path.is_dir():
@@ -301,6 +315,7 @@ def build_official_sales_demos_cmd(
             build_aab=not no_aab,
             flutter_path=str(flutter_path) if flutter_path else "flutter",
             manifest_only=manifest_only,
+            require_public_origins=require_public,
         )
     except Exception as exc:  # noqa: BLE001
         raise click.ClickException(str(exc)) from exc

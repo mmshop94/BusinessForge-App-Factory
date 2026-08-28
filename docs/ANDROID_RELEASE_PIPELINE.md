@@ -97,3 +97,15 @@ Secret-like keys/paths are rejected. Results map onto the delivery job; they can
 `configuration_pending` → `ready_for_generation` → `generation_queued` → `generating` → `review_required` → `ready_for_submission` → `submitted` → `store_review` → `published` | `rejected` | `failed`
 
 Documentable: `submitted_at`, `store`, `store_listing_reference`, `store_review_status`, `rejection_reason`, `published_at`. No Play credentials stored.
+
+## Official Sales Demo artefacts
+
+Official Sales Demo APK/AAB are **not** Play uploads. Channels:
+
+| Channel | Root | API |
+|---------|------|-----|
+| LAN | `BusinessForge-Demo-Apps/lan/` | `http://192.168.178.95:8090/api/v1` |
+| Public | `BusinessForge-Demo-Apps/public/` | `https://demo-api.bforge.de/api/v1` |
+
+`--public-api` is fail-closed. See [OFFICIAL_SALES_DEMO_APP_FACTORY.md](OFFICIAL_SALES_DEMO_APP_FACTORY.md).
+
