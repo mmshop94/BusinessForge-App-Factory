@@ -11,6 +11,10 @@ from typing import Any
 
 from app_factory.application.build_orchestrator import BuildOrchestrator
 from app_factory.application.manifest_validator import ManifestLoader, ManifestValidator
+from app_factory.application.demo_api_origins import (
+    LAN_DEMO_API_BASE_URL,
+    assert_official_sales_demo_api_origin,
+)
 from app_factory.application.official_sales_demo_discovery import (
     OFFICIAL_SALES_DEMO_SLUGS,
     discover_official_sales_demos,
@@ -153,7 +157,7 @@ def _run_single_build(
 def build_official_sales_demo_apps(
     *,
     output_root: Path,
-    api_base_url: str = "http://192.168.178.95:8090/api/v1",
+    api_base_url: str = LAN_DEMO_API_BASE_URL,
     customer_app: Path,
     env_demo_path: Path | None = None,
     slugs: tuple[str, ...] = OFFICIAL_SALES_DEMO_SLUGS,
@@ -164,6 +168,7 @@ def build_official_sales_demo_apps(
     flutter_path: str = "flutter",
     manifest_only: bool = False,
 ) -> BatchBuildResult:
+    api_base_url = assert_official_sales_demo_api_origin(api_base_url)
     password_path = env_demo_path or (repo_root().parent / "BusinessForge" / ".env.demo")
     owner_password = _load_demo_password(password_path)
     records = discover_official_sales_demos(

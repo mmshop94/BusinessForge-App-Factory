@@ -2,6 +2,20 @@
 
 All notable changes to BusinessForge App Factory are documented here.
 
+## [Unreleased]
+
+### Added
+
+- Official Sales Demo public API origin: `https://demo-api.bforge.de/api/v1`
+- CLI flag `--public-api` for HTTPS rebuild after Owner DNS/TLS
+- Guard: official sales demo builds refuse Production `api.bforge.de`
+- Docs: public demo hosts in [OFFICIAL_SALES_DEMO_APP_FACTORY.md](docs/OFFICIAL_SALES_DEMO_APP_FACTORY.md)
+
+### Changed
+
+- LAN `http://192.168.178.95:8090` remains the default until `demo-api.bforge.de` exists
+- Existing LAN APKs stay valid; public rebuild is the next slice after TLS
+
 ## [0.1.2] — 2026-08-28
 
 ### Added
@@ -10,6 +24,12 @@ All notable changes to BusinessForge App Factory are documented here.
 - Demo plane discovery + manifest materialization from live bootstrap/hero media
 - Output root: `BusinessForge-Demo-Apps/` (outside repo)
 - Docs: [OFFICIAL_SALES_DEMO_APP_FACTORY.md](docs/OFFICIAL_SALES_DEMO_APP_FACTORY.md)
+- Wave 1 store-ready pipeline: native Android icons/splash, package identity `de.bforge.app.u{ulid}`, signing foundation (env only), build result JSON
+- CLI: `signing-status`, `materialize-export`
+- Docs: [ANDROID_RELEASE_PIPELINE.md](docs/ANDROID_RELEASE_PIPELINE.md)
+- Tests: `tests/test_wave1_store_ready.py`
+- Dorfladen #1 pilot manifest: `manifests/dorfladen-1-pilot.yaml` + production export JSON
+- Qualified APK build against `api.bforge.de` (`output/dorfladen-hutthurm-app-release.apk`)
 
 ### Changed
 
@@ -20,20 +40,6 @@ All notable changes to BusinessForge App Factory are documented here.
 - Demo HTTP builds: `usesCleartextTraffic` patched when `api_base_url` is `http://`
 - Windows: tolerate Flutter appbundle exit 1 when AAB exists but native symbol stripping fails (missing NDK/cmdline-tools)
 - Android manifest `android:label` XML-escapes display names containing `&`
-
-## [Unreleased]
-
-### Added
-
-- Wave 1 store-ready pipeline: native Android icons/splash, package identity `de.bforge.app.u{ulid}`, signing foundation (env only), build result JSON
-- CLI: `signing-status`, `materialize-export`
-- Docs: [ANDROID_RELEASE_PIPELINE.md](docs/ANDROID_RELEASE_PIPELINE.md)
-- Tests: `tests/test_wave1_store_ready.py`
-- Dorfladen #1 pilot manifest: `manifests/dorfladen-1-pilot.yaml` + production export JSON
-- Qualified APK build against `api.bforge.de` (`output/dorfladen-hutthurm-app-release.apk`)
-
-### Changed
-
 - Privacy inventory (Backend): IONOS Domain/DNS/Mail + first-party Demo-Leads; Formspree removed; Plausible remains PLANNED. See [PRIVACY_INVENTORY_REPORT.md](../BusinessForge/docs/privacy/PRIVACY_INVENTORY_REPORT.md).
 - DSAR/Privacy Foundation (Backend 2026-08-14): Customer self-service export, tenant/platform DSAR tools, controlled erasure. See [DATA_SUBJECT_RIGHTS.md](../BusinessForge/docs/privacy/DATA_SUBJECT_RIGHTS.md). Customer App needs rebuild for `/account/privacy`.
 - Commercial Self-Service Foundation (Backend 2026-08-14): App Delivery Jobs are Backend/Super-Admin queues. Factory remains manual CLI — payment does not publish to stores. See [APP_DELIVERY_LIFECYCLE.md](../BusinessForge/docs/commercial/APP_DELIVERY_LIFECYCLE.md).
@@ -47,7 +53,6 @@ All notable changes to BusinessForge App Factory are documented here.
 - Legal Activation: [LEGAL_COMPLIANCE_V1.md](../BusinessForge/docs/architecture/LEGAL_COMPLIANCE_V1.md), [LEGAL_READINESS_REPORT.md](../BusinessForge/docs/pilot/LEGAL_READINESS_REPORT.md).
 - Datenschutz-Inventur (IST, Backend): [PRIVACY_INVENTORY_REPORT.md](../BusinessForge/docs/privacy/PRIVACY_INVENTORY_REPORT.md) — keine Policy/AVV-Texte.
 - Production security hardening (2026-08-14): Flutter JWT in secure storage; Factory APK must be rebuilt after Customer App pull.
-
 
 ## [0.1.1] - 2026-08-05
 

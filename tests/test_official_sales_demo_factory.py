@@ -1,5 +1,11 @@
 from __future__ import annotations
 
+from app_factory.application.demo_api_origins import (
+    LAN_DEMO_API_BASE_URL,
+    PUBLIC_DEMO_API_BASE_URL,
+    DemoApiOriginError,
+    assert_official_sales_demo_api_origin,
+)
 from app_factory.application.official_sales_demo_discovery import OFFICIAL_SALES_DEMO_SLUGS
 from app_factory.application.package_identity import android_application_id_from_public_app_id
 
@@ -42,3 +48,15 @@ def test_build_manifest_dict_structure() -> None:
     assert manifest["tenant"]["public_app_id"] == record.public_app_id
     assert manifest["features"]["appointments"] is True
     assert manifest["api_base_url"].endswith("/api/v1")
+
+
+def test_official_sales_demo_api_origin_guard() -> None:
+    assert assert_official_sales_demo_api_origin(LAN_DEMO_API_BASE_URL) == LAN_DEMO_API_BASE_URL
+    assert (
+        assert_official_sales_demo_api_origin(PUBLIC_DEMO_API_BASE_URL) == PUBLIC_DEMO_API_BASE_URL
+    )
+    try:
+        assert_official_sales_demo_api_origin("https://api.bforge.de/api/v1")
+    except DemoApiOriginError:
+        return
+    raise AssertionError("production API origin must be rejected")

@@ -226,6 +226,12 @@ def materialize_export_cmd(export_file: Path, output_dir: Path) -> None:
     "--api-base-url",
     default="http://192.168.178.95:8090/api/v1",
     show_default=True,
+    help="Demo API origin. LAN default until demo-api.bforge.de TLS exists.",
+)
+@click.option(
+    "--public-api",
+    is_flag=True,
+    help="Use https://demo-api.bforge.de/api/v1 (after Owner DNS/TLS).",
 )
 @click.option(
     "--customer-app",
@@ -253,6 +259,7 @@ def materialize_export_cmd(export_file: Path, output_dir: Path) -> None:
 def build_official_sales_demos_cmd(
     output_root: Path,
     api_base_url: str,
+    public_api: bool,
     customer_app: Path | None,
     env_demo: Path | None,
     manifest_only: bool,
@@ -264,8 +271,12 @@ def build_official_sales_demos_cmd(
     flutter_path: Path | None,
 ) -> None:
     """Discover Official Sales Demos and batch-build Android APK/AAB packages."""
+    from app_factory.application.demo_api_origins import PUBLIC_DEMO_API_BASE_URL
     from app_factory.application.official_sales_demo_batch import build_official_sales_demo_apps
     from app_factory.application.official_sales_demo_discovery import OFFICIAL_SALES_DEMO_SLUGS
+
+    if public_api:
+        api_base_url = PUBLIC_DEMO_API_BASE_URL
 
     customer_path = customer_app or (repo_root().parent / "BusinessForge-FlutterApp-main")
     if not customer_path.is_dir():

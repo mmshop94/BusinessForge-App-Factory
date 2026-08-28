@@ -3,7 +3,8 @@
 > **Stand:** 2026-08-28  
 > **Authority:** BusinessForge App Factory (`app-factory`)  
 > **Customer App:** `BusinessForge FlutterApp` @ `main` (isolated worktree recommended)  
-> **Demo plane:** `http://192.168.178.95:8090/api/v1` · API ≥ `0.8.67`
+> **Demo plane (LAN):** `http://192.168.178.95:8090/api/v1` · API ≥ `0.8.67`  
+> **Public API (Owner DNS pending):** `https://demo-api.bforge.de/api/v1`
 
 ## Goal
 
@@ -17,7 +18,7 @@ Build **11 independent Android apps** (one per Official Sales Demo `demo-*`) fro
 | White-label config | Per-tenant `manifest.yaml` under output root |
 | Android package ID | `de.bforge.app.u{public_app_ulid}` from `public_app_id` |
 | App name / icons / splash | Manifest + demo bootstrap + public hero media |
-| API target | Manifest `api_base_url` (demo plane HTTP for internal builds) |
+| API target | Manifest `api_base_url` — LAN default or `--public-api` → `https://demo-api.bforge.de/api/v1` |
 | Signing | Env vars only (`BF_ANDROID_*`) — never in Git |
 | Output | `D:\projekte\BusinessForge-Demo-Apps\` (outside repos, gitignored) |
 
@@ -36,8 +37,11 @@ pip install -e ".[dev]"
 # Manifests + assets only (read-only demo plane discovery)
 app-factory build-official-sales-demos --manifest-only
 
-# Full batch (APK + AAB per demo)
+# Full batch (APK + AAB per demo) — LAN until public TLS exists
 app-factory build-official-sales-demos --skip-tests --skip-analyze
+
+# After demo-api.bforge.de HTTPS is live (do not discard LAN APKs)
+app-factory build-official-sales-demos --public-api --skip-tests --skip-analyze
 
 # Single demo
 app-factory build-official-sales-demos --slug demo-hairdresser --skip-tests --skip-analyze
@@ -69,7 +73,7 @@ BusinessForge-Demo-Apps/
 | **PLAY-READY CONFIGURATION** | Unique `applicationId`, release APK/AAB, store metadata scaffold |
 | **ACTUAL PUBLIC STORE RELEASE** | Requires HTTPS demo/public API, privacy policy URL, release keystore, store creatives |
 
-**Release gap:** No public HTTPS demo API endpoint is configured yet. Internal builds use `http://192.168.178.95:8090`.
+**Release gap:** Public HTTPS `demo-api.bforge.de` is prepared in Backend/docs; IONOS+DSM are Owner actions (`WAITING_FOR_OWNER_DNS_ACTION`). Internal builds still use `http://192.168.178.95:8090`. After TLS: rebuild 11 apps with `--public-api` (LAN APKs remain valid proof).
 
 ### AAB on Windows
 
