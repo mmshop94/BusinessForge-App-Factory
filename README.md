@@ -40,6 +40,7 @@ app-factory build-android manifests/examples/dorfladen-hutthurm.yaml `
 | `validate <manifest>` | Schema + business-rule + asset validation |
 | `plan <manifest>` | Deterministic build plan JSON |
 | `build-android <manifest>` | Execute Slice 1 Android pipeline |
+| `build-official-sales-demos` | Batch-build all 11 Official Sales Demo apps (see [OFFICIAL_SALES_DEMO_APP_FACTORY.md](docs/OFFICIAL_SALES_DEMO_APP_FACTORY.md)) |
 | `inspect-build <report>` | Pretty-print build report |
 
 ## Repository layout
@@ -68,7 +69,7 @@ output/               Build artifacts and reports (gitignored)
 | Artifact | Example | Meaning |
 |----------|---------|---------|
 | Customer App | `v0.5.9` | Product features and client behavior |
-| App Factory | `v0.1.1` | Generator and pipeline capabilities |
+| App Factory | `v0.1.2` | Generator and pipeline capabilities |
 | Tenant App | `1.0.0+1` | Published white-label build for one tenant |
 
 These versions are **independent** and must not be coupled.
@@ -78,7 +79,8 @@ These versions are **independent** and must not be coupled.
 - [CUSTOMER_APP_BUILD_CONTRACT_V1.md](docs/CUSTOMER_APP_BUILD_CONTRACT_V1.md) — **Approved** build contract
 - [FACTORY_RUNTIME_V1.md](docs/FACTORY_RUNTIME_V1.md) — qualification record
 - [COMPATIBILITY_MATRIX.md](docs/COMPATIBILITY_MATRIX.md) — version and toolchain matrix
-- [ARCHITECTURE.md](docs/ARCHITECTURE.md)
+- [OFFICIAL_SALES_DEMO_APP_FACTORY.md](docs/OFFICIAL_SALES_DEMO_APP_FACTORY.md) — batch builds for demo plane sales tenants
+- [ANDROID_RELEASE_PIPELINE.md](docs/ANDROID_RELEASE_PIPELINE.md)
 - [APP_MANIFEST_V1.md](docs/APP_MANIFEST_V1.md)
 - [CUSTOMER_APP_INTEGRATION.md](docs/CUSTOMER_APP_INTEGRATION.md)
 - [SECURITY.md](docs/SECURITY.md)

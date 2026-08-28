@@ -148,6 +148,10 @@ class BuildPlanner:
             defines.setdefault("FEATURE_SCHEDULING", "true")
             defines.setdefault("FEATURE_NOTIFICATIONS", "true")
             defines.setdefault("FEATURE_PAYMENTS", "true")
+        elif package_id.startswith("appointment_"):
+            defines.setdefault("FEATURE_APPOINTMENTS", "true")
+            defines.setdefault("FEATURE_NOTIFICATIONS", "true")
+            defines.setdefault("FEATURE_DOCUMENTS", "true")
 
     @staticmethod
     def _steps(artifact_format: AndroidArtifactFormat) -> list[BuildPlanStep]:

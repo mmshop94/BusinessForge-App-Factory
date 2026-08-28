@@ -4,9 +4,14 @@ import json
 import re
 import shutil
 from pathlib import Path
+from xml.sax.saxutils import escape
 
 from app_factory.domain.build import AppBuildManifest
 from app_factory.domain.errors import BuildExecutionError
+
+
+def _xml_attr(value: str) -> str:
+    return escape(value, {'"': "&quot;"})
 
 
 class FlutterConfigApplier:
@@ -148,10 +153,16 @@ class FlutterConfigApplier:
             content = manifest_xml.read_text(encoding="utf-8")
             content = re.sub(
                 r'android:label="[^"]+"',
-                f'android:label="{manifest.app.display_name}"',
+                f'android:label="{_xml_attr(manifest.app.display_name)}"',
                 content,
                 count=1,
             )
+            if manifest.api_base_url.startswith("http://") and "usesCleartextTraffic" not in content:
+                content = content.replace(
+                    "<application",
+                    '<application\n        android:usesCleartextTraffic="true"',
+                    1,
+                )
             manifest_xml.write_text(content, encoding="utf-8")
             changed.append(str(manifest_xml.relative_to(workspace)))
         return changed

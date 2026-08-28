@@ -15,9 +15,6 @@ from app_factory.application.signing import signing_status
 from app_factory.domain.build import BuildRequest
 from app_factory.domain.enums import AndroidArtifactFormat
 from app_factory.domain.errors import AppFactoryError
-from app_factory.domain.build import BuildRequest
-from app_factory.domain.enums import AndroidArtifactFormat
-from app_factory.domain.errors import AppFactoryError
 from app_factory.infrastructure.build_report import BuildReportWriter
 from app_factory.infrastructure.flutter_runner import FlutterRunner
 from app_factory.infrastructure.paths import compat_path, repo_root, schema_path
@@ -215,6 +212,92 @@ def materialize_export_cmd(export_file: Path, output_dir: Path) -> None:
     except AppFactoryError as exc:
         raise click.ClickException(str(exc)) from exc
     click.echo(json.dumps({"manifest": str(manifest_path)}, indent=2))
+
+
+@cli.command("build-official-sales-demos")
+@click.option(
+    "--output-root",
+    type=click.Path(file_okay=False, path_type=Path),
+    default=lambda: repo_root().parent / "BusinessForge-Demo-Apps",
+    show_default=True,
+    help="Root directory for demo app packages (outside git)",
+)
+@click.option(
+    "--api-base-url",
+    default="http://192.168.178.95:8090/api/v1",
+    show_default=True,
+)
+@click.option(
+    "--customer-app",
+    type=click.Path(exists=True, file_okay=False, path_type=Path),
+    default=None,
+    help="Flutter Customer App checkout (default: ../BusinessForge-FlutterApp-main)",
+)
+@click.option(
+    "--env-demo",
+    type=click.Path(exists=True, dir_okay=False, path_type=Path),
+    default=None,
+    help="Path to BusinessForge .env.demo for demo owner password",
+)
+@click.option("--manifest-only", is_flag=True, help="Generate manifests/assets only")
+@click.option("--skip-tests", is_flag=True, default=True, show_default=True)
+@click.option("--skip-analyze", is_flag=True, default=True, show_default=True)
+@click.option("--no-apk", is_flag=True, help="Skip APK builds")
+@click.option("--no-aab", is_flag=True, help="Skip AAB builds")
+@click.option("--slug", "only_slug", default=None, help="Build a single demo slug")
+@click.option(
+    "--flutter-path",
+    type=click.Path(exists=True, dir_okay=False, path_type=Path),
+    default=None,
+)
+def build_official_sales_demos_cmd(
+    output_root: Path,
+    api_base_url: str,
+    customer_app: Path | None,
+    env_demo: Path | None,
+    manifest_only: bool,
+    skip_tests: bool,
+    skip_analyze: bool,
+    no_apk: bool,
+    no_aab: bool,
+    only_slug: str | None,
+    flutter_path: Path | None,
+) -> None:
+    """Discover Official Sales Demos and batch-build Android APK/AAB packages."""
+    from app_factory.application.official_sales_demo_batch import build_official_sales_demo_apps
+    from app_factory.application.official_sales_demo_discovery import OFFICIAL_SALES_DEMO_SLUGS
+
+    customer_path = customer_app or (repo_root().parent / "BusinessForge-FlutterApp-main")
+    if not customer_path.is_dir():
+        raise click.ClickException(f"Customer app not found: {customer_path}")
+
+    slugs = OFFICIAL_SALES_DEMO_SLUGS
+    if only_slug:
+        if only_slug not in OFFICIAL_SALES_DEMO_SLUGS:
+            raise click.ClickException(f"Unknown official sales demo slug: {only_slug}")
+        slugs = (only_slug,)
+
+    try:
+        result = build_official_sales_demo_apps(
+            output_root=output_root,
+            api_base_url=api_base_url,
+            customer_app=customer_path,
+            env_demo_path=env_demo,
+            slugs=slugs,
+            skip_tests=skip_tests,
+            skip_analyze=skip_analyze,
+            build_apk=not no_apk,
+            build_aab=not no_aab,
+            flutter_path=str(flutter_path) if flutter_path else "flutter",
+            manifest_only=manifest_only,
+        )
+    except Exception as exc:  # noqa: BLE001
+        raise click.ClickException(str(exc)) from exc
+
+    click.echo(json.dumps(result.to_dict(), indent=2))
+    failed = [entry.slug for entry in result.entries if entry.status == "failed"]
+    if failed and not manifest_only:
+        raise SystemExit(1)
 
 
 if __name__ == "__main__":

@@ -89,13 +89,18 @@ def generate_android_icons(source: bytes, output_res: Path) -> list[str]:
                 target = folder / name
                 resized.save(target, format="PNG")
                 written.append(str(target))
-        play = output_res / "play"
-        play.mkdir(parents=True, exist_ok=True)
-        store = rgba.resize((PLAY_ICON_PX, PLAY_ICON_PX), Image.Resampling.LANCZOS)
-        store_path = play / "ic_launcher-512.png"
-        store.save(store_path, format="PNG")
-        written.append(str(store_path))
     return written
+
+
+def write_play_store_icon(source: bytes, destination: Path) -> str:
+    """512px store listing icon — must not live under android/res (breaks aapt)."""
+    validate_icon_bytes(source)
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    with Image.open(io.BytesIO(source)) as image:
+        rgba = image.convert("RGBA")
+        store = rgba.resize((PLAY_ICON_PX, PLAY_ICON_PX), Image.Resampling.LANCZOS)
+        store.save(destination, format="PNG")
+    return str(destination)
 
 
 def generate_splash(

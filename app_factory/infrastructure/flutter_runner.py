@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import os
+import shutil
 import subprocess
 from dataclasses import dataclass
 from pathlib import Path
@@ -25,7 +26,8 @@ class FlutterRunner:
     """Execute Flutter CLI commands in the workspace."""
 
     def __init__(self, flutter_executable: str = "flutter") -> None:
-        self._flutter = flutter_executable
+        resolved = shutil.which(flutter_executable) or flutter_executable
+        self._flutter = resolved
 
     def run(
         self,
@@ -38,7 +40,7 @@ class FlutterRunner:
         command = [self._flutter, *args]
         if dart_defines:
             for key, value in sorted(dart_defines.items()):
-                command.extend(["--dart-define", f"{key}={value}"])
+                command.append(f"--dart-define={key}={value}")
         completed = subprocess.run(
             command,
             cwd=str(cwd),
@@ -55,10 +57,37 @@ class FlutterRunner:
         )
         if check and not result.ok:
             detail = result.stderr.strip() or result.stdout.strip() or "unknown error"
+            if self._is_benign_pub_get_warning(result):
+                return result
+            if self._is_benign_appbundle_strip_warning(result, args, cwd):
+                return result
             raise BuildExecutionError(
                 f"Command failed ({' '.join(command)}): {detail}"
             )
         return result
+
+    @staticmethod
+    def _is_benign_appbundle_strip_warning(
+        result: CommandResult, args: Sequence[str], cwd: Path
+    ) -> bool:
+        """Flutter on Windows may exit 1 after AAB creation when symbol stripping fails."""
+        blob = f"{result.stdout}\n{result.stderr}".lower()
+        if "failed to strip debug symbols" not in blob:
+            return False
+        if "build" not in args or "appbundle" not in args:
+            return False
+        bundle_dir = cwd / "build" / "app" / "outputs" / "bundle" / "release"
+        return any(bundle_dir.glob("*.aab"))
+
+    @staticmethod
+    def _is_benign_pub_get_warning(result: CommandResult) -> bool:
+        """Windows Flutter may exit 1 after resolving deps when symlink mode is off."""
+        blob = f"{result.stdout}\n{result.stderr}".lower()
+        return (
+            "got dependencies" in blob
+            and "symlink support" in blob
+            and result.returncode == 1
+        )
 
     def version_info(self) -> tuple[str | None, str | None]:
         try:

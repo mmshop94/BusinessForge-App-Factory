@@ -9,6 +9,38 @@
     "restaurant": {
       "min_customer_app_version": "0.5.10",
       "supported_customer_app_refs": ["v0.5.10", "main"]
+    },
+    "appointment_hairdresser": {
+      "min_customer_app_version": "0.7.1",
+      "supported_customer_app_refs": ["main", "v0.7.1"]
+    },
+    "appointment_barber": {
+      "min_customer_app_version": "0.7.1",
+      "supported_customer_app_refs": ["main", "v0.7.1"]
+    },
+    "appointment_nail_studio": {
+      "min_customer_app_version": "0.7.1",
+      "supported_customer_app_refs": ["main", "v0.7.1"]
+    },
+    "appointment_cosmetics": {
+      "min_customer_app_version": "0.7.1",
+      "supported_customer_app_refs": ["main", "v0.7.1"]
+    },
+    "appointment_massage": {
+      "min_customer_app_version": "0.7.1",
+      "supported_customer_app_refs": ["main", "v0.7.1"]
+    },
+    "appointment_tattoo": {
+      "min_customer_app_version": "0.7.1",
+      "supported_customer_app_refs": ["main", "v0.7.1"]
+    },
+    "appointment_foot_care": {
+      "min_customer_app_version": "0.7.1",
+      "supported_customer_app_refs": ["main", "v0.7.1"]
+    },
+    "appointment_pet_grooming": {
+      "min_customer_app_version": "0.7.1",
+      "supported_customer_app_refs": ["main", "v0.7.1"]
     }
   }
 }

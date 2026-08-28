@@ -14,6 +14,7 @@ from app_factory.application.image_assets import (
     generate_default_icon,
     generate_splash,
     validate_icon_bytes,
+    write_play_store_icon,
 )
 from app_factory.application.manifest_validator import ManifestValidator
 from app_factory.application.package_identity import android_application_id_from_public_app_id
@@ -45,7 +46,9 @@ def test_icon_generation_writes_mipmaps(tmp_path: Path) -> None:
     written = generate_android_icons(_square_png(), tmp_path)
     assert any("mipmap-xxxhdpi" in item and "ic_launcher.png" in item for item in written)
     assert (tmp_path / "mipmap-mdpi" / "ic_launcher.png").is_file()
-    assert (tmp_path / "play" / "ic_launcher-512.png").is_file()
+    store_path = tmp_path / "store" / "play_store_icon_512.png"
+    write_play_store_icon(_square_png(), store_path)
+    assert store_path.is_file()
 
 
 def test_splash_generation(tmp_path: Path) -> None:
@@ -148,3 +151,50 @@ def test_public_build_result_mapping() -> None:
     dumped = json.dumps(payload)
     assert "password" not in dumped
     assert "keystore" not in dumped
+
+
+def test_android_manifest_label_escapes_ampersand(tmp_path: Path) -> None:
+    from app_factory.domain.build import (
+        AppBuildManifest,
+        AppIdentity,
+        BrandingConfiguration,
+        FeatureConfiguration,
+        ReleaseConfiguration,
+        SourceRevision,
+        TenantBinding,
+    )
+
+    app = tmp_path / "customer-app"
+    manifest_dir = app / "android" / "app" / "src" / "main"
+    manifest_dir.mkdir(parents=True)
+    manifest_path = manifest_dir / "AndroidManifest.xml"
+    manifest_path.write_text(
+        '<manifest><application android:label="placeholder"></application></manifest>',
+        encoding="utf-8",
+    )
+    manifest = AppBuildManifest(
+        schema_version=1,
+        app=AppIdentity(
+            id="demo-lash-brow",
+            display_name="Lash & Brow Studio Lumina",
+            package_name_android="de.bforge.app.u7k2ncqrcz2caf9m65xp46cmz7y",
+        ),
+        tenant=TenantBinding(
+            public_app_id="app_7K2NCQRCZ2CAF9M65XP46CMZ7Y",
+            package="appointment_cosmetics",
+            package_version="v1",
+        ),
+        branding=BrandingConfiguration(
+            theme="modern",
+            primary_color="#9B6B8A",
+            secondary_color="#F4ECF1",
+            logo_asset="branding/logo.svg",
+        ),
+        features=FeatureConfiguration(flags={"appointments": True}),
+        release=ReleaseConfiguration(channel="pilot", app_version="1.0.0", build_number=1),
+        source=SourceRevision(customer_app_ref="main"),
+        api_base_url="http://192.168.178.95:8090/api/v1",
+    )
+    FlutterConfigApplier()._patch_android(app, manifest)
+    content = manifest_path.read_text(encoding="utf-8")
+    assert 'android:label="Lash &amp; Brow Studio Lumina"' in content

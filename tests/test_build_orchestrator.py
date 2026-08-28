@@ -137,3 +137,21 @@ def test_build_orchestrator_mocked_flutter_success(
         "name: businessforge_mobile"
     )
     assert flutter.run.call_count >= 4
+
+
+def test_flutter_runner_tolerates_appbundle_strip_warning_when_aab_exists(
+    tmp_path: Path,
+) -> None:
+    bundle_dir = tmp_path / "build" / "app" / "outputs" / "bundle" / "release"
+    bundle_dir.mkdir(parents=True)
+    (bundle_dir / "app-release.aab").write_bytes(b"fake-aab")
+    runner = FlutterRunner(flutter_executable="flutter")
+    result = CommandResult(
+        command=["flutter", "build", "appbundle", "--release"],
+        returncode=1,
+        stdout="Running Gradle task 'bundleRelease'...\n",
+        stderr="Release app bundle failed to strip debug symbols from native libraries.",
+    )
+    assert runner._is_benign_appbundle_strip_warning(
+        result, ["build", "appbundle", "--release"], tmp_path
+    )

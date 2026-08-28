@@ -2,6 +2,25 @@
 
 All notable changes to BusinessForge App Factory are documented here.
 
+## [0.1.2] — 2026-08-28
+
+### Added
+
+- Official Sales Demo batch builds: `app-factory build-official-sales-demos`
+- Demo plane discovery + manifest materialization from live bootstrap/hero media
+- Output root: `BusinessForge-Demo-Apps/` (outside repo)
+- Docs: [OFFICIAL_SALES_DEMO_APP_FACTORY.md](docs/OFFICIAL_SALES_DEMO_APP_FACTORY.md)
+
+### Changed
+
+- Play Store 512px icon written to `assets/branding/` (not `res/play/` — fixes aapt merge)
+- Flutter `--dart-define` uses `key=value` form (spaces in app names)
+- Windows: tolerate Flutter pub-get symlink warning when deps resolve
+- Appointment packages added to `customer-app-compat-v1.json`
+- Demo HTTP builds: `usesCleartextTraffic` patched when `api_base_url` is `http://`
+- Windows: tolerate Flutter appbundle exit 1 when AAB exists but native symbol stripping fails (missing NDK/cmdline-tools)
+- Android manifest `android:label` XML-escapes display names containing `&`
+
 ## [Unreleased]
 
 ### Added

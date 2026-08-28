@@ -5,7 +5,11 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
-from app_factory.application.image_assets import generate_android_icons, generate_splash
+from app_factory.application.image_assets import (
+    generate_android_icons,
+    generate_splash,
+    write_play_store_icon,
+)
 from app_factory.application.signing import gradle_release_signing_snippet, signing_status
 from app_factory.domain.build import AppBuildManifest
 
@@ -24,6 +28,11 @@ class NativeBrandingApplier:
         res = workspace / "android" / "app" / "src" / "main" / "res"
         res.mkdir(parents=True, exist_ok=True)
         changed = generate_android_icons(icon_bytes, res)
+        branding_assets = workspace / "assets" / "branding"
+        branding_assets.mkdir(parents=True, exist_ok=True)
+        changed.append(
+            write_play_store_icon(icon_bytes, branding_assets / "play_store_icon_512.png")
+        )
         splash_color = manifest.branding.primary_color or "#2563EB"
         changed.extend(
             generate_splash(
