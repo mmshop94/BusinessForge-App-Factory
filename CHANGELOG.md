@@ -15,6 +15,7 @@ All notable changes to BusinessForge App Factory are documented here.
 
 ### Changed
 
+- No APK/AAB rebuild for Appointment Intake V1: Flutter `main` already contained the intake step; public artefacts remain on `https://demo-api.bforge.de/api/v1` against demo plane `0.8.68`
 - `--public-api` default output is `BusinessForge-Demo-Apps/public/`; LAN default remains `.../lan/`
 - Existing LAN APKs are preserved under `lan/` and are not overwritten by public rebuilds
 - Public store metadata `api_release_gap` is cleared when the API origin is `https://demo-api.bforge.de`

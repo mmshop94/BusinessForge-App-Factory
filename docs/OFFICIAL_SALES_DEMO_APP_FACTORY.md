@@ -3,8 +3,9 @@
 > **Stand:** 2026-08-28  
 > **Authority:** BusinessForge App Factory (`app-factory`)  
 > **Customer App:** `BusinessForge FlutterApp` @ `main` (isolated worktree recommended)  
-> **Demo plane (LAN):** `http://192.168.178.95:8090/api/v1` · API ≥ `0.8.67`  
-> **Public API (LIVE):** `https://demo-api.bforge.de/api/v1`
+> **Demo plane (LAN):** `http://192.168.178.95:8090/api/v1` · API `0.8.68`  
+> **Public API (LIVE):** `https://demo-api.bforge.de/api/v1`  
+> **Intake rebuild:** **NO** — Flutter `main` already contained Appointment Intake V1 at the public batch SHA; artefacts remain valid against demo `0.8.68`.
 
 ## Goal
 
