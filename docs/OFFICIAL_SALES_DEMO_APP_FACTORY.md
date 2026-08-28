@@ -116,6 +116,10 @@ SECOND APP FACTORY: NO
 SECOND BRANDING ENGINE: NO
 11 COPIED FLUTTER PROJECTS: NO
 HARDCODED DEMO PASSWORDS: NO
+SAME APP CODE AS REAL WHITE LABEL: YES
+DEMO-SPECIFIC DOMAIN CODE: NONE
 ```
+
+Demos are factory configuration (branding, package id, `public_app_id`, API origin). Customer App checkout: `BusinessForge-FlutterApp-main`.
 
 See also: [ANDROID_RELEASE_PIPELINE.md](ANDROID_RELEASE_PIPELINE.md) · [APP_MANIFEST_V1.md](APP_MANIFEST_V1.md)
