@@ -4,7 +4,7 @@
 > **Authority:** BusinessForge App Factory (`app-factory`)  
 > **Customer App:** `BusinessForge FlutterApp` @ `main` (isolated worktree recommended)  
 > **Demo plane (LAN):** `http://192.168.178.95:8090/api/v1` · API ≥ `0.8.67`  
-> **Public API (Owner DNS pending):** `https://demo-api.bforge.de/api/v1`
+> **Public API (LIVE):** `https://demo-api.bforge.de/api/v1`
 
 ## Goal
 
@@ -73,7 +73,7 @@ BusinessForge-Demo-Apps/
 | **PLAY-READY CONFIGURATION** | Unique `applicationId`, release APK/AAB, store metadata scaffold |
 | **ACTUAL PUBLIC STORE RELEASE** | Requires HTTPS demo/public API, privacy policy URL, release keystore, store creatives |
 
-**Release gap:** Public HTTPS `demo-api.bforge.de` is prepared in Backend/docs; IONOS+DSM are Owner actions (`WAITING_FOR_OWNER_DNS_ACTION`). Internal builds still use `http://192.168.178.95:8090`. After TLS: rebuild 11 apps with `--public-api` (LAN APKs remain valid proof).
+**Release gap:** Public HTTPS `demo-api.bforge.de` is **LIVE**. Rebuild 11 apps with `--public-api` so APK/AAB no longer contain `192.168.178.95:8090`. LAN APKs remain valid proof.
 
 ### AAB on Windows
 
