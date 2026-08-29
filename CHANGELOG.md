@@ -4,6 +4,10 @@ All notable changes to BusinessForge App Factory are documented here.
 
 ## [Unreleased]
 
+### Changed
+
+- Docs: Real Friseur Pilot wartet auf Owner-Input; Production-App nur `https://api.bforge.de/api/v1`; Signing weiterhin `SIGNING_CONFIGURATION_REQUIRED`. Public Demo-Apps vom 2026-08-28 decken Loyalty/Delivery aus aktuellem Flutter `main` noch nicht ab.
+
 ### Added
 
 - Official Sales Demo public API origin: `https://demo-api.bforge.de/api/v1`

@@ -1,8 +1,9 @@
 # Android Release Pipeline — White-Label Store Foundation
 
-> **Stand:** 2026-08-14  
+> **Stand:** 2026-08-29  
 > **Repository:** BusinessForge App Factory  
-> **Google Play Publication:** **MANUAL_OPERATION** — keine Play-API-Automatisierung
+> **Google Play Publication:** **MANUAL_OPERATION** — keine Play-API-Automatisierung  
+> **Friseur Pilot:** Signing this workstation `SIGNING_CONFIGURATION_REQUIRED` — kein Play-ready APK. Production customer app erst nach Owner-Input + `https://api.bforge.de/api/v1`. Public Demo-Apps (2026-08-28) enthalten noch nicht Loyalty/Delivery aus Flutter `main`.
 
 Die Factory bleibt die einzige Generator-Architektur. Super Admin stößt **keine** Remote-Code-Execution und **keine** Shell aus HTTP-Input an.
 
