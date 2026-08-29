@@ -6,6 +6,7 @@ All notable changes to BusinessForge App Factory are documented here.
 
 ### Changed
 
+- Docs: [OPERATOR_CAPABILITY_REACHABILITY_AUDIT_V2.md](../BusinessForge/docs/architecture/OPERATOR_CAPABILITY_REACHABILITY_AUDIT_V2.md) — Factory-SHA referenziert; Icon/Splash bleiben API-fähig, Dashboard-UI fehlt (V2 R04); Logo-Fallback unverändert.
 - Docs: Real Friseur Pilot wartet auf Owner-Input; Production-App nur `https://api.bforge.de/api/v1`; Signing weiterhin `SIGNING_CONFIGURATION_REQUIRED`. Public Demo-Apps vom 2026-08-28 decken Loyalty/Delivery aus aktuellem Flutter `main` noch nicht ab.
 
 ### Added
