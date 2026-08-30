@@ -6,8 +6,8 @@ All notable changes to BusinessForge App Factory are documented here.
 
 ### Changed
 
-- Flutter Customer Password Reset V1 (`553e188`) — Factory-Runtime unverändert. Öffentliche Official Sales Demos müssen gegen `https://demo-api.bforge.de/api/v1` neu gebaut werden (`--public-api`). LAN-Artefakte bleiben erhalten. Production-API unberührt.
-- Docs: [OPERATOR_CAPABILITY_REACHABILITY_AUDIT_V2.md](../BusinessForge/docs/architecture/OPERATOR_CAPABILITY_REACHABILITY_AUDIT_V2.md) — R08 READY; nächster Gap R07 Inventory. Icon/Splash bleiben P3 (R04).
+- Restaurant Inventory V1 Reachability (`0.8.77`) — Factory-Runtime unverändert. Kein Demo-App-Rebuild (Flutter unverändert). Demo-API-Deploy + `--bootstrap-only` Bridge erwartet.
+- Docs: Reachability V2 — R07 READY; nächster Gap R05 Availability.
 - Docs: Real Friseur Pilot wartet auf Owner-Input; Production-App nur `https://api.bforge.de/api/v1`; Signing weiterhin `SIGNING_CONFIGURATION_REQUIRED`. Public Demo-Apps vom 2026-08-28 decken Loyalty/Delivery aus aktuellem Flutter `main` noch nicht ab.
 
 ### Added
