@@ -5,7 +5,7 @@
 > **Customer App:** `BusinessForge FlutterApp` @ `main` (isolated worktree recommended)  
 > **Demo plane (LAN):** `http://192.168.178.95:8090/api/v1` (LAN artefacts preserved under `lan/`)  
 > **Public API (LIVE):** `https://demo-api.bforge.de/api/v1` · Demo API `0.8.79`  
-> **Latest public rebuild:** Push Device Registration V3-02 — **pending/in progress**; FCM `google-services.json` remains Factory Slice 3 (`PROVIDER_CONFIGURATION_REQUIRED` for delivery). Device registration uses harness tokens until provider inject.
+> **Latest public rebuild:** Push Device Registration V3-02 — **11/11** APK+AAB; API `https://demo-api.bforge.de/api/v1`; Production origin absent; LAN origin absent in public artefacts. FCM `google-services.json` remains Factory Slice 3 (`PROVIDER_CONFIGURATION_REQUIRED` for delivery; harness registration READY).
 
 ## Goal
 
