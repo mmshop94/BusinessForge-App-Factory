@@ -6,6 +6,7 @@ All notable changes to BusinessForge App Factory are documented here.
 
 ### Changed
 
+- Official public Sales Demo Apps **11/11** APK+AAB rebuild for Push Device Registration (V3-02 / Flutter). API origin `https://demo-api.bforge.de/api/v1`. API version remains `0.8.79`. FCM/`google-services.json` remains Slice 3 (`PROVIDER_CONFIGURATION_REQUIRED` for delivery). LAN artefacts preserved. Production origin absent.
 - Official public Sales Demo Apps **11/11** APK+AAB rebuild for Marketing Consent Customer Surface (V3-01 / Flutter). API origin `https://demo-api.bforge.de/api/v1`. API version remains `0.8.79`. LAN artefacts preserved. Production origin absent.
 - Restaurant Inventory V1 Reachability (`0.8.77`) — Factory-Runtime unverändert. Kein Demo-App-Rebuild (Flutter unverändert). Demo-API-Deploy + `--bootstrap-only` Bridge erwartet.
 - Docs: Reachability V2 — R07 READY; nächster Gap R05 Availability.
