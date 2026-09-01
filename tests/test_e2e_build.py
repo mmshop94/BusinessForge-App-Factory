@@ -95,6 +95,7 @@ def test_e2e_test_plan_adds_defines(mini_customer_app, tenant_manifest, tmp_path
     assert plan.dart_defines["BF_E2E_ENVIRONMENT"] == "demo"
     assert plan.dart_defines["BF_E2E_RUN_ID"] == "bf-e2e-app-20260901-001"
     assert "--release" not in (plan.steps[-3].command or "")
+    assert "--debug" in (plan.steps[-3].command or "")
 
 
 def test_e2e_production_origin_aborts():

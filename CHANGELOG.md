@@ -4,6 +4,10 @@ All notable changes to BusinessForge App Factory are documented here.
 
 ## [Unreleased]
 
+### Fixed
+
+- `--debug` now runs `flutter build apk --debug`. Omitting `--release` alone still produced a release APK.
+
 ### Added
 
 - E2E test-build profile: `--e2e-test --e2e-environment demo --e2e-run-id … --debug`. Fail-closed against production `api.bforge.de`. No manifest schema change. Docs: [E2E_TEST_BUILD_V1.md](docs/E2E_TEST_BUILD_V1.md).

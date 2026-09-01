@@ -10,6 +10,7 @@ app-factory build-android path/to/manifest.yaml \
   --debug --format apk --skip-tests
 ```
 
-`--e2e-test` fails closed if `api_base_url` is production `api.bforge.de`, the environment is not `demo`, or `public_app_id` is missing. Debug APK only (no AAB, no Play Store).
+`--e2e-test` fails closed if `api_base_url` is production `api.bforge.de`, the environment is not `demo`, or `public_app_id` is missing. Debug APK only (no AAB, no Play Store). `--debug` passes `flutter build apk --debug` (Flutter's default without the flag is still release).
+
 
 Dart-defines added: `E2E_TEST_BUILD=true`, `BF_E2E_ENVIRONMENT`, optional `BF_E2E_RUN_ID`.

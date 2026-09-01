@@ -142,7 +142,9 @@ class BuildOrchestrator:
                 else "appbundle"
             )
             build_args = ["build", build_target]
-            if not request.debug_build:
+            if request.debug_build:
+                build_args.append("--debug")
+            else:
                 build_args.append("--release")
             self._record_step(result, f"flutter_build_{build_target}", "running")
             self._flutter.run(

@@ -176,7 +176,7 @@ class BuildPlanner:
         debug_build: bool = False,
     ) -> list[BuildPlanStep]:
         build_target = "apk" if artifact_format == AndroidArtifactFormat.APK else "appbundle"
-        mode = "" if debug_build else " --release"
+        mode = " --debug" if debug_build else " --release"
         if debug_build and artifact_format != AndroidArtifactFormat.APK:
             raise ValueError("E2E debug builds support APK only (not AAB).")
         return [
