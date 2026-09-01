@@ -4,6 +4,7 @@ from pathlib import Path
 
 from app_factory.application.build_planner import BuildPlanner
 from app_factory.application.build_result import public_build_result, write_public_result
+from app_factory.application.e2e_build import E2eTestBuildError, assert_e2e_test_build_safe
 from app_factory.domain.build import BuildRequest, BuildResult, BuildStatus
 from app_factory.domain.enums import AndroidArtifactFormat
 from app_factory.domain.errors import (
@@ -47,6 +48,32 @@ class BuildOrchestrator:
         self._reports = BuildReportWriter()
 
     def build_android(self, request: BuildRequest) -> BuildResult:
+        if request.debug_build and request.artifact_format != AndroidArtifactFormat.APK:
+            result = BuildResult(
+                status=BuildStatus.FAILED,
+                request=request,
+                started_at=utc_now(),
+            )
+            result.mark_finished(BuildStatus.FAILED, "Debug E2E builds support APK only.")
+            self._reports.write(result, Path(request.output_dir))
+            return result
+        if request.e2e_test:
+            try:
+                assert_e2e_test_build_safe(
+                    api_base_url=request.manifest.api_base_url,
+                    environment=request.e2e_environment or "demo",
+                    public_app_id=request.manifest.tenant.public_app_id,
+                )
+            except E2eTestBuildError as exc:
+                result = BuildResult(
+                    status=BuildStatus.FAILED,
+                    request=request,
+                    started_at=utc_now(),
+                )
+                result.mark_finished(BuildStatus.FAILED, str(exc))
+                self._record_step(result, "e2e_safety", "failed", extra={"error": str(exc)})
+                self._reports.write(result, Path(request.output_dir))
+                return result
         plan = self._planner.plan_request(request)
         result = BuildResult(
             status=BuildStatus.RUNNING,
@@ -114,9 +141,12 @@ class BuildOrchestrator:
                 if request.artifact_format == AndroidArtifactFormat.APK
                 else "appbundle"
             )
+            build_args = ["build", build_target]
+            if not request.debug_build:
+                build_args.append("--release")
             self._record_step(result, f"flutter_build_{build_target}", "running")
             self._flutter.run(
-                ["build", build_target, "--release"],
+                build_args,
                 cwd=workspace,
                 dart_defines=plan.dart_defines,
             )

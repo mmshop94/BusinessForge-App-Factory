@@ -83,10 +83,14 @@ class BuildPlanner:
         *,
         artifact_format: AndroidArtifactFormat = AndroidArtifactFormat.APK,
         workspace_root: Path | None = None,
+        extra_dart_defines: dict[str, str] | None = None,
+        debug_build: bool = False,
     ) -> BuildPlan:
         workspace_path = (workspace_root or output_dir / ".workspaces") / manifest.app.id
         dart_defines = self._dart_defines(manifest)
-        steps = self._steps(artifact_format)
+        if extra_dart_defines:
+            dart_defines.update(extra_dart_defines)
+        steps = self._steps(artifact_format, debug_build=debug_build)
 
         return BuildPlan(
             manifest=manifest,
@@ -101,6 +105,16 @@ class BuildPlanner:
         )
 
     def plan_request(self, request: BuildRequest, workspace_root: Path | None = None) -> BuildPlan:
+        extra = dict(request.extra_dart_defines)
+        if request.e2e_test:
+            from app_factory.application.e2e_build import e2e_dart_defines
+
+            extra.update(
+                e2e_dart_defines(
+                    environment=request.e2e_environment or "demo",
+                    run_id=request.e2e_run_id,
+                )
+            )
         return self.plan(
             manifest=request.manifest,
             manifest_hash=request.manifest_hash,
@@ -108,6 +122,8 @@ class BuildPlanner:
             output_dir=Path(request.output_dir),
             artifact_format=request.artifact_format,
             workspace_root=workspace_root,
+            extra_dart_defines=extra,
+            debug_build=request.debug_build,
         )
 
     @staticmethod
@@ -154,8 +170,15 @@ class BuildPlanner:
             defines.setdefault("FEATURE_DOCUMENTS", "true")
 
     @staticmethod
-    def _steps(artifact_format: AndroidArtifactFormat) -> list[BuildPlanStep]:
+    def _steps(
+        artifact_format: AndroidArtifactFormat,
+        *,
+        debug_build: bool = False,
+    ) -> list[BuildPlanStep]:
         build_target = "apk" if artifact_format == AndroidArtifactFormat.APK else "appbundle"
+        mode = "" if debug_build else " --release"
+        if debug_build and artifact_format != AndroidArtifactFormat.APK:
+            raise ValueError("E2E debug builds support APK only (not AAB).")
         return [
             BuildPlanStep(
                 name="prepare_workspace",
@@ -183,7 +206,7 @@ class BuildPlanner:
             BuildPlanStep(
                 name="flutter_build",
                 description=f"Build Android {build_target.upper()}",
-                command=f"flutter build {build_target} --release",
+                command=f"flutter build {build_target}{mode}",
             ),
             BuildPlanStep(
                 name="collect_artifacts",

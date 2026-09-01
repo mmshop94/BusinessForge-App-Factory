@@ -138,6 +138,28 @@ def plan_cmd(
 @click.option("--skip-analyze", is_flag=True, help="Skip flutter analyze")
 @click.option("--dry-run", is_flag=True, help="Plan only — do not execute Flutter")
 @click.option(
+    "--debug",
+    "debug_build",
+    is_flag=True,
+    help="Build a debug APK (E2E test apps). Release remains the default.",
+)
+@click.option(
+    "--e2e-test",
+    is_flag=True,
+    help="Fail-closed E2E test build (E2E_TEST_BUILD=true, demo API only).",
+)
+@click.option(
+    "--e2e-environment",
+    default="demo",
+    show_default=True,
+    help="Required environment when --e2e-test is set.",
+)
+@click.option(
+    "--e2e-run-id",
+    default="",
+    help="Optional BF_E2E_RUN_ID baked into an E2E test build.",
+)
+@click.option(
     "--flutter-path",
     type=click.Path(exists=True, dir_okay=False, path_type=Path),
     help="Path to flutter executable (default: flutter on PATH)",
@@ -150,6 +172,10 @@ def build_android_cmd(
     skip_tests: bool,
     skip_analyze: bool,
     dry_run: bool,
+    debug_build: bool,
+    e2e_test: bool,
+    e2e_environment: str,
+    e2e_run_id: str,
     flutter_path: Path | None,
 ) -> None:
     """Build a tenant Android APK/AAB from manifest + customer app."""
@@ -174,6 +200,10 @@ def build_android_cmd(
         run_tests=not skip_tests,
         run_analyze=not skip_analyze,
         dry_run=dry_run,
+        debug_build=debug_build,
+        e2e_test=e2e_test,
+        e2e_environment=e2e_environment,
+        e2e_run_id=e2e_run_id,
     )
     result = BuildOrchestrator(
         flutter_runner=FlutterRunner(str(flutter_path) if flutter_path else "flutter")

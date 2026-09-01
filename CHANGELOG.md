@@ -4,6 +4,10 @@ All notable changes to BusinessForge App Factory are documented here.
 
 ## [Unreleased]
 
+### Added
+
+- E2E test-build profile: `--e2e-test --e2e-environment demo --e2e-run-id … --debug`. Fail-closed against production `api.bforge.de`. No manifest schema change. Docs: [E2E_TEST_BUILD_V1.md](docs/E2E_TEST_BUILD_V1.md).
+
 ### Changed
 
 - Official public Sales Demo Apps **11/11** APK+AAB rebuild for Push Device Registration (V3-02 / Flutter). API origin `https://demo-api.bforge.de/api/v1`. API version remains `0.8.79`. FCM/`google-services.json` remains Slice 3 (`PROVIDER_CONFIGURATION_REQUIRED` for delivery). LAN artefacts preserved. Production origin absent.

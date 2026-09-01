@@ -125,6 +125,11 @@ class BuildRequest:
     run_tests: bool = True
     run_analyze: bool = True
     dry_run: bool = False
+    extra_dart_defines: dict[str, str] = field(default_factory=dict)
+    debug_build: bool = False
+    e2e_test: bool = False
+    e2e_environment: str = ""
+    e2e_run_id: str = ""
 
 
 @dataclass
