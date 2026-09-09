@@ -22,7 +22,7 @@
 4. Then factory batch inclusion
 
 ```text
-NEXT APP FACTORY SERVICE ACTION: WAIT_FOR_SERVICE_CROSS_LAYER_PROOF
+NEXT APP FACTORY SERVICE ACTION: WAIT_FOR_SERVICE_FULL_VISUAL_UI_PROOF
 ```
 
 Not executed here. Appointment demos unchanged.
