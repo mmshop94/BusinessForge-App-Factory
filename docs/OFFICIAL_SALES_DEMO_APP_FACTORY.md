@@ -29,6 +29,8 @@ Includes `demo-restaurant`, `demo-village-store`, and nine appointment sales dem
 
 **Excluded:** `test-appointment-*` technical fixtures · `demo-workshop` (not provisioned).
 
+**Service Engine (2026-09-09):** Official batch remains **11/11** (restaurant, village store, nine appointment demos). There is **no** certified Service APK. `service_first` exists as Flutter design template; factory cannot build a Service sales app until a Service demo/test tenant is separately authorized. Certification authority: BusinessForge [SERVICE_ENGINE_CERTIFICATION_BASELINE_V1.md](../../BusinessForge/docs/architecture/SERVICE_ENGINE_CERTIFICATION_BASELINE_V1.md). Reference vertical `AUTO_WORKSHOP` — **not** in this 11/11 set. Legacy Workshop excluded.
+
 ## Batch entry point
 
 ```powershell

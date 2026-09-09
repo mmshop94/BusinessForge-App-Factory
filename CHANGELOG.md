@@ -4,6 +4,10 @@ All notable changes to BusinessForge App Factory are documented here.
 
 ## [Unreleased]
 
+### Added
+
+- Docs: Service Engine certification baseline — official 11/11 sales batch still excludes Service (`demo-workshop` not provisioned). `service_first` template is not a Service certificate. Authority: BusinessForge `SERVICE_ENGINE_CERTIFICATION_BASELINE_V1.md`.
+
 ### Fixed
 
 - `--debug` now runs `flutter build apk --debug`. Omitting `--release` alone still produced a release APK.
