@@ -6,6 +6,7 @@ All notable changes to BusinessForge App Factory are documented here.
 
 ### Added
 
+- Docs: Service Reference Test Tenant READY — App Factory waits for Cross-Layer (`WAIT_FOR_SERVICE_CROSS_LAYER_PROOF`); 11/11 sales batch unchanged.
 - Docs: [SERVICE_APP_FACTORY_ROADMAP_V1.md](docs/SERVICE_APP_FACTORY_ROADMAP_V1.md) — Service demos wait for reference tenant; 11/11 batch unchanged.
 - Docs: Service Engine certification baseline — official 11/11 sales batch still excludes Service (`demo-workshop` not provisioned). `service_first` template is not a Service certificate. Authority: BusinessForge `SERVICE_ENGINE_CERTIFICATION_BASELINE_V1.md`.
 
