@@ -6,6 +6,7 @@ All notable changes to BusinessForge App Factory are documented here.
 
 ### Added
 
+- Docs: Full Visual UI reproof PASS — wait for Load/Soak/Chaos or demo authorization; 11/11 sales batch unchanged.
 - Docs: Flutter public visual actor gap CLOSED — wait for Full Visual UI reproof (`WAIT_FOR_SERVICE_FULL_VISUAL_UI_REPROOF`); 11/11 sales batch unchanged.
 - Docs: Service Full Visual V1 attempted — Dashboard visual proven after demo static sync; App Factory now waits for Flutter visual actor gap closure.
 - Docs: Cross-Layer PROVEN — App Factory waits for Full Visual (`WAIT_FOR_SERVICE_FULL_VISUAL_UI_PROOF`); 11/11 sales batch unchanged.
