@@ -6,6 +6,7 @@ All notable changes to BusinessForge App Factory are documented here.
 
 ### Added
 
+- Docs: Service Soak60 PROVEN — wait for Chaos or demo authorization; 11/11 sales batch unchanged.
 - Docs: Service Load50 PROVEN — wait for Soak60/Chaos or demo authorization; 11/11 sales batch unchanged.
 - Docs: Service Load25 PROVEN — wait for Load50/Soak/Chaos or demo authorization; 11/11 sales batch unchanged.
 - Docs: Full Visual UI reproof PASS — wait for Load/Soak/Chaos or demo authorization; 11/11 sales batch unchanged.
