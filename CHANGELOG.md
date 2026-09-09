@@ -6,6 +6,7 @@ All notable changes to BusinessForge App Factory are documented here.
 
 ### Added
 
+- Docs: Service Full Visual V1 attempted — Dashboard visual proven after demo static sync; App Factory now waits for Flutter visual actor gap closure.
 - Docs: Cross-Layer PROVEN — App Factory waits for Full Visual (`WAIT_FOR_SERVICE_FULL_VISUAL_UI_PROOF`); 11/11 sales batch unchanged.
 - Docs: Service Reference Test Tenant READY — App Factory waits for Cross-Layer (`WAIT_FOR_SERVICE_CROSS_LAYER_PROOF`); 11/11 sales batch unchanged.
 - Docs: [SERVICE_APP_FACTORY_ROADMAP_V1.md](docs/SERVICE_APP_FACTORY_ROADMAP_V1.md) — Service demos wait for reference tenant; 11/11 batch unchanged.

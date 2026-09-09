@@ -17,12 +17,14 @@
 ## Sequence
 
 1. Reference test tenant / harness — **DONE** (not App Factory sales demo)
-2. Cross-Layer / Visual Service proofs (E2E) — pending
-3. Optional later: official Service sales demo when product closure authorizes `demo-workshop`
-4. Then factory batch inclusion
+2. Cross-Layer proof — DONE
+3. Full Visual UI proof — PASS_WITH_FINDINGS (Dashboard proven, Flutter visual actor gap)
+4. Next: close Flutter visual actor gap, then full visual reproof
+5. Optional later: official Service sales demo when product closure authorizes `demo-workshop`
+6. Then factory batch inclusion
 
 ```text
-NEXT APP FACTORY SERVICE ACTION: WAIT_FOR_SERVICE_FULL_VISUAL_UI_PROOF
+NEXT APP FACTORY SERVICE ACTION: WAIT_FOR_SERVICE_FLUTTER_VISUAL_ACTOR_GAP_CLOSURE
 ```
 
 Not executed here. Appointment demos unchanged.
