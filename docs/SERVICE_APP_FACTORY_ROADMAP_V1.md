@@ -8,11 +8,11 @@
 | Item | Status |
 |---|---|
 | Load25 / Load50 / Soak60 | **PROVEN** (E2E) |
-| Chaos | **NOT_PROVEN** (C05 inventory lost-update on demo) |
-| Certification dependency | After Chaos PASS + certificate |
+| Chaos | **PROVEN** (`bf-e2e-chaos-service-auto-20260910-053422`) |
+| Certification dependency | After Evidence Bundle + certificate |
 
 ```text
-NEXT APP FACTORY SERVICE ACTION: WAIT_FOR_SERVICE_CHAOS_REPROOF_OR_DEMO_AUTHORIZATION
+NEXT APP FACTORY SERVICE ACTION: WAIT_FOR_SERVICE_ENGINE_EVIDENCE_BUNDLE_V1
 ```
 
 Appointment demos unchanged.
