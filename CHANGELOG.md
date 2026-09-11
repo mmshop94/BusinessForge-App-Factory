@@ -6,7 +6,8 @@ All notable changes to BusinessForge App Factory are documented here.
 
 ### Added
 
-- Docs: BICYCLE CONFIG_ONLY reuse/gap proven — wait for Bicycle reference vertical proof; 11/11 sales batch unchanged.
+- Docs: BICYCLE Functional/Asset/Resource **PROVEN** — wait for Full Visual + Cross-UI; 11/11 sales batch unchanged.
+- Docs: BICYCLE CONFIG_ONLY reuse/gap proven — wait for Bicycle reference vertical proof; 11/11 sales batch unchanged. (historical wait; reference vertical now proven)
 - Docs: AUTO_WORKSHOP Certificate CURRENT (`cert-service-auto-workshop-v1`, production_active NO) — wait for Bicycle reuse/gap; 11/11 sales batch unchanged. (historical wait; reuse now proven)
 - Docs: Service Engine Evidence Bundle **CURRENT** — wait for AUTO_WORKSHOP versioned vertical certification; 11/11 sales batch unchanged. (historical wait; certificate now CURRENT)
 - Docs: Service Chaos **PROVEN** (`bf-e2e-chaos-service-auto-20260910-053422`) — wait for Evidence Bundle; 11/11 sales batch unchanged. (historical wait; bundle now CURRENT)
