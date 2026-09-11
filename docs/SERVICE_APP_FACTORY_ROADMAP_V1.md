@@ -7,15 +7,16 @@
 
 | Item | Status |
 |---|---|
-| AUTO_WORKSHOP Certificate | **CURRENT** (production_active NO) |
-| BICYCLE | **CONFIG_ONLY** · Functional/Asset/Resource **PROVEN**; Full Visual / Cross-UI **PROVEN**; certificate **NONE** (Ready YES) |
+| AUTO_WORKSHOP Certificate | **CURRENT** (production_active NO) / **UNCHANGED** |
+| BICYCLE Certificate | **CURRENT** (`cert-service-bicycle-workshop-v1`, production_active **NO**) |
+| BICYCLE | **CONFIG_ONLY** · Functional/Asset/Resource **PROVEN**; Visual/Cross-UI **PROVEN**; Load/Soak/Chaos **INHERITED** |
 | App Factory mapping | `service_first` already covers `service_bicycle_workshop` |
-| Remaining for bicycle cert | Certificate seed only |
+| Remaining | Motorcycle reuse/gap (next CONFIG_ONLY shop peer) |
 
 ```text
-NEXT APP FACTORY SERVICE ACTION: WAIT_FOR_SERVICE_BICYCLE_VERSIONED_VERTICAL_CERTIFICATION_V1
+NEXT APP FACTORY SERVICE ACTION: WAIT_FOR_SERVICE_MOTORCYCLE_VERTICAL_REUSE_AND_GAP_PROOF_V1
 STATUS: READY / WAITING
 ```
 
-Authority: BusinessForge / E2E `SERVICE_BICYCLE_FULL_VISUAL_CROSS_UI_PROOF_V1` · run `bf-e2e-visual-service-bicycle-20260911-132941`.  
-Appointment demos unchanged. No APK/batch change in this slice.
+Authority: BusinessForge / E2E `SERVICE_BICYCLE_VERSIONED_VERTICAL_CERTIFICATION_V1`.  
+LIVE=0 · Deploy=0 · Push=0 · Production Active=NO. Appointment demos unchanged. No APK/batch change in this slice.
