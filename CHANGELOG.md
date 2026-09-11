@@ -6,7 +6,8 @@ All notable changes to BusinessForge App Factory are documented here.
 
 ### Added
 
-- Docs: MOTORCYCLE reference vertical **PROVEN** — wait for `SERVICE_MOTORCYCLE_FULL_VISUAL_CROSS_UI_PROOF_V1`; Certificate Ready NO; 11/11 sales batch unchanged.
+- Docs: MOTORCYCLE Full Visual + Cross-UI **PROVEN** (`bf-e2e-visual-service-motorcycle-20260911-153956`) — wait for `SERVICE_MOTORCYCLE_VERSIONED_VERTICAL_CERTIFICATION_V1`; Certificate Ready YES · issued NO; 11/11 sales batch unchanged.
+- Docs: MOTORCYCLE reference vertical **PROVEN** — wait for `SERVICE_MOTORCYCLE_FULL_VISUAL_CROSS_UI_PROOF_V1`; Certificate Ready NO; 11/11 sales batch unchanged. (historical wait; visual now proven)
 - Docs: MOTORCYCLE CONFIG_ONLY reuse/gap **PROVEN** — wait for `SERVICE_MOTORCYCLE_REFERENCE_VERTICAL_PROOF_V1`; Certificate Ready NO; 11/11 sales batch unchanged. (historical wait; reference vertical now proven)
 - Docs: BICYCLE Certificate CURRENT (`cert-service-bicycle-workshop-v1`, production_active NO) — wait for Motorcycle reuse/gap; 11/11 sales batch unchanged. (historical wait; motorcycle reuse/gap now proven)
 - Docs: BICYCLE Full Visual + Cross-UI **PROVEN** (`bf-e2e-visual-service-bicycle-20260911-132941`) — wait for versioned vertical certification; 11/11 sales batch unchanged. (historical wait; certificate now CURRENT)
