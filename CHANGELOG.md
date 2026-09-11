@@ -6,7 +6,8 @@ All notable changes to BusinessForge App Factory are documented here.
 
 ### Added
 
-- Docs: MOTORCYCLE Certificate CURRENT (`cert-service-motorcycle-workshop-v1`, production_active NO, PRODUCTION_APPROVED_WITH_FINDINGS) — wait for Tire Service vs AUTO capability audit; runtime file-bound overlay ACCEPTED; 11/11 sales batch unchanged.
+- Docs: Tire vs AUTO capability audit **DONE** — core Reifenservice = **CATALOG_ONLY_SPECIALIZATION** of AUTO · non-certification boundary · no tire package/profile/certificate · Einlagerung MATERIAL_DOMAIN out of core · wait for `SERVICE_AUTO_TIRE_CATALOG_SPECIALIZATION_V1`; independent tenant/app/branding allowed without cert boundary; 11/11 sales batch unchanged.
+- Docs: MOTORCYCLE Certificate CURRENT (`cert-service-motorcycle-workshop-v1`, production_active NO, PRODUCTION_APPROVED_WITH_FINDINGS) — wait for Tire Service vs AUTO capability audit; runtime file-bound overlay ACCEPTED; 11/11 sales batch unchanged. (historical wait; tire audit now DONE)
 - Docs: MOTORCYCLE Full Visual + Cross-UI **PROVEN** (`bf-e2e-visual-service-motorcycle-20260911-153956`) — wait for `SERVICE_MOTORCYCLE_VERSIONED_VERTICAL_CERTIFICATION_V1`; Certificate Ready YES · issued NO; 11/11 sales batch unchanged. (historical wait; certificate now CURRENT)
 - Docs: MOTORCYCLE reference vertical **PROVEN** — wait for `SERVICE_MOTORCYCLE_FULL_VISUAL_CROSS_UI_PROOF_V1`; Certificate Ready NO; 11/11 sales batch unchanged. (historical wait; visual now proven)
 - Docs: MOTORCYCLE CONFIG_ONLY reuse/gap **PROVEN** — wait for `SERVICE_MOTORCYCLE_REFERENCE_VERTICAL_PROOF_V1`; Certificate Ready NO; 11/11 sales batch unchanged. (historical wait; reference vertical now proven)
