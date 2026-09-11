@@ -7,12 +7,12 @@
 
 | Item | Status |
 |---|---|
-| Load25 / Load50 / Soak60 / Chaos | **PROVEN** (E2E) |
-| Service Engine Bundle | **CURRENT** (`service-engine-evidence-v1`) |
-| Certification dependency | Versioned AUTO_WORKSHOP vertical certificate (not seeded) |
+| Service Engine Bundle | **CURRENT** |
+| AUTO_WORKSHOP Certificate | **`cert-service-auto-workshop-v1` CURRENT** (production_active **NO**) |
+| Next peer | Bicycle reuse/gap (not started) |
 
 ```text
-NEXT APP FACTORY SERVICE ACTION: WAIT_FOR_SERVICE_AUTO_WORKSHOP_VERSIONED_VERTICAL_CERTIFICATION_V1
+NEXT APP FACTORY SERVICE ACTION: WAIT_FOR_SERVICE_BICYCLE_VERTICAL_REUSE_AND_GAP_PROOF_V1
 ```
 
-Appointment demos unchanged.
+Appointment demos unchanged. No Service production APK in 11/11.

@@ -6,7 +6,8 @@ All notable changes to BusinessForge App Factory are documented here.
 
 ### Added
 
-- Docs: Service Engine Evidence Bundle **CURRENT** — wait for AUTO_WORKSHOP versioned vertical certification; 11/11 sales batch unchanged.
+- Docs: AUTO_WORKSHOP Certificate CURRENT (`cert-service-auto-workshop-v1`, production_active NO) — wait for Bicycle reuse/gap; 11/11 sales batch unchanged.
+- Docs: Service Engine Evidence Bundle **CURRENT** — wait for AUTO_WORKSHOP versioned vertical certification; 11/11 sales batch unchanged. (historical wait; certificate now CURRENT)
 - Docs: Service Chaos **PROVEN** (`bf-e2e-chaos-service-auto-20260910-053422`) — wait for Evidence Bundle; 11/11 sales batch unchanged. (historical wait; bundle now CURRENT)
 - Docs: Service Chaos NOT_PROVEN (C05) — wait for Chaos re-proof after demo inventory fix; 11/11 sales batch unchanged. (historical; superseded)
 - Docs: Service Soak60 PROVEN — wait for Chaos or demo authorization; 11/11 sales batch unchanged.
