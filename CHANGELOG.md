@@ -6,8 +6,9 @@ All notable changes to BusinessForge App Factory are documented here.
 
 ### Added
 
-- Docs: FIELD Load50 **PROVEN** (`bf-e2e-load50-service-field-20260911-185443`) · wait for `SERVICE_FIELD_SOAK60_PROOF_V1` (`WAIT_FOR_SERVICE_FIELD_SOAK60_PROOF_V1`); electrician remains reference config only; not certificate; not GPS; 11/11 sales batch unchanged.
-- Docs: FIELD Load25 **PROVEN** (`bf-e2e-load25-service-field-20260911-183324`) · wait for `SERVICE_FIELD_LOAD50_PROOF_V1` (DONE — now wait Soak60); electrician remains reference config only; not certificate; not GPS; 11/11 sales batch unchanged.
+- Docs: FIELD Soak60 **PROVEN** (`bf-e2e-soak60-service-field-20260911-191701`) · wait for `SERVICE_FIELD_CHAOS_PROOF_V1` (`WAIT_FOR_SERVICE_FIELD_CHAOS_PROOF_V1`); electrician remains reference config only; not certificate; not GPS; 11/11 sales batch unchanged.
+- Docs: FIELD Load50 **PROVEN** (`bf-e2e-load50-service-field-20260911-185443`) · wait for `SERVICE_FIELD_SOAK60_PROOF_V1` (DONE — now wait Chaos); electrician remains reference config only; not certificate; not GPS; 11/11 sales batch unchanged.
+- Docs: FIELD Load25 **PROVEN** (`bf-e2e-load25-service-field-20260911-183324`) · wait for `SERVICE_FIELD_LOAD50_PROOF_V1` (DONE — now wait Chaos via Soak60); electrician remains reference config only; not certificate; not GPS; 11/11 sales batch unchanged.
 - Docs: Electrician reference FIELD proof **PROVEN** (E01–E24 · 23 PROVEN + E20 N/A) · Certificate Ready **NO** · wait for `SERVICE_FIELD_LOAD25_PROOF_V1` (DONE — now wait Load50); not GPS; not certificate; 11/11 sales batch unchanged.
 - Docs: FIELD Core Domain **SEALED** — Engine/ServiceJob REUSED · Appointment→site PROVEN · Electrician domain fork NO · wait for `SERVICE_ELECTRICIAN_REFERENCE_FIELD_PROOF_V1` (`WAIT_FOR_SERVICE_ELECTRICIAN_REFERENCE_FIELD_PROOF_V1`); not GPS; not certificate; 11/11 sales batch unchanged. (historical wait; reference proof now PROVEN)
 - Docs: Electrician FIELD Service Class gap audit **DONE** — **NEW_SERVICE_CLASS** · Engine REUSED · FIELD class REQUIRED · Separate engine NO · package/profile already exist · certificate NO · wait for `SERVICE_FIELD_CORE_DOMAIN_V1` (DONE — FIELD Load25 PROVEN); 11/11 sales batch unchanged.
