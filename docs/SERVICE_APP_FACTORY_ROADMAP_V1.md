@@ -7,12 +7,12 @@
 
 | Item | Status |
 |---|---|
-| Service Engine Bundle | **CURRENT** |
-| AUTO_WORKSHOP Certificate | **`cert-service-auto-workshop-v1` CURRENT** (production_active **NO**) |
-| Next peer | Bicycle reuse/gap (not started) |
+| AUTO_WORKSHOP Certificate | **CURRENT** (production_active NO) |
+| BICYCLE | **CONFIG_ONLY** reuse proven; certificate **NONE** |
+| App Factory mapping | `service_first` already covers `service_bicycle_workshop` |
 
 ```text
-NEXT APP FACTORY SERVICE ACTION: WAIT_FOR_SERVICE_BICYCLE_VERTICAL_REUSE_AND_GAP_PROOF_V1
+NEXT APP FACTORY SERVICE ACTION: WAIT_FOR_SERVICE_BICYCLE_REFERENCE_VERTICAL_PROOF_V1
 ```
 
-Appointment demos unchanged. No Service production APK in 11/11.
+Appointment demos unchanged.
