@@ -6,6 +6,7 @@ All notable changes to BusinessForge App Factory are documented here.
 
 ### Added
 
+- Docs: FIELD Evidence Bundle **CURRENT / READY** (`service-field-evidence-v1`) · Certificate Ready **NO** · wait for `SERVICE_ELECTRICIAN_FULL_VISUAL_CROSSUI_V1`; electrician remains reference config only; no electrician packaging fork; not certificate; not GPS; 11/11 sales batch unchanged.
 - Docs: FIELD Chaos **PROVEN** (`bf-e2e-chaos-service-field-20260912-033705`) · FIELD Class Evidence Complete **YES** · Certificate Ready **NO** · wait for `SERVICE_FIELD_EVIDENCE_BUNDLE_V1`; electrician remains reference config only; not certificate; not GPS; 11/11 sales batch unchanged.
 - Docs: FIELD Soak60 **PROVEN** (`bf-e2e-soak60-service-field-20260911-191701`) · wait for `SERVICE_FIELD_CHAOS_PROOF_V1` (`WAIT_FOR_SERVICE_FIELD_CHAOS_PROOF_V1`); electrician remains reference config only; not certificate; not GPS; 11/11 sales batch unchanged.
 - Docs: FIELD Load50 **PROVEN** (`bf-e2e-load50-service-field-20260911-185443`) · wait for `SERVICE_FIELD_SOAK60_PROOF_V1` (DONE — now wait Chaos); electrician remains reference config only; not certificate; not GPS; 11/11 sales batch unchanged.
