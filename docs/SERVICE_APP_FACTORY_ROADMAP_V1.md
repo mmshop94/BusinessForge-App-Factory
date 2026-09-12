@@ -1,6 +1,6 @@
 # App Factory — Service Roadmap V1
 
-> Stand: 2026-09-11  
+> Stand: 2026-09-12  
 > Official sales batch remains **11/11** without Service.
 
 ## Status
@@ -13,20 +13,20 @@
 | BICYCLE | **CONFIG_ONLY** · Functional/Asset/Resource **PROVEN**; Visual/Cross-UI **PROVEN**; Load/Soak/Chaos **INHERITED** |
 | MOTORCYCLE | **CONFIG_ONLY** · Functional **PROVEN** · Visual/Cross-UI **PROVEN** (`bf-e2e-visual-service-motorcycle-20260911-153956`) · Domain Ext **NO** · Material Div **NO** · asset **VEHICLE** · package **IMPLEMENTED** · runtime **ACCEPTED_DOCUMENTED_DEMO_FINGERPRINT** (`overlays/motorcycle-v1`) — **not reopened** |
 | TIRE / Reifenservice | **CATALOG_ONLY_SPECIALIZATION** · `auto_tire` **READY** · **non-certification boundary** · no tire package/cert · customer identity may be Reifenservice; certification identity remains AUTO_WORKSHOP |
-| ELECTRICIAN / FIELD | Gap audit **DONE** · FIELD core **SEALED** · Reference FIELD proof **PROVEN** (E01–E24) · FIELD Load25 **PROVEN** · FIELD Load50 **PROVEN** · FIELD Soak60 **PROVEN** · Engine **REUSED** · Separate engine **NO** · Appointment→site **PROVEN** · Certificate Ready **NO** · certificate **NO** |
-| App Factory mapping | `service_first` + commercial `catalog_specialization_options()` — tire is **not** a COMMERCIAL_VERTICAL/package; FIELD/electrician product packaging waits for FIELD Chaos+ evidence path |
-| Remaining | wait for `SERVICE_FIELD_CHAOS_PROOF_V1` |
+| ELECTRICIAN / FIELD | Gap audit **DONE** · FIELD core **SEALED** · Reference FIELD proof **PROVEN** (E01–E24) · FIELD Load25 **PROVEN** · FIELD Load50 **PROVEN** · FIELD Soak60 **PROVEN** · FIELD Chaos **PROVEN** · FIELD Class Evidence Complete **YES** · Engine **REUSED** · Separate engine **NO** · Appointment→site **PROVEN** · Certificate Ready **NO** · certificate **NO** |
+| App Factory mapping | `service_first` + commercial `catalog_specialization_options()` — tire is **not** a COMMERCIAL_VERTICAL/package; FIELD/electrician product packaging waits for FIELD evidence bundle + Visual |
+| Remaining | wait for `SERVICE_FIELD_EVIDENCE_BUNDLE_V1` |
 
 ```text
-NEXT APP FACTORY SERVICE ACTION: WAIT_FOR_SERVICE_FIELD_CHAOS_PROOF_V1
-SCOPE WAIT: FIELD-specific Chaos after FIELD Soak60 PROVEN
-THEN (upstream): FIELD evidence bundle → Visual → Certificate
+NEXT APP FACTORY SERVICE ACTION: WAIT_FOR_SERVICE_FIELD_EVIDENCE_BUNDLE_V1
+SCOPE WAIT: compose Functional+Load25+Load50+Soak60+Chaos+FIELD Core+Appointment→Site
+THEN (upstream): Visual/Cross-UI → Certificate
 NOT: electrician-specific App Factory forks · GPS · certificate · tire storage
 STATUS: READY / WAITING (NOT executed)
 DO NOT: implement tire storage · treat auto_tire as a cert vertical · mint electrician cert
 ```
 
 Identity vs cert: customer/app label may say Reifenservice; technical certification stays AUTO (`cert-service-auto-workshop-v1`).  
-Electrician / FIELD: Load25+Load50+Soak60 **PROVEN** — wait for FIELD Chaos before App Factory FIELD packaging work.  
-Authority: BusinessForge / E2E `SERVICE_FIELD_SOAK60_PROOF_V1`.  
+Electrician / FIELD: Load25+Load50+Soak60+Chaos **PROVEN** · Class Evidence Complete **YES** — wait for FIELD Evidence Bundle before packaging/Visual.  
+Authority: BusinessForge / E2E `SERVICE_FIELD_CHAOS_PROOF_V1`.  
 LIVE=0 · Deploy=0 · Push=0 · Demo mutation=0 · Production mutation=0 · Production Active=NO. Appointment demos unchanged. No APK/batch change in this slice.
