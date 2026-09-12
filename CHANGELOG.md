@@ -6,7 +6,8 @@ All notable changes to BusinessForge App Factory are documented here.
 
 ### Added
 
-- Docs: Electrician Full Visual + Cross-UI **PROVEN** (`bf-e2e-visual-service-electrician-20260912-042927`) · Certificate Ready **YES** · issued **NO** · wait for `SERVICE_ELECTRICIAN_VERSIONED_VERTICAL_CERTIFICATION_V1` (`WAIT_FOR_SERVICE_ELECTRICIAN_VERSIONED_VERTICAL_CERTIFICATION_V1`); no electrician packaging fork yet; not GPS; 11/11 sales batch unchanged.
+- Docs: Electrician Certificate **CURRENT** (`cert-service-electrician-v1`, production_active **NO**, PRODUCTION_APPROVED_WITH_FINDINGS) · **STOP** Electrician certification wait · packaging may proceed under existing App Factory rules without inventing electrician forks · next architectural decision A/B (another FIELD vertical reuse **or** next Service class gap); not GPS; 11/11 sales batch unchanged.
+- Docs: Electrician Full Visual + Cross-UI **PROVEN** (`bf-e2e-visual-service-electrician-20260912-042927`) · Certificate Ready **YES** · issued **NO** · wait for `SERVICE_ELECTRICIAN_VERSIONED_VERTICAL_CERTIFICATION_V1` (`WAIT_FOR_SERVICE_ELECTRICIAN_VERSIONED_VERTICAL_CERTIFICATION_V1`); no electrician packaging fork yet; not GPS; 11/11 sales batch unchanged. (historical wait; certificate now CURRENT)
 - Docs: FIELD Evidence Bundle **CURRENT / READY** (`service-field-evidence-v1`) · Certificate Ready **NO** · wait for `SERVICE_ELECTRICIAN_FULL_VISUAL_CROSSUI_V1`; electrician remains reference config only; no electrician packaging fork; not certificate; not GPS; 11/11 sales batch unchanged. (historical wait; Visual now PROVEN)
 
 - Docs: FIELD Chaos **PROVEN** (`bf-e2e-chaos-service-field-20260912-033705`) · FIELD Class Evidence Complete **YES** · Certificate Ready **NO** · wait for `SERVICE_FIELD_EVIDENCE_BUNDLE_V1`; electrician remains reference config only; not certificate; not GPS; 11/11 sales batch unchanged.
