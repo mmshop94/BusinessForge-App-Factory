@@ -1,5 +1,10 @@
 # Changelog
 
+### Service SHOP + FIELD Coverage Consolidation V1
+
+* Docs: expansion SATURATED · wait for `SERVICE_SHOP_EVIDENCE_BUNDLE_V1`; no packaging forks; 11/11 sales batch unchanged.
+* Roadmap: [SERVICE_APP_FACTORY_ROADMAP_V1.md](docs/SERVICE_APP_FACTORY_ROADMAP_V1.md). No push.
+
 ### Service DEVICE_SHOP Versioned Vertical Certification V1
 
 * Mirror `cert-service-device-shop-v1` CURRENT · production_active NO.
