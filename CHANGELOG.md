@@ -1,5 +1,10 @@
 # Changelog
 
+### Global Vertical Certification Coverage + Remaining Roadmap Audit V1
+
+* Docs: wait for Commerce village_store certification baseline; Service enablement DEFERRED; 11/11 unchanged.
+* Roadmap: [SERVICE_APP_FACTORY_ROADMAP_V1.md](docs/SERVICE_APP_FACTORY_ROADMAP_V1.md). No push.
+
 ### Service First Real Pilot Production Enablement V1
 
 * Docs: AUTO enablement path DEFINED; wait for real owner input then controlled provisioning.
