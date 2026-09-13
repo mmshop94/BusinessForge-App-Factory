@@ -1,5 +1,10 @@
 # Changelog
 
+### Commerce Butcher Certification Gap + Reuse Audit V1
+
+* Docs: Butcher CONFIG_ONLY_CONFIRMED; wait for Reference Contract + Functional; 11/11 unchanged.
+* No push.
+
 ### Commerce Village Store Certificate V1
 
 * Docs: Village Store certificate CURRENT · production_active NO; wait for Butcher gap audit; 11/11 unchanged.
