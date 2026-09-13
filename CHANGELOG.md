@@ -1,5 +1,10 @@
 # Changelog
 
+### Commerce Village Store Communication Proof V1
+
+* Docs: wait for Engine Evidence Bundle + Village Store Certification Readiness; 11/11 unchanged.
+* No push.
+
 ### Commerce Village Store CHAOS Proof V1
 
 * Docs: wait for Village Store Communication; 11/11 unchanged.
