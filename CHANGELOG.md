@@ -1,5 +1,11 @@
 # Changelog
 
+### Service HVAC Service Versioned Vertical Certification V1
+
+* HVAC certificate **CURRENT** · packaging under existing `field_service_*` rules · **no** HVAC forks.
+* **STOP HVAC CERTIFICATION WORK.** Sanitary remains unregistered.
+* Roadmap: [SERVICE_APP_FACTORY_ROADMAP_V1.md](docs/SERVICE_APP_FACTORY_ROADMAP_V1.md). No push.
+
 ### Service HVAC Service Full Visual + Cross-UI Proof V1
 
 * HVAC Visual/Cross-UI **PROVEN** · Certificate Ready **YES** · issued **NO**.
