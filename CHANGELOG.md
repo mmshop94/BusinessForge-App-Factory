@@ -1,5 +1,10 @@
 # Changelog
 
+### Service SHOP Evidence Bundle V1
+
+* Docs: `service-shop-evidence-v1` CURRENT/READY; wait for production readiness audit; no packaging forks; 11/11 unchanged.
+* Roadmap: [SERVICE_APP_FACTORY_ROADMAP_V1.md](docs/SERVICE_APP_FACTORY_ROADMAP_V1.md). No push.
+
 ### Service SHOP + FIELD Coverage Consolidation V1
 
 * Docs: expansion SATURATED · wait for `SERVICE_SHOP_EVIDENCE_BUNDLE_V1`; no packaging forks; 11/11 sales batch unchanged.
