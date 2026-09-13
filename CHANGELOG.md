@@ -1,5 +1,10 @@
 # Changelog
 
+### Commerce Village Store Reference Contract + Functional Proof V1
+
+* Docs: wait for Village Store Cross-Layer proof; 11/11 unchanged.
+* Roadmap: [SERVICE_APP_FACTORY_ROADMAP_V1.md](docs/SERVICE_APP_FACTORY_ROADMAP_V1.md). No push.
+
 ### Commerce Engine Certification Baseline + Village Store Gap Audit V1
 
 * Docs: wait for Village Store reference functional proof; 11/11 unchanged; no packaging forks.
