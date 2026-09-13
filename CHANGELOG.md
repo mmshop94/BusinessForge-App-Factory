@@ -1,5 +1,10 @@
 # Changelog
 
+### Commerce Engine Certification Baseline + Village Store Gap Audit V1
+
+* Docs: wait for Village Store reference functional proof; 11/11 unchanged; no packaging forks.
+* Roadmap: [SERVICE_APP_FACTORY_ROADMAP_V1.md](docs/SERVICE_APP_FACTORY_ROADMAP_V1.md). No push.
+
 ### Global Vertical Certification Coverage + Remaining Roadmap Audit V1
 
 * Docs: wait for Commerce village_store certification baseline; Service enablement DEFERRED; 11/11 unchanged.
