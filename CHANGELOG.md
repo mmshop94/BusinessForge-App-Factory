@@ -1,5 +1,11 @@
 # Changelog
 
+### Service DEVICE_SHOP Class + Device Repair Gap Audit V1
+
+* Audit only: DEVICE_SHOP = Architecture **B** / **SHOP_SERVICE** / **MINOR_EXTENSION** / **not** a third class / **not registered**.
+* No App Factory packaging / Handy forks / wait for optional vertical contract/proof.
+* Roadmap: [SERVICE_APP_FACTORY_ROADMAP_V1.md](docs/SERVICE_APP_FACTORY_ROADMAP_V1.md). No push.
+
 ### Service HVAC Service Versioned Vertical Certification V1
 
 * HVAC certificate **CURRENT** · packaging under existing `field_service_*` rules · **no** HVAC forks.
