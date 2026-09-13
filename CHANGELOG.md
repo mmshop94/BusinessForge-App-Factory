@@ -1,5 +1,10 @@
 # Changelog
 
+### Service Production Readiness + Activation Gap Audit V1
+
+* Docs: wait for `SERVICE FIRST REAL PILOT PRODUCTION ENABLEMENT V1`; no packaging forks; 11/11 unchanged.
+* Roadmap: [SERVICE_APP_FACTORY_ROADMAP_V1.md](docs/SERVICE_APP_FACTORY_ROADMAP_V1.md). No push.
+
 ### Service SHOP Evidence Bundle V1
 
 * Docs: `service-shop-evidence-v1` CURRENT/READY; wait for production readiness audit; no packaging forks; 11/11 unchanged.
