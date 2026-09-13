@@ -1,5 +1,11 @@
 # Changelog
 
+### Service First Real Pilot Production Enablement V1
+
+* Docs: AUTO enablement path DEFINED; wait for real owner input then controlled provisioning.
+* No packaging forks; 11/11 unchanged; production_active NO.
+* Roadmap: [SERVICE_APP_FACTORY_ROADMAP_V1.md](docs/SERVICE_APP_FACTORY_ROADMAP_V1.md). No push.
+
 ### Service Production Readiness + Activation Gap Audit V1
 
 * Docs: wait for `SERVICE FIRST REAL PILOT PRODUCTION ENABLEMENT V1`; no packaging forks; 11/11 unchanged.
