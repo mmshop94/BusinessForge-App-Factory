@@ -1,5 +1,10 @@
 # Changelog
 
+### Commerce Village Store Cross-Layer Proof V1
+
+* Docs: wait for Village Store Full Visual + Cross-UI; 11/11 unchanged.
+* No push.
+
 ### Commerce Village Store Reference Contract + Functional Proof V1
 
 * Docs: wait for Village Store Cross-Layer proof; 11/11 unchanged.
