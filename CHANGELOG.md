@@ -1,5 +1,12 @@
 # Changelog
 
+### Service DEVICE_SHOP Versioned Vertical Certification V1
+
+* Mirror `cert-service-device-shop-v1` CURRENT · production_active NO.
+* Packaging wait under existing `service_first` rules — no DEVICE_SHOP forks.
+* STOP DEVICE SHOP CERTIFICATION WORK. Next consolidation wait. No push.
+
+
 ### Service DEVICE_SHOP Demo Bootstrap + Visual Reproof V1
 
 * Visual/Cross-UI **PROVEN** · Certificate Ready **YES** · run f-e2e-visual-service-device-shop-20260913-065614.
