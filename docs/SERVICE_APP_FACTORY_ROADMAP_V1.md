@@ -11,15 +11,14 @@
 | APPLIANCE_SERVICE Certificate | **CURRENT** (`cert-service-appliance-v1`, production_active **NO**) · **CONFIG_ONLY** |
 | HVAC Certificate | **CURRENT** (`cert-service-hvac-v1`, production_active **NO**) · **CONFIG_ONLY** |
 | Sanitary | **AUDITED** · **UNREGISTERED** · deferred |
-| DEVICE_SHOP | **AUDITED** · Architecture **B** · class **SHOP_SERVICE** · **MINOR_EXTENSION** · **UNREGISTERED** — wait for vertical contract/proof before packaging |
-| App Factory mapping | No DEVICE_SHOP / Handy forks · no Sanitary forks · existing `service_first` / `field_service_*` rules unchanged |
+| DEVICE_SHOP | **REGISTERED** · Architecture **B** · **SHOP_SERVICE** · **MINOR_EXTENSION** · D01–D24 **PROVEN** · Visual **NOT_PROVEN** · Certificate Ready **NO** |
+| App Factory mapping | `service_first` may list `service_device_shop` under existing rules — **no** DEVICE_SHOP-specific forks; packaging wait for Visual/cert |
 
 ```text
-PRIOR DONE: SERVICE_HVAC_SERVICE_VERSIONED_VERTICAL_CERTIFICATION_V1
-PRIOR DONE: SERVICE_DEVICE_SHOP_CLASS_DEVICE_REPAIR_GAP_AUDIT_V1
+PRIOR DONE: SERVICE_DEVICE_SHOP_REFERENCE_VERTICAL_PROOF_V1
+NEXT WAIT: SERVICE_DEVICE_SHOP_FULL_VISUAL_CROSSUI_V1
 STOP HVAC CERTIFICATION WORK.
-NOT: DEVICE_SHOP packaging · Sanitary parallel · third Service class · GPS · production_active · certificate invent
-RECOMMENDED (optional later): wait for DEVICE_SHOP vertical contract / reference proof before App Factory packaging
+NOT: DEVICE_SHOP packaging forks · Sanitary parallel · third Service class · GPS · production_active · certificate invent
 ```
 
 LIVE=0 · Deploy=0 · Push=0 · Demo mutation=0 · Production mutation=0 · Production Active=NO. No APK/batch change in this slice.

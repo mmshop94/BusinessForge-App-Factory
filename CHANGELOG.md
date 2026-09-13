@@ -1,5 +1,11 @@
 # Changelog
 
+### Service DEVICE_SHOP Vertical Contract + Reference Proof V1
+
+* DEVICE_SHOP REGISTERED / D01-D24 PROVEN / Certificate Ready NO / Visual NOT_PROVEN.
+* Packaging wait for Visual under existing service_first rules; no DEVICE_SHOP forks.
+* Roadmap: [SERVICE_APP_FACTORY_ROADMAP_V1.md](docs/SERVICE_APP_FACTORY_ROADMAP_V1.md). No push.
+
 ### Service DEVICE_SHOP Class + Device Repair Gap Audit V1
 
 * Audit only: DEVICE_SHOP = Architecture **B** / **SHOP_SERVICE** / **MINOR_EXTENSION** / **not** a third class / **not registered**.
