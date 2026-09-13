@@ -1,5 +1,10 @@
 # Changelog
 
+### Commerce Village Store LOAD25 + LOAD50 Proof V1
+
+* Docs: wait for Village Store Soak60; 11/11 unchanged.
+* No push.
+
 ### Commerce Village Store Full Visual + Cross-UI Proof V1
 
 * Docs: wait for Village Store Load25 + Load50; 11/11 unchanged.

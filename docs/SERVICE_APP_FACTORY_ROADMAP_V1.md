@@ -2,11 +2,11 @@
 
 > Stand: 2026-09-13  
 > Sales batch **11/11** unchanged.  
-> Village Store functional + cross-layer + full visual: **PROVEN** (BF authority)
+> Village Store functional + cross-layer + full visual + Load25/50: **PROVEN** (BF authority)
 
 | Item | Status |
 |---|---|
-| Next wait | **COMMERCE VILLAGE STORE LOAD25 + LOAD50 PROOF V1** |
+| Next wait | **COMMERCE VILLAGE STORE SOAK60 PROOF V1** |
 | Certificate / APK change | **NONE** this wait |
 | Service enablement | **DEFERRED** |
 
