@@ -1,5 +1,10 @@
 # Changelog
 
+### Commerce Village Store Certificate V1
+
+* Docs: Village Store certificate CURRENT · production_active NO; wait for Butcher gap audit; 11/11 unchanged.
+* No push.
+
 ### Commerce Engine Evidence Bundle V1 + Village Store Certification Readiness V1
 
 * Docs: wait for Village Store Certificate V1; 11/11 unchanged.
