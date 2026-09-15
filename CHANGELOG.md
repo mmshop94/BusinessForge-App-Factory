@@ -1,3 +1,8 @@
+### Commerce Bakery Certification Gap + Reuse Audit V1
+
+* Docs: `BAKERY_CONFIG_ONLY_CONFIRMED` · bakery **AUDITED** · **NOT_READY**; 11/11 unchanged.
+* App Factory can consume `village_store@v1` (READY). No `bakery@v1`. No app generation. No push.
+
 ### Commerce Farm Shop Product Certification V1
 
 * Docs: `cert-commerce-farm-shop-v1` CURRENT · production_active NO · `FARM_SHOP` via `village_store@v1`; 11/11 sales demos unchanged.
