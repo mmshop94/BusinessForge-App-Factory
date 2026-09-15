@@ -1,5 +1,10 @@
 # Changelog
 
+### Commerce Butcher Measured Vertical Proof V1
+
+* Docs: butcher measured proof **PASS / READY**; certificate still NOT_ISSUED; 11/11 unchanged.
+* No push.
+
 ### Commerce Catch-Weight / Unit-Pricing Domain Boundary V1
 
 * Docs: Commerce further-cert **CONTINUE**; catch-weight **PARTIAL**; butcher cert still NOT_ISSUED; 11/11 unchanged.
