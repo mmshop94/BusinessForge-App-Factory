@@ -1,5 +1,10 @@
 # Changelog
 
+### Commerce Butcher Product Certification V1
+
+* Docs: `cert-commerce-butcher-v1` CURRENT · production_active NO · butcher@v1 still not in official sales demos; 11/11 unchanged.
+* No app generation. No push.
+
 ### Commerce Butcher Measured Vertical Proof V1
 
 * Docs: butcher measured proof **PASS / READY**; certificate still NOT_ISSUED; 11/11 unchanged.
