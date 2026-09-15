@@ -1,5 +1,10 @@
 # Changelog
 
+### Commerce Farm Shop Vertical Proof V1
+
+* Consume proof: `village_store@v1` + `FEATURE_VILLAGE_STORE`; `FARM_SHOP` is BusinessType, not a factory package.
+* `APP_FACTORY_REUSE: READY`. Official sales demos 11/11 unchanged. No app generation. No push.
+
 ### Commerce Farm Shop Certification Gap + Reuse Audit V1
 
 * Docs: `FARM_SHOP_CONFIG_ONLY_CONFIRMED` · farm_shop **AUDITED** · **NOT_READY**; 11/11 unchanged.
