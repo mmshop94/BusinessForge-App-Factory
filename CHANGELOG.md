@@ -1,5 +1,10 @@
 # Changelog
 
+### Commerce Physical Retail Capability Gap Audit V1
+
+* Docs: Commerce further-cert **PAUSE_FOR_CORE_GAPS**; wait for catch-weight / unit-pricing domain boundary; 11/11 unchanged.
+* No push.
+
 ### Commerce Butcher Certification Gap + Reuse Audit V1
 
 * Docs: Butcher CONFIG_ONLY_CONFIRMED; wait for Reference Contract + Functional; 11/11 unchanged.
