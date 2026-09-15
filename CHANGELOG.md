@@ -1,4 +1,7 @@
-# Changelog
+### Commerce Farm Shop Product Certification V1
+
+* Docs: `cert-commerce-farm-shop-v1` CURRENT · production_active NO · `FARM_SHOP` via `village_store@v1`; 11/11 sales demos unchanged.
+* `APP_FACTORY_REUSE: READY`. No app generation. No push.
 
 ### Commerce Farm Shop Vertical Proof V1
 
