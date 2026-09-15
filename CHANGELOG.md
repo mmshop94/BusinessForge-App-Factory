@@ -1,5 +1,10 @@
 # Changelog
 
+### Commerce Catch-Weight / Unit-Pricing Domain Boundary V1
+
+* Docs: Commerce further-cert **CONTINUE**; catch-weight **PARTIAL**; butcher cert still NOT_ISSUED; 11/11 unchanged.
+* No push.
+
 ### Commerce Physical Retail Capability Gap Audit V1
 
 * Docs: Commerce further-cert **PAUSE_FOR_CORE_GAPS**; wait for catch-weight / unit-pricing domain boundary; 11/11 unchanged.
