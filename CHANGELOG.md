@@ -1,6 +1,11 @@
+### Commerce Winery Vertical Proof V1
+
+* Consume proof: `WINERY` → `village_store@v1` + `FEATURE_VILLAGE_STORE`; no `FEATURE_WINERY` / `winery@v1`.
+* App Factory reuse **READY**. 11/11 sales demos unchanged. No app generation. No push.
+
 ### Commerce Winery Certification Gap + Reuse Audit V1
 
-* Docs: Winery CONFIG_ONLY on village_store@v1; App Factory reuse **PARTIAL** until BusinessType exists. 11/11 demos unchanged. No push.
+* Docs: Winery CONFIG_ONLY on village_store@v1; App Factory reuse **READY** after BusinessType registration. 11/11 demos unchanged. No push.
 
 ### Commerce Age Restriction / ID Validation Domain Boundary V1
 
