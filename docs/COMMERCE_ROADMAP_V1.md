@@ -14,8 +14,8 @@
 | Engine evidence | `commerce-engine-evidence-v1` CURRENT / READY · REUSABLE WITH CONDITIONS |
 | Catch weight | **PARTIAL** (software PRESENT, scale OPTIONAL) · MEASURED **CERTIFIED** for deli V1 |
 | Pfand | **PRESENT_FOR_SOFTWARE_SALE_AND_OPERATOR_RETURN** · Deposit tax PARTIAL_NON_BLOCKING for beverage V1 |
-| Beverage store | **AUDITED** · CONFIG_ONLY CONFIRMED · BusinessType ABSENT · proof ABSENT · readiness NOT_READY |
-| App Factory reuse | **PARTIAL** until `BEVERAGE_STORE` BusinessType; deposit consume path READY |
-| Next | **COMMERCE BEVERAGE STORE VERTICAL PROOF V1** |
+| Beverage store | **PROOF_PASS / READY** · CONFIG_ONLY · BusinessType PRESENT · certificate NOT_ISSUED |
+| App Factory reuse | **READY** (`BEVERAGE_STORE` → village_store@v1; no beverage_store@v1) |
+| Next | **COMMERCE BEVERAGE STORE PRODUCT CERTIFICATION V1** |
 
-Authority: BusinessForge `COMMERCE_BEVERAGE_STORE_CERTIFICATION_GAP_REUSE_AUDIT_V1.md`
+Authority: BusinessForge `COMMERCE_BEVERAGE_STORE_VERTICAL_PROOF_V1.md`

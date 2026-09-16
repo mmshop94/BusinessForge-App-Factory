@@ -1,3 +1,7 @@
+### Commerce Beverage Store Vertical Proof V1
+
+* App Factory reuse **READY**: `BEVERAGE_STORE` → `village_store@v1` consume; no beverage package. No push.
+
 ### Commerce Beverage Store Certification Gap + Reuse Audit V1
 
 * Docs: beverage CONFIG_ONLY on village_store@v1; App Factory reuse **PARTIAL** until BusinessType exists. 11/11 demos unchanged. No push.
