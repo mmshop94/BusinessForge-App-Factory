@@ -1,3 +1,8 @@
+### Commerce Beverage Store Product Certification V1
+
+* Docs: `cert-commerce-beverage-store-v1` CURRENT · production_active NO · `BEVERAGE_STORE` via `village_store@v1`; 11/11 sales demos unchanged.
+* `APP_FACTORY_REUSE: READY`. No app generation. No push.
+
 ### Commerce Beverage Store Vertical Proof V1
 
 * App Factory reuse **READY**: `BEVERAGE_STORE` → `village_store@v1` consume; no beverage package. No push.
