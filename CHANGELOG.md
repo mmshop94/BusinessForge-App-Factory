@@ -1,3 +1,7 @@
+### Commerce Winery Certification Gap + Reuse Audit V1
+
+* Docs: Winery CONFIG_ONLY on village_store@v1; App Factory reuse **PARTIAL** until BusinessType exists. 11/11 demos unchanged. No push.
+
 ### Commerce Age Restriction / ID Validation Domain Boundary V1
 
 * Docs: shared age-restriction core **PRESENT**; App Factory reuse **READY** (shared store fields; no winery@v1).
