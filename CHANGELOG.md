@@ -1,3 +1,8 @@
+### Commerce Florist Certification Gap + Reuse Audit V1
+
+* Docs: `FLORIST_CONFIG_ONLY_CONFIRMED` · florist **AUDITED** · **NOT_READY**; 11/11 unchanged.
+* App Factory can consume `village_store@v1` (READY). No `florist@v1`. No app generation. No push.
+
 ### Commerce Bakery Product Certification V1
 
 * Docs: `cert-commerce-bakery-v1` CURRENT · production_active NO · `BAKERY` via `village_store@v1`; 11/11 sales demos unchanged.
