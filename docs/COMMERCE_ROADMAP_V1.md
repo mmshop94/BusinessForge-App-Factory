@@ -8,18 +8,20 @@
 | Butcher certificate | **`cert-commerce-butcher-v1` CURRENT** · production_active **NO** · not in official sales demos |
 | Farm Shop … Beverage Store | **CURRENT** (CONFIG_ONLY on `village_store@v1`) · production_active **NO** |
 | Winery | **`cert-commerce-winery-v1` CURRENT** · CONFIG_ONLY · production_active **NO** · no `winery@v1` |
-| Age Restriction | **PRESENT** (operator pickup verification; no digital ID/KYC) |
-| App Factory reuse (age) | **READY** (shared store age fields) |
+| Age Restriction | **PRESENT** (pickup + local delivery handoff; no digital ID/KYC) |
+| App Factory reuse (age) | **READY** (shared store age fields; no `delivery_age@v1`) |
 | App Factory reuse (winery) | **READY** (`BusinessType.WINERY` → `village_store@v1`) |
 | Delivery / shipping fulfillment | Address core, rate engine, and manual shipment lifecycle **PRESENT** · local delivery **PARTIAL** |
+| Local Delivery Age Verification | **PRESENT** (operator visual ID at handoff + server hard gate) |
+| Shipping Age Verification Domain | **PRESENT** (port only) · External Carrier Adapter **ABSENT** |
 | App Factory fulfillment reuse | **READY** (shared Commerce capability; no `shipping@v1` / `delivery@v1`) |
 | Online payment (tenant Connect) | Software core **PRESENT** · account connection **PRESENT** · webhook + full refund **PRESENT** (Fake domain) |
-| Stripe Connect live adapter | **PARTIAL** (Express direct charges wired; real testmode proof BLOCKED without commerce webhook secret) |
+| Stripe Connect live adapter | **PARTIAL** (Accounts v2 merchant+full; real testmode READY deferred / hosted onboarding) |
 | App Factory online payment reuse | **READY** (shared Commerce capability; no `stripe@v1` / `payment@v1`; no per-tenant secrets in generated apps) |
 | Production shipping checkout | **FUNCTIONALLY_READY_VIA_FAKE** · real Stripe **NOT_YET_PROVEN** |
 | Age-restricted shipping | **NOT_CERTIFIED** |
 | Application fee / PayPal | **NOT_USED** / **NOT_REQUIRED** |
-| Next shared core | After Stripe adapter **PASS**: **DELIVERY_AGE_VERIFICATION** |
+| Next shared core | **EXTERNAL_CARRIER_AGE_VERIFICATION_ADAPTER** |
 
 Online payment is configuration of the existing Commerce path, not a new factory
 product family. Official sales demos remain 11/11 unchanged. No app generation
