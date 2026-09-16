@@ -13,8 +13,8 @@
 | Engine path | **CONFIG_ONLY** (village_store@v1 + DELICATESSEN) |
 | Engine evidence | `commerce-engine-evidence-v1` CURRENT / READY · REUSABLE WITH CONDITIONS |
 | Catch weight | **PARTIAL** (software PRESENT, scale OPTIONAL) · MEASURED **CERTIFIED** for deli V1 |
-| Pfand | **ABSENT** · Deposit core required now **YES** |
+| Pfand | **PRESENT_FOR_SOFTWARE_SALE_AND_OPERATOR_RETURN** · Deposit tax PARTIAL |
 | App Factory reuse | **READY** (consumes village_store@v1; DELICATESSEN is BusinessType) |
-| Next | **COMMERCE DEPOSIT / REUSABLE PACKAGING DOMAIN BOUNDARY V1** |
+| Next | **COMMERCE BEVERAGE STORE CERTIFICATION GAP + REUSE AUDIT V1** |
 
-Authority: BusinessForge `COMMERCE_DELICATESSEN_PRODUCT_CERTIFICATION_V1.md`
+Authority: BusinessForge `COMMERCE_DEPOSIT_REUSABLE_PACKAGING_DOMAIN_BOUNDARY_V1.md`

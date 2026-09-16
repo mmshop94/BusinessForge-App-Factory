@@ -1,3 +1,8 @@
+### Commerce Deposit / Reusable Packaging Domain Boundary V1
+
+* Docs: deposit software core PRESENT on shared village_store Commerce path; `APP_FACTORY_DEPOSIT_REUSE: READY`.
+* No deposit package. No beverage app generation. 11/11 sales demos unchanged. No push.
+
 ### Commerce Delicatessen Product Certification V1
 
 * Docs: `cert-commerce-delicatessen-v1` CURRENT · production_active NO · `DELICATESSEN` via `village_store@v1`; 11/11 sales demos unchanged.
