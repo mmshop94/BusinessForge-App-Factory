@@ -127,4 +127,9 @@ Demos are factory configuration (branding, package id, `public_app_id`, API orig
 
 Commerce age restriction is a **shared** store capability (operator pickup verification). No `winery@v1` / alcohol app package is required for App Factory reuse — see [COMMERCE_ROADMAP_V1.md](COMMERCE_ROADMAP_V1.md).
 
+Commerce delivery / shipping fulfillment is also a **shared** Commerce capability.
+`APP_FACTORY_FULFILLMENT_REUSE: READY`; no `shipping@v1` or `delivery@v1`
+package is required. This documentation freeze does not add an official demo or
+generate an app, so the official sales-demo batch remains **11/11**.
+
 See also: [ANDROID_RELEASE_PIPELINE.md](ANDROID_RELEASE_PIPELINE.md) · [APP_MANIFEST_V1.md](APP_MANIFEST_V1.md)

@@ -1,3 +1,8 @@
+### Commerce Delivery / Shipping Fulfillment Domain Boundary V1
+
+* Docs: shared Commerce fulfillment capability; `APP_FACTORY_FULFILLMENT_REUSE: READY`.
+* No `shipping@v1` / `delivery@v1` packages; 11/11 sales demos unchanged. No app generation. No push.
+
 ### Commerce Winery Product Certification V1
 
 * Docs: `cert-commerce-winery-v1` CURRENT · production_active NO · `WINERY` via `village_store@v1`; 11/11 sales demos unchanged.
