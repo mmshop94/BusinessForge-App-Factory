@@ -125,4 +125,6 @@ DEMO-SPECIFIC DOMAIN CODE: NONE
 
 Demos are factory configuration (branding, package id, `public_app_id`, API origin). Customer App checkout: `BusinessForge-FlutterApp-main`.
 
+Commerce age restriction is a **shared** store capability (operator pickup verification). No `winery@v1` / alcohol app package is required for App Factory reuse — see [COMMERCE_ROADMAP_V1.md](COMMERCE_ROADMAP_V1.md).
+
 See also: [ANDROID_RELEASE_PIPELINE.md](ANDROID_RELEASE_PIPELINE.md) · [APP_MANIFEST_V1.md](APP_MANIFEST_V1.md)

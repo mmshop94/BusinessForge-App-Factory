@@ -15,7 +15,8 @@
 | Engine evidence | `commerce-engine-evidence-v1` CURRENT / READY · REUSABLE WITH CONDITIONS |
 | Catch weight | **PARTIAL** (software PRESENT, scale OPTIONAL) |
 | Pfand | **PRESENT_FOR_SOFTWARE_SALE_AND_OPERATOR_RETURN** · Deposit tax PARTIAL_NON_BLOCKING for beverage V1 |
-| App Factory reuse | **READY** (`BEVERAGE_STORE` → village_store@v1; no beverage_store@v1) |
-| Next | **COMMERCE AGE RESTRICTION / ID VALIDATION DOMAIN BOUNDARY V1** |
+| Age Restriction | **PRESENT** (operator pickup verification; no digital ID/KYC) |
+| App Factory reuse | **READY** (shared store age fields; no winery@v1 required) |
+| Next | **COMMERCE WINERY CERTIFICATION GAP + REUSE AUDIT V1** |
 
-Authority: BusinessForge `COMMERCE_BEVERAGE_STORE_PRODUCT_CERTIFICATION_V1.md`
+Authority: BusinessForge `COMMERCE_AGE_RESTRICTION_ID_VALIDATION_DOMAIN_BOUNDARY_V1.md`
