@@ -1,3 +1,8 @@
+### Commerce Delicatessen Product Certification V1
+
+* Docs: `cert-commerce-delicatessen-v1` CURRENT · production_active NO · `DELICATESSEN` via `village_store@v1`; 11/11 sales demos unchanged.
+* `APP_FACTORY_REUSE: READY`. No app generation. No push.
+
 ### Commerce Delicatessen Vertical Proof V1
 
 * Consume proof: `village_store@v1` + `FEATURE_VILLAGE_STORE`; `DELICATESSEN` is BusinessType, not a factory package.
