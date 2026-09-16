@@ -1,3 +1,8 @@
+### Commerce Bakery Product Certification V1
+
+* Docs: `cert-commerce-bakery-v1` CURRENT · production_active NO · `BAKERY` via `village_store@v1`; 11/11 sales demos unchanged.
+* `APP_FACTORY_REUSE: READY`. No app generation. No push.
+
 ### Commerce Bakery Vertical Proof V1
 
 * Consume proof: `village_store@v1` + `FEATURE_VILLAGE_STORE`; `BAKERY` is BusinessType, not a factory package.
