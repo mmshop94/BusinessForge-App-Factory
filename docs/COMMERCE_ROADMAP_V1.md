@@ -21,10 +21,12 @@
 | Stripe Connect live adapter | **PARTIAL** (Accounts v2 merchant+full; real testmode READY deferred / hosted onboarding) |
 | App Factory online payment reuse | **READY** (shared Commerce capability; no `stripe@v1` / `payment@v1`; no per-tenant secrets in generated apps) |
 | Tenant provider credentials | **BACKEND_ONLY** (Tenant Integration Secret Vault) · generated apps **NO SECRETS** |
+| Retail Labels / Barcode | **PRESENT** (shared Commerce; no `barcode@v1` / `label@v1`) |
+| App Factory retail identification reuse | **READY** (customer apps unchanged; no label surface) |
 | Production shipping checkout | **FUNCTIONALLY_READY_VIA_FAKE** · real Stripe **NOT_YET_PROVEN** |
 | Age-restricted shipping | Software core **PRESENT** · production **NOT_READY** · **NOT_CERTIFIED** |
 | Application fee / PayPal | **NOT_USED** / **NOT_REQUIRED** |
-| Next shared core | **Stripe hosted onboarding** or **Retail Labels / Barcode** (DHL production = external credential onboarding; vault PRESENT) |
+| Next shared core | **Scale / variable-measure barcode** OR **Stripe hosted onboarding** OR **Full Customer Invoice** |
 
 Online payment is configuration of the existing Commerce path, not a new factory
 product family. Official sales demos remain 11/11 unchanged. No app generation
