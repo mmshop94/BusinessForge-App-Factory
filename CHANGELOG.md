@@ -1,3 +1,7 @@
+### Commerce Beverage Store Certification Gap + Reuse Audit V1
+
+* Docs: beverage CONFIG_ONLY on village_store@v1; App Factory reuse **PARTIAL** until BusinessType exists. 11/11 demos unchanged. No push.
+
 ### Commerce Deposit / Reusable Packaging Domain Boundary V1
 
 * Docs: deposit software core PRESENT on shared village_store Commerce path; `APP_FACTORY_DEPOSIT_REUSE: READY`.
