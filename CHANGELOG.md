@@ -1,3 +1,8 @@
+### Commerce Delicatessen Certification Gap + Reuse Audit V1
+
+* Docs: `DELICATESSEN_CONFIG_ONLY_CONFIRMED` · delicatessen **AUDITED** · **NOT_READY**; 11/11 unchanged.
+* App Factory can consume `village_store@v1` (READY). No `delicatessen@v1`. No app generation. No push.
+
 ### Commerce Florist Product Certification V1
 
 * Docs: `cert-commerce-florist-v1` CURRENT · production_active NO · `FLORIST` via `village_store@v1`; 11/11 sales demos unchanged.
