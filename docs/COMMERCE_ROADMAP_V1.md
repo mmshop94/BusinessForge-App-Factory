@@ -9,12 +9,12 @@
 | Farm Shop certificate | **`cert-commerce-farm-shop-v1` CURRENT** · `FARM_SHOP_PRODUCT_PROFILE_V1` · no `farm_shop@v1` · production_active **NO** |
 | Bakery certificate | **`cert-commerce-bakery-v1` CURRENT** · `BAKERY_PRODUCT_PROFILE_V1` · no `bakery@v1` · production_active **NO** |
 | Florist certificate | **`cert-commerce-florist-v1` CURRENT** · `FLORIST_PRODUCT_PROFILE_V1` · no `florist@v1` · production_active **NO** |
-| Delicatessen | **AUDITED** · `DELICATESSEN_CONFIG_ONLY_CONFIRMED` · **NOT_READY** · no `delicatessen@v1` |
+| Delicatessen | **PROOF_PASS** · `DELICATESSEN_CONFIG_ONLY_CONFIRMED` · **READY** · certificate **NOT_ISSUED** · no `delicatessen@v1` |
 | Engine path | **CONFIG_ONLY** (village_store@v1 + DELICATESSEN) |
 | Engine evidence | `commerce-engine-evidence-v1` CURRENT / READY · REUSABLE WITH CONDITIONS |
-| Catch weight | **PARTIAL** (software PRESENT, scale OPTIONAL) · MEASURED **REQUIRED** for deli V1 |
+| Catch weight | **PARTIAL** (software PRESENT, scale OPTIONAL) · MEASURED **REQUIRED** · PASS for deli V1 |
 | Pfand | **ABSENT** · not required before delicatessen cert |
 | App Factory reuse | **READY** (consumes village_store@v1; DELICATESSEN is BusinessType) |
-| Next | **COMMERCE DELICATESSEN VERTICAL PROOF V1** |
+| Next | **COMMERCE DELICATESSEN PRODUCT CERTIFICATION V1** |
 
-Authority: BusinessForge `COMMERCE_DELICATESSEN_CERTIFICATION_GAP_REUSE_AUDIT_V1.md`
+Authority: BusinessForge `COMMERCE_DELICATESSEN_VERTICAL_PROOF_V1.md`

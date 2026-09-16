@@ -1,3 +1,8 @@
+### Commerce Delicatessen Vertical Proof V1
+
+* Consume proof: `village_store@v1` + `FEATURE_VILLAGE_STORE`; `DELICATESSEN` is BusinessType, not a factory package.
+* `APP_FACTORY_REUSE: READY`. Official sales demos 11/11 unchanged. No app generation. No push.
+
 ### Commerce Delicatessen Certification Gap + Reuse Audit V1
 
 * Docs: `DELICATESSEN_CONFIG_ONLY_CONFIRMED` · delicatessen **AUDITED** · **NOT_READY**; 11/11 unchanged.
