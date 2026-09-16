@@ -1,3 +1,13 @@
+### Commerce Stripe Connect Live Adapter Closure V1
+
+* Docs: Stripe Connect adapter PARTIAL; shipping **FUNCTIONALLY_READY_VIA_FAKE**; real Stripe NOT_YET_PROVEN.
+* `APP_FACTORY_ONLINE_PAYMENT_REUSE: READY` (no per-tenant secrets in generated apps). No push.
+
+### Commerce Stripe Connect Live Adapter Closure V1
+
+* Docs: Stripe Connect adapter PARTIAL; shipping **FUNCTIONALLY_READY_VIA_FAKE**; real Stripe NOT_YET_PROVEN.
+* `APP_FACTORY_ONLINE_PAYMENT_REUSE: READY` (no per-tenant secrets in generated apps). No push.
+
 ### Commerce Online Payment Domain Boundary V1
 
 * Docs: shared Commerce online-payment capability; `APP_FACTORY_ONLINE_PAYMENT_REUSE: READY`.

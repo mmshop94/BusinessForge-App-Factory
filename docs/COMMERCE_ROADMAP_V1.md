@@ -13,16 +13,18 @@
 | App Factory reuse (winery) | **READY** (`BusinessType.WINERY` → `village_store@v1`) |
 | Delivery / shipping fulfillment | Address core, rate engine, and manual shipment lifecycle **PRESENT** · local delivery **PARTIAL** |
 | App Factory fulfillment reuse | **READY** (shared Commerce capability; no `shipping@v1` / `delivery@v1`) |
-| Online payment (tenant Connect) | Software core **PRESENT** · account connection **PRESENT** · webhook + full refund **PRESENT** |
-| App Factory online payment reuse | **READY** (shared Commerce capability; no `stripe@v1` / `payment@v1`) |
-| Production shipping checkout | **READY** (via online card + READY account) |
+| Online payment (tenant Connect) | Software core **PRESENT** · account connection **PRESENT** · webhook + full refund **PRESENT** (Fake domain) |
+| Stripe Connect live adapter | **PARTIAL** (Express direct charges wired; real testmode proof BLOCKED without commerce webhook secret) |
+| App Factory online payment reuse | **READY** (shared Commerce capability; no `stripe@v1` / `payment@v1`; no per-tenant secrets in generated apps) |
+| Production shipping checkout | **FUNCTIONALLY_READY_VIA_FAKE** · real Stripe **NOT_YET_PROVEN** |
 | Age-restricted shipping | **NOT_CERTIFIED** |
 | Application fee / PayPal | **NOT_USED** / **NOT_REQUIRED** |
-| Next shared core | **DELIVERY_AGE_VERIFICATION** |
+| Next shared core | After Stripe adapter **PASS**: **DELIVERY_AGE_VERIFICATION** |
 
 Online payment is configuration of the existing Commerce path, not a new factory
 product family. Official sales demos remain 11/11 unchanged. No app generation
-in this docs freeze.
+in this docs freeze. Account routing and Stripe secrets stay server-side.
 
-Authority: BusinessForge
-`COMMERCE_ONLINE_PAYMENT_DOMAIN_BOUNDARY_V1.md`
+Authority: BusinessForge  
+`COMMERCE_ONLINE_PAYMENT_DOMAIN_BOUNDARY_V1.md` ·  
+`COMMERCE_STRIPE_CONNECT_LIVE_ADAPTER_CLOSURE_V1.md`
