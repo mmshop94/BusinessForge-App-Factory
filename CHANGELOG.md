@@ -1,3 +1,8 @@
+### Commerce Winery Product Certification V1
+
+* Docs: `cert-commerce-winery-v1` CURRENT · production_active NO · `WINERY` via `village_store@v1`; 11/11 sales demos unchanged.
+* `APP_FACTORY_REUSE: READY`. No app generation. No push.
+
 ### Commerce Winery Vertical Proof V1
 
 * Consume proof: `WINERY` → `village_store@v1` + `FEATURE_VILLAGE_STORE`; no `FEATURE_WINERY` / `winery@v1`.
