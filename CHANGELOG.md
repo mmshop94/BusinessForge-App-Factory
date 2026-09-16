@@ -1,3 +1,8 @@
+### Commerce Bakery Vertical Proof V1
+
+* Consume proof: `village_store@v1` + `FEATURE_VILLAGE_STORE`; `BAKERY` is BusinessType, not a factory package.
+* `APP_FACTORY_REUSE: READY`. Official sales demos 11/11 unchanged. No app generation. No push.
+
 ### Commerce Bakery Certification Gap + Reuse Audit V1
 
 * Docs: `BAKERY_CONFIG_ONLY_CONFIRMED` · bakery **AUDITED** · **NOT_READY**; 11/11 unchanged.
