@@ -13,13 +13,16 @@
 | App Factory reuse (winery) | **READY** (`BusinessType.WINERY` → `village_store@v1`) |
 | Delivery / shipping fulfillment | Address core, rate engine, and manual shipment lifecycle **PRESENT** · local delivery **PARTIAL** |
 | App Factory fulfillment reuse | **READY** (shared Commerce capability; no `shipping@v1` / `delivery@v1`) |
-| Production shipping checkout | **BLOCKED_BY_PAYMENT** |
+| Online payment (tenant Connect) | Software core **PRESENT** · account connection **PRESENT** · webhook + full refund **PRESENT** |
+| App Factory online payment reuse | **READY** (shared Commerce capability; no `stripe@v1` / `payment@v1`) |
+| Production shipping checkout | **READY** (via online card + READY account) |
 | Age-restricted shipping | **NOT_CERTIFIED** |
-| Next shared core | **ONLINE_PAYMENT** |
+| Application fee / PayPal | **NOT_USED** / **NOT_REQUIRED** |
+| Next shared core | **DELIVERY_AGE_VERIFICATION** |
 
-Fulfillment is configuration of the existing Commerce path, not a new factory
-product family. Carrier API, label generation, and delivery age verification
-remain **NOT_IMPLEMENTED**. Official sales demos remain 11/11 unchanged.
+Online payment is configuration of the existing Commerce path, not a new factory
+product family. Official sales demos remain 11/11 unchanged. No app generation
+in this docs freeze.
 
 Authority: BusinessForge
-`COMMERCE_DELIVERY_SHIPPING_FULFILLMENT_DOMAIN_BOUNDARY_V1.md`
+`COMMERCE_ONLINE_PAYMENT_DOMAIN_BOUNDARY_V1.md`

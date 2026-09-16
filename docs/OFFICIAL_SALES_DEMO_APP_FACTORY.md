@@ -132,4 +132,8 @@ Commerce delivery / shipping fulfillment is also a **shared** Commerce capabilit
 package is required. This documentation freeze does not add an official demo or
 generate an app, so the official sales-demo batch remains **11/11**.
 
+Commerce online payment (tenant Connect card) is likewise a **shared** Commerce
+capability. `APP_FACTORY_ONLINE_PAYMENT_REUSE: READY`; no `stripe@v1` or
+`payment@v1` package is required. Demos remain **11/11**; no app generation.
+
 See also: [ANDROID_RELEASE_PIPELINE.md](ANDROID_RELEASE_PIPELINE.md) · [APP_MANIFEST_V1.md](APP_MANIFEST_V1.md)

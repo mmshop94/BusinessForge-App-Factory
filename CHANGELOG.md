@@ -1,3 +1,8 @@
+### Commerce Online Payment Domain Boundary V1
+
+* Docs: shared Commerce online-payment capability; `APP_FACTORY_ONLINE_PAYMENT_REUSE: READY`.
+* No `stripe@v1` / `payment@v1` packages; 11/11 sales demos unchanged. No app generation. No push.
+
 ### Commerce Delivery / Shipping Fulfillment Domain Boundary V1
 
 * Docs: shared Commerce fulfillment capability; `APP_FACTORY_FULFILLMENT_REUSE: READY`.
