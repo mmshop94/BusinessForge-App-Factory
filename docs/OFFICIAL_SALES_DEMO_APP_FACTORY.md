@@ -162,13 +162,19 @@ Demos remain **11/11**; no app generation in this freeze.
 Commerce food batch / MHD / use-by / traceability is a **shared** Backend +
 Customer App capability (published date/lot declaration only when lot known).
 `APP_FACTORY_TRACEABILITY_REUSE: READY`; no `expiry@v1`, `batch@v1`, or
-`traceability@v1` package. Cold-chain / lot inventory remain out of scope.
+`traceability@v1` package. Cold-chain remains out of scope.
 Demos remain **11/11**; no app generation in this freeze.
 
 Commerce food recall / withdrawal management is a **shared** Backend + Customer
 App capability (operator workflow + customer-safe order notices).
 `APP_FACTORY_RECALL_REUSE: READY`; no `recall@v1` or `food-safety@v1` package.
 Authority API / RASFF / lebensmittelwarnung.de remain out of scope.
+Demos remain **11/11**; no app generation in this freeze.
+
+Commerce lot-level inventory / FEFO is a **shared** Backend capability
+(lot balances + FEFO allocation on LOT_TRACKED products).
+`APP_FACTORY_LOT_INVENTORY_REUSE: READY`; no `inventory-lot@v1` or `fefo@v1`
+package. Multi-lot line split / auto reallocation remain out of scope.
 Demos remain **11/11**; no app generation in this freeze.
 
 See also: [ANDROID_RELEASE_PIPELINE.md](ANDROID_RELEASE_PIPELINE.md) · [APP_MANIFEST_V1.md](APP_MANIFEST_V1.md)

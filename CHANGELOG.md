@@ -1,3 +1,8 @@
+### Commerce Lot-Level Inventory / FEFO Domain Boundary V1
+
+* Docs: shared backend lot balances + FEFO on LOT_TRACKED products; no `inventory-lot@v1` / `fefo@v1` packages.
+* `APP_FACTORY_LOT_INVENTORY_REUSE: READY`. Multi-lot split / auto reallocation out of scope. 11/11 sales demos unchanged. No app generation. No push.
+
 ### Commerce Food Recall Management Domain Boundary V1
 
 * Docs: shared withdrawal/recall workflow + customer-safe order notices; no `recall@v1` / `food-safety@v1` packages.
