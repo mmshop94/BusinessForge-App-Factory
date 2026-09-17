@@ -23,10 +23,12 @@
 | Tenant provider credentials | **BACKEND_ONLY** (Tenant Integration Secret Vault) · generated apps **NO SECRETS** |
 | Retail Labels / Barcode | **PRESENT** (shared Commerce; no `barcode@v1` / `label@v1`) |
 | App Factory retail identification reuse | **READY** (customer apps unchanged; no label surface) |
+| Full Customer Invoice | **SOFTWARE CORE PRESENT** (shared; no `invoice@v1`) |
+| App Factory invoice reuse | **READY** (consume shared API; generated apps optional customer surface) |
 | Production shipping checkout | **FUNCTIONALLY_READY_VIA_FAKE** · real Stripe **NOT_YET_PROVEN** |
 | Age-restricted shipping | Software core **PRESENT** · production **NOT_READY** · **NOT_CERTIFIED** |
 | Application fee / PayPal | **NOT_USED** / **NOT_REQUIRED** |
-| Next shared core | **Scale / variable-measure barcode** OR **Stripe hosted onboarding** OR **Full Customer Invoice** |
+| Next shared core | **Local Delivery Completion** OR **Scale / variable-measure barcode** OR **Payment Terminal** |
 
 Online payment is configuration of the existing Commerce path, not a new factory
 product family. Official sales demos remain 11/11 unchanged. No app generation
