@@ -25,10 +25,12 @@
 | App Factory retail identification reuse | **READY** (customer apps unchanged; no label surface) |
 | Full Customer Invoice | **SOFTWARE CORE PRESENT** (shared; no `invoice@v1`) |
 | App Factory invoice reuse | **READY** (consume shared API; generated apps optional customer surface) |
+| Local Delivery Completion | **PRESENT** (shared lifecycle; no `delivery@v1` / `driver@v1`) |
+| App Factory local delivery reuse | **READY** |
 | Production shipping checkout | **FUNCTIONALLY_READY_VIA_FAKE** · real Stripe **NOT_YET_PROVEN** |
 | Age-restricted shipping | Software core **PRESENT** · production **NOT_READY** · **NOT_CERTIFIED** |
 | Application fee / PayPal | **NOT_USED** / **NOT_REQUIRED** |
-| Next shared core | **Local Delivery Completion** OR **Scale / variable-measure barcode** OR **Payment Terminal** |
+| Next shared core | **Scale / Variable-Measure Barcode** OR **Payment Terminal** OR **Gift Cards** |
 
 Online payment is configuration of the existing Commerce path, not a new factory
 product family. Official sales demos remain 11/11 unchanged. No app generation
