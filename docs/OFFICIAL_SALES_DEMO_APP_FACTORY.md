@@ -142,4 +142,9 @@ Variable-measure / scale barcodes are a **shared** Commerce backend capability
 `variable-barcode@v1` package. No Flutter customer change required for this
 slice. Direct scale hardware remains out of scope.
 
+Commerce accounting export (sales journal + Generic CSV + DATEV-oriented
+EXTF adapter) is a **shared** Backend/Dashboard capability.
+`APP_FACTORY_ACCOUNTING_REUSE: READY`; no `accounting@v1` or `datev@v1`
+customer-app package. DATEV official certification is not claimed.
+
 See also: [ANDROID_RELEASE_PIPELINE.md](ANDROID_RELEASE_PIPELINE.md) · [APP_MANIFEST_V1.md](APP_MANIFEST_V1.md)
