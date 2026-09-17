@@ -159,4 +159,10 @@ product-detail capability (published provenance declaration only).
 package. Full meat labelling legal compliance is **NOT_CERTIFIED**.
 Demos remain **11/11**; no app generation in this freeze.
 
+Commerce food batch / MHD / use-by / traceability is a **shared** Backend +
+Customer App capability (published date/lot declaration only when lot known).
+`APP_FACTORY_TRACEABILITY_REUSE: READY`; no `expiry@v1`, `batch@v1`, or
+`traceability@v1` package. Recall / cold-chain / lot inventory remain out of
+scope. Demos remain **11/11**; no app generation in this freeze.
+
 See also: [ANDROID_RELEASE_PIPELINE.md](ANDROID_RELEASE_PIPELINE.md) · [APP_MANIFEST_V1.md](APP_MANIFEST_V1.md)

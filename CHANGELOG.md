@@ -1,3 +1,8 @@
+### Commerce Food MHD / Use-By / Batch Traceability Domain Boundary V1
+
+* Docs: shared food lot/date/traceability on customer product detail when lot known; no `expiry@v1` / `batch@v1` / `traceability@v1` packages.
+* `APP_FACTORY_TRACEABILITY_REUSE: READY`. Recall/cold-chain not claimed. 11/11 sales demos unchanged. No app generation. No push.
+
 ### Commerce Meat Origin / Provenance Domain Boundary V1
 
 * Docs: shared published meat provenance on customer product detail; no `meat-origin@v1` / `provenance@v1` packages.
