@@ -184,4 +184,13 @@ Vitamins/minerals remain PARTIAL_OPTIONAL; wine sector override remains
 PARTIAL_SECTOR_OVERRIDE. Full LMIV nutrition compliance not certified.
 Demos remain **11/11**; no app generation in this freeze.
 
+Commerce POS / operator counter checkout is a **shared** Backend capability
+(cash tender, commercial receipt, fiscalization port).
+`APP_FACTORY_POS_REUSE: READY`; no `pos@v1` package.
+Certified TSE remains NOT_IMPLEMENTED; DSFinV-K and integrated payment
+terminal remain OUT_OF_SCOPE_V1; Flutter POS operator NOT_REQUIRED.
+German POS production fiscal readiness is NOT_READY — never claim
+KassenSichV / TSE / GoBD compliance from App Factory demos.
+Demos remain **11/11**; no app generation in this freeze.
+
 See also: [ANDROID_RELEASE_PIPELINE.md](ANDROID_RELEASE_PIPELINE.md) · [APP_MANIFEST_V1.md](APP_MANIFEST_V1.md)

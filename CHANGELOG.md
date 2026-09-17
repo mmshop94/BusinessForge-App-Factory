@@ -1,3 +1,8 @@
+### Commerce POS / Operator Checkout Domain Boundary V1
+
+* Docs: shared backend POS / operator counter checkout software core; no `pos@v1` package.
+* `APP_FACTORY_POS_REUSE: READY`. Certified TSE NOT_IMPLEMENTED; DSFinV-K / payment terminal OUT_OF_SCOPE_V1; Flutter POS operator NOT_REQUIRED. DE production fiscal readiness NOT_READY. 11/11 sales demos unchanged. No app generation. No push.
+
 ### Commerce Nutrition Declaration Domain Boundary V1
 
 * Docs: shared backend nutrition declaration (manual / lab / recipe-calc) + checkout gate; no `nutrition@v1` package.
