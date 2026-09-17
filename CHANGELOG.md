@@ -1,3 +1,8 @@
+### Commerce Meat Origin / Provenance Domain Boundary V1
+
+* Docs: shared published meat provenance on customer product detail; no `meat-origin@v1` / `provenance@v1` packages.
+* `APP_FACTORY_PROVENANCE_REUSE: READY`. Full meat labelling not certified. 11/11 sales demos unchanged. No app generation. No push.
+
 ### Commerce Food Ingredient / Allergen Labeling Domain Boundary V1
 
 * Docs: shared published food information (ingredients/allergens) on customer product detail; no `food@v1` / `allergen@v1` packages.

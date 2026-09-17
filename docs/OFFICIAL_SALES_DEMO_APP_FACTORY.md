@@ -153,4 +153,10 @@ App product-detail capability (published food information only).
 package. Full LMIV / distance-selling food compliance is **NOT_CERTIFIED**.
 Demos remain **11/11**; no app generation in this freeze.
 
+Commerce meat origin / provenance is a **shared** Backend + Customer App
+product-detail capability (published provenance declaration only).
+`APP_FACTORY_PROVENANCE_REUSE: READY`; no `meat-origin@v1` or `provenance@v1`
+package. Full meat labelling legal compliance is **NOT_CERTIFIED**.
+Demos remain **11/11**; no app generation in this freeze.
+
 See also: [ANDROID_RELEASE_PIPELINE.md](ANDROID_RELEASE_PIPELINE.md) · [APP_MANIFEST_V1.md](APP_MANIFEST_V1.md)
