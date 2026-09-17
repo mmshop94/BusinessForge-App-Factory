@@ -136,4 +136,10 @@ Commerce online payment (tenant Connect card) is likewise a **shared** Commerce
 capability. `APP_FACTORY_ONLINE_PAYMENT_REUSE: READY`; no `stripe@v1` or
 `payment@v1` package is required. Demos remain **11/11**; no app generation.
 
+Variable-measure / scale barcodes are a **shared** Commerce backend capability
+(configurable schemes + PLU + MEASURED cart path). 
+`APP_FACTORY_VARIABLE_MEASURE_REUSE: READY`; no `scale@v1` or
+`variable-barcode@v1` package. No Flutter customer change required for this
+slice. Direct scale hardware remains out of scope.
+
 See also: [ANDROID_RELEASE_PIPELINE.md](ANDROID_RELEASE_PIPELINE.md) · [APP_MANIFEST_V1.md](APP_MANIFEST_V1.md)
