@@ -1,3 +1,8 @@
+### Commerce Integrated Payment Terminal Domain Boundary V1
+
+* Docs: shared backend integrated payment terminal (Stripe Terminal Connect Direct Charge + Simulated S700 software path); no `stripe-terminal@v1` package.
+* `APP_FACTORY_PAYMENT_TERMINAL_REUSE: READY`. Physical S700 NOT_EXECUTED; Stripe Terminal Connect testmode live proof NOT_CONFIGURED; Hosted Onboarding DEFERRED; server-driven offline NOT_SUPPORTED_V1; terminal production readiness BLOCKED_BY_CONNECTED_ACCOUNT or NOT_CONFIGURED. Flutter NOT_REQUIRED. 11/11 sales demos unchanged. No app generation. No push.
+
 ### Commerce German Fiscalization / Certified TSE + DSFinV-K Domain Boundary V1
 
 * Docs: shared backend German fiscalization (Fiskaly SIGN DE V2 adapter + DSFinV-K software core); no `tse@v1` / `fiskaly@v1` packages.

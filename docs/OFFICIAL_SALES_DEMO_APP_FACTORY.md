@@ -205,4 +205,15 @@ NOT_REQUIRED. Never claim BMF / GoBD / KassenSichV compliance from
 App Factory demos.
 Demos remain **11/11**; no app generation in this freeze.
 
+Commerce integrated payment terminal is a **shared** Backend capability
+(Stripe Terminal Connect Direct Charge, Simulated S700 software path,
+POS terminal_pay bridge). `APP_FACTORY_PAYMENT_TERMINAL_REUSE: READY`;
+no `stripe-terminal@v1` package. Physical S700 remains NOT_EXECUTED;
+Stripe Terminal Connect testmode live proof NOT_CONFIGURED; Hosted
+Onboarding DEFERRED; server-driven offline card payment
+NOT_SUPPORTED_V1; terminal production readiness remains
+BLOCKED_BY_CONNECTED_ACCOUNT or NOT_CONFIGURED; Flutter NOT_REQUIRED.
+Never claim live Terminal / Physical S700 readiness from App Factory demos.
+Demos remain **11/11**; no app generation in this freeze.
+
 See also: [ANDROID_RELEASE_PIPELINE.md](ANDROID_RELEASE_PIPELINE.md) · [APP_MANIFEST_V1.md](APP_MANIFEST_V1.md)
