@@ -1,3 +1,8 @@
+### Commerce Food Ingredient / Allergen Labeling Domain Boundary V1
+
+* Docs: shared published food information (ingredients/allergens) on customer product detail; no `food@v1` / `allergen@v1` packages.
+* `APP_FACTORY_FOOD_INFORMATION_REUSE: READY`. Full LMIV not certified. 11/11 sales demos unchanged. No app generation. No push.
+
 ### Commerce Stripe Connect Live Adapter Closure V1
 
 * Docs: Stripe Connect adapter PARTIAL; shipping **FUNCTIONALLY_READY_VIA_FAKE**; real Stripe NOT_YET_PROVEN.

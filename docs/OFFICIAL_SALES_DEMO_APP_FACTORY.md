@@ -147,4 +147,10 @@ EXTF adapter) is a **shared** Backend/Dashboard capability.
 `APP_FACTORY_ACCOUNTING_REUSE: READY`; no `accounting@v1` or `datev@v1`
 customer-app package. DATEV official certification is not claimed.
 
+Commerce food ingredient / allergen labeling is a **shared** Backend + Customer
+App product-detail capability (published food information only).
+`APP_FACTORY_FOOD_INFORMATION_REUSE: READY`; no `food@v1` or `allergen@v1`
+package. Full LMIV / distance-selling food compliance is **NOT_CERTIFIED**.
+Demos remain **11/11**; no app generation in this freeze.
+
 See also: [ANDROID_RELEASE_PIPELINE.md](ANDROID_RELEASE_PIPELINE.md) · [APP_MANIFEST_V1.md](APP_MANIFEST_V1.md)
