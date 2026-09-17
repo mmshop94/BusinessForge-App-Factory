@@ -1,3 +1,8 @@
+### Commerce Food Recall Management Domain Boundary V1
+
+* Docs: shared withdrawal/recall workflow + customer-safe order notices; no `recall@v1` / `food-safety@v1` packages.
+* `APP_FACTORY_RECALL_REUSE: READY`. Authority APIs out of scope. 11/11 sales demos unchanged. No app generation. No push.
+
 ### Commerce Food MHD / Use-By / Batch Traceability Domain Boundary V1
 
 * Docs: shared food lot/date/traceability on customer product detail when lot known; no `expiry@v1` / `batch@v1` / `traceability@v1` packages.
