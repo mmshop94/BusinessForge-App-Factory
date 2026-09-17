@@ -1,3 +1,8 @@
+### Commerce German Fiscalization / Certified TSE + DSFinV-K Domain Boundary V1
+
+* Docs: shared backend German fiscalization (Fiskaly SIGN DE V2 adapter + DSFinV-K software core); no `tse@v1` / `fiskaly@v1` packages.
+* `APP_FACTORY_FISCALIZATION_REUSE: READY`. Fiskaly testsystem / production credentials NOT_CONFIGURED; DE POS production fiscal readiness NOT_CONFIGURED; §146a(4) electronic submission OUT_OF_SCOPE_V1; DSFinV-K FA import NOT_EXECUTED. Flutter NOT_REQUIRED. 11/11 sales demos unchanged. No app generation. No push.
+
 ### Commerce POS / Operator Checkout Domain Boundary V1
 
 * Docs: shared backend POS / operator counter checkout software core; no `pos@v1` package.

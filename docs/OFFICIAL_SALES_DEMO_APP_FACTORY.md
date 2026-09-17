@@ -193,4 +193,16 @@ German POS production fiscal readiness is NOT_READY — never claim
 KassenSichV / TSE / GoBD compliance from App Factory demos.
 Demos remain **11/11**; no app generation in this freeze.
 
+Commerce German fiscalization / certified TSE + DSFinV-K is a **shared**
+Backend capability (Fiskaly SIGN DE V2 adapter, fiscal receipt, DSFinV-K
+software core, temporary TSE outage workflow, §146a(4) reporting-data prep).
+`APP_FACTORY_FISCALIZATION_REUSE: READY`; no `tse@v1` or `fiskaly@v1` package.
+Fiskaly testsystem live proof and production credentials remain
+NOT_CONFIGURED; German POS production fiscal readiness remains
+NOT_CONFIGURED; §146a(4) electronic submission OUT_OF_SCOPE_V1;
+DSFinV-K real financial-authority import NOT_EXECUTED; Flutter
+NOT_REQUIRED. Never claim BMF / GoBD / KassenSichV compliance from
+App Factory demos.
+Demos remain **11/11**; no app generation in this freeze.
+
 See also: [ANDROID_RELEASE_PIPELINE.md](ANDROID_RELEASE_PIPELINE.md) · [APP_MANIFEST_V1.md](APP_MANIFEST_V1.md)
