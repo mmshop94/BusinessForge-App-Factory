@@ -177,4 +177,11 @@ Commerce lot-level inventory / FEFO is a **shared** Backend capability
 package. Multi-lot line split / auto reallocation remain out of scope.
 Demos remain **11/11**; no app generation in this freeze.
 
+Commerce nutrition declaration is a **shared** Backend + Customer App
+capability (published Annex XV presentation; checkout gate server-side).
+`APP_FACTORY_NUTRITION_REUSE: READY`; no `nutrition@v1` package.
+Vitamins/minerals remain PARTIAL_OPTIONAL; wine sector override remains
+PARTIAL_SECTOR_OVERRIDE. Full LMIV nutrition compliance not certified.
+Demos remain **11/11**; no app generation in this freeze.
+
 See also: [ANDROID_RELEASE_PIPELINE.md](ANDROID_RELEASE_PIPELINE.md) · [APP_MANIFEST_V1.md](APP_MANIFEST_V1.md)

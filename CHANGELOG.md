@@ -1,3 +1,8 @@
+### Commerce Nutrition Declaration Domain Boundary V1
+
+* Docs: shared backend nutrition declaration (manual / lab / recipe-calc) + checkout gate; no `nutrition@v1` package.
+* `APP_FACTORY_NUTRITION_REUSE: READY`. Vitamins PARTIAL_OPTIONAL; wine PARTIAL_SECTOR_OVERRIDE. Full LMIV not certified. 11/11 sales demos unchanged. No app generation. No push.
+
 ### Commerce Lot-Level Inventory / FEFO Domain Boundary V1
 
 * Docs: shared backend lot balances + FEFO on LOT_TRACKED products; no `inventory-lot@v1` / `fefo@v1` packages.
