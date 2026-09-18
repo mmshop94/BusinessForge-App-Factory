@@ -19,6 +19,7 @@ OFFICIAL_SALES_DEMO_SLUGS: tuple[str, ...] = (
     "demo-bakery",
     "demo-florist",
     "demo-butcher",
+    "demo-farm-shop",
     "demo-hairdresser",
     "demo-barber",
     "demo-nail-studio",
@@ -37,6 +38,7 @@ _FALLBACK_BRANDING: dict[str, tuple[str, str, str]] = {
     "demo-bakery": ("warm", "#8B5A2B", "#F5E6D3"),
     "demo-florist": ("warm", "#2D6A4F", "#D8F3DC"),
     "demo-butcher": ("warm", "#7A1F1F", "#F5E6E0"),
+    "demo-farm-shop": ("warm", "#5C4033", "#E8F0D8"),
 }
 
 DEFAULT_THEME = "modern"
@@ -181,6 +183,8 @@ def discover_official_sales_demos(
                 runtime_package = runtime_package or "village_store"
             if slug == "demo-butcher":
                 runtime_package = runtime_package or "butcher"
+            if slug == "demo-farm-shop":
+                runtime_package = runtime_package or "village_store"
 
             records.append(
                 OfficialSalesDemoRecord(

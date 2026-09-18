@@ -5,12 +5,12 @@
 > **Customer App:** `BusinessForge FlutterApp` @ `main` (isolated worktree recommended)  
 > **Demo plane (LAN):** `http://192.168.178.95:8090/api/v1` (LAN artefacts preserved under `lan/`)  
 > **Public API (LIVE):** `https://demo-api.bforge.de/api/v1` · Demo API `0.8.79`  
-> **Latest public rebuild:** Push Device Registration V3-02 — **11/11** APK+AAB (historical). Slug list authority now **14** with `demo-bakery` + `demo-florist` + `demo-butcher`. Rebuild public batch after demo-plane bootstrap.
-> **Status:** READY for bakery + florist + butcher slug discovery · APK rebuild deferred to demo ops
+> **Latest public rebuild:** Push Device Registration V3-02 — **11/11** APK+AAB (historical). Slug list authority now **15** with `demo-bakery` + `demo-florist` + `demo-butcher` + `demo-farm-shop`. Rebuild public batch after demo-plane bootstrap.
+> **Status:** READY for bakery + florist + butcher + farm_shop slug discovery · APK rebuild deferred to demo ops
 
 ## Goal
 
-Build **11 independent Android apps** (one per Official Sales Demo `demo-*`) from the **same** Flutter Customer App via factory configuration — no source forks, no copied Flutter projects.
+Build **independent Android apps** (one per Official Sales Demo `demo-*`) from the **same** Flutter Customer App via factory configuration — no source forks, no copied Flutter projects.
 
 ## Authorities
 
@@ -24,13 +24,13 @@ Build **11 independent Android apps** (one per Official Sales Demo `demo-*`) fro
 | Signing | Env vars only (`BF_ANDROID_*`) — never in Git |
 | Output | `D:\projekte\BusinessForge-Demo-Apps\public\` (`--public-api`) or `...\lan\` (LAN). Legacy top-level `demo-*` trees are moved into `lan/` without overwrite. |
 
-## Official Sales Demos (11)
+## Official Sales Demos (15)
 
-Includes `demo-restaurant`, `demo-village-store`, `demo-bakery`, `demo-florist`, `demo-butcher`, and nine appointment sales demos (`demo-hairdresser` … `demo-pet-grooming`).
-**Slug count:** **14** (`OFFICIAL_SALES_DEMO_SLUGS`). Technical `test-commerce-*` excluded.
+Includes `demo-restaurant`, `demo-village-store`, `demo-bakery`, `demo-florist`, `demo-butcher`, `demo-farm-shop`, and nine appointment sales demos (`demo-hairdresser` … `demo-pet-grooming`).
+**Slug count:** **15** (`OFFICIAL_SALES_DEMO_SLUGS`). Technical `test-commerce-*` excluded.
 **Excluded:** `test-appointment-*` technical fixtures · `demo-workshop` (not provisioned).
 
-**Service Engine (2026-09-09):** Official batch remains **11/11** (restaurant, village store, nine appointment demos). There is **no** certified Service APK. `service_first` exists as Flutter design template; factory cannot build a Service sales app until a Service demo/test tenant is separately authorized. Certification authority: BusinessForge [SERVICE_ENGINE_CERTIFICATION_BASELINE_V1.md](../../BusinessForge/docs/architecture/SERVICE_ENGINE_CERTIFICATION_BASELINE_V1.md). Reference vertical `AUTO_WORKSHOP` — **not** in this 11/11 set. Legacy Workshop excluded.
+**Service Engine (2026-09-09):** Official batch remains appointment + commerce sales demos. There is **no** certified Service APK. `service_first` exists as Flutter design template; factory cannot build a Service sales app until a Service demo/test tenant is separately authorized. Certification authority: BusinessForge [SERVICE_ENGINE_CERTIFICATION_BASELINE_V1.md](../../BusinessForge/docs/architecture/SERVICE_ENGINE_CERTIFICATION_BASELINE_V1.md). Reference vertical `AUTO_WORKSHOP` — **not** in this sales set. Legacy Workshop excluded.
 
 ## Batch entry point
 
