@@ -5,8 +5,8 @@
 > **Customer App:** `BusinessForge FlutterApp` @ `main` (isolated worktree recommended)  
 > **Demo plane (LAN):** `http://192.168.178.95:8090/api/v1` (LAN artefacts preserved under `lan/`)  
 > **Public API (LIVE):** `https://demo-api.bforge.de/api/v1` · Demo API `0.8.79`  
-> **Latest public rebuild:** Push Device Registration V3-02 — **11/11** APK+AAB (historical). Slug list authority now **13** with `demo-bakery` + `demo-florist` (village_store consume). Rebuild public batch after demo-plane bootstrap includes both.
-> **Status:** READY for bakery + florist slug discovery · APK rebuild deferred to demo ops
+> **Latest public rebuild:** Push Device Registration V3-02 — **11/11** APK+AAB (historical). Slug list authority now **14** with `demo-bakery` + `demo-florist` + `demo-butcher`. Rebuild public batch after demo-plane bootstrap.
+> **Status:** READY for bakery + florist + butcher slug discovery · APK rebuild deferred to demo ops
 
 ## Goal
 
@@ -26,8 +26,8 @@ Build **11 independent Android apps** (one per Official Sales Demo `demo-*`) fro
 
 ## Official Sales Demos (11)
 
-Includes `demo-restaurant`, `demo-village-store`, `demo-bakery`, `demo-florist` (village_store@v1 + BAKERY/FLORIST), and nine appointment sales demos (`demo-hairdresser` … `demo-pet-grooming`).
-**Slug count:** **13** (`OFFICIAL_SALES_DEMO_SLUGS`). Technical `test-commerce-*` excluded.
+Includes `demo-restaurant`, `demo-village-store`, `demo-bakery`, `demo-florist`, `demo-butcher`, and nine appointment sales demos (`demo-hairdresser` … `demo-pet-grooming`).
+**Slug count:** **14** (`OFFICIAL_SALES_DEMO_SLUGS`). Technical `test-commerce-*` excluded.
 **Excluded:** `test-appointment-*` technical fixtures · `demo-workshop` (not provisioned).
 
 **Service Engine (2026-09-09):** Official batch remains **11/11** (restaurant, village store, nine appointment demos). There is **no** certified Service APK. `service_first` exists as Flutter design template; factory cannot build a Service sales app until a Service demo/test tenant is separately authorized. Certification authority: BusinessForge [SERVICE_ENGINE_CERTIFICATION_BASELINE_V1.md](../../BusinessForge/docs/architecture/SERVICE_ENGINE_CERTIFICATION_BASELINE_V1.md). Reference vertical `AUTO_WORKSHOP` — **not** in this 11/11 set. Legacy Workshop excluded.
