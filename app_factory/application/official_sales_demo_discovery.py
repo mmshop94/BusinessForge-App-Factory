@@ -33,6 +33,7 @@ OFFICIAL_SALES_DEMO_SLUGS: tuple[str, ...] = (
     "demo-lash-brow",
     "demo-foot-care",
     "demo-pet-grooming",
+    "demo-bicycle-workshop",
 )
 
 # Fallback branding when bootstrap omits colors (core demos).
@@ -46,6 +47,7 @@ _FALLBACK_BRANDING: dict[str, tuple[str, str, str]] = {
     "demo-beverage-store": ("warm", "#1B4F72", "#D6EAF8"),
     "demo-delicatessen": ("warm", "#6B3A2E", "#F5EDE6"),
     "demo-winery": ("warm", "#722F37", "#F8E8E0"),
+    "demo-bicycle-workshop": ("modern", "#C2410C", "#FFEDD5"),
 }
 
 DEFAULT_THEME = "modern"
@@ -127,6 +129,12 @@ def _features_for_package(package: str) -> dict[str, bool]:
             "notifications": True,
             "documents": True,
         }
+    if package.startswith("service_") or package.startswith("field_service_"):
+        return {
+            "service_requests": True,
+            "notifications": True,
+            "documents": True,
+        }
     return {"catalog": True, "ordering": True, "notifications": True}
 
 
@@ -198,6 +206,8 @@ def discover_official_sales_demos(
                 runtime_package = runtime_package or "village_store"
             if slug == "demo-winery":
                 runtime_package = runtime_package or "village_store"
+            if slug == "demo-bicycle-workshop":
+                runtime_package = runtime_package or "service_bicycle_workshop"
 
             records.append(
                 OfficialSalesDemoRecord(

@@ -1,3 +1,8 @@
+### Service Bicycle Workshop Official Sales Demo V1
+
+* `demo-bicycle-workshop` added to `OFFICIAL_SALES_DEMO_SLUGS` (20). Package `service_bicycle_workshop` in `customer-app-compat-v1.json`.
+* `APP_FACTORY_BICYCLE_WORKSHOP: READY`. Proof tenant `test-service-*` excluded. No app generation. No push.
+
 ### Commerce Stripe Connect Hosted Onboarding Domain Boundary V1
 
 * Docs: shared Stripe Connect Account + Hosted Onboarding + Connected Account payment readiness; no vertical Connect package.
