@@ -16,6 +16,7 @@ import httpx
 OFFICIAL_SALES_DEMO_SLUGS: tuple[str, ...] = (
     "demo-restaurant",
     "demo-village-store",
+    "demo-bakery",
     "demo-hairdresser",
     "demo-barber",
     "demo-nail-studio",
@@ -31,6 +32,7 @@ OFFICIAL_SALES_DEMO_SLUGS: tuple[str, ...] = (
 _FALLBACK_BRANDING: dict[str, tuple[str, str, str]] = {
     "demo-restaurant": ("warm", "#C0392B", "#FDEBD0"),
     "demo-village-store": ("warm", "#8B4A2F", "#F2E3D5"),
+    "demo-bakery": ("warm", "#8B5A2B", "#F5E6D3"),
 }
 
 DEFAULT_THEME = "modern"
@@ -160,6 +162,8 @@ def discover_official_sales_demos(
             if slug == "demo-restaurant":
                 runtime_package = runtime_package or "restaurant"
             if slug == "demo-village-store":
+                runtime_package = runtime_package or "village_store"
+            if slug == "demo-bakery":
                 runtime_package = runtime_package or "village_store"
 
             records.append(
