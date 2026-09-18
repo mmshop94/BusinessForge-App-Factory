@@ -24,10 +24,10 @@ Build **independent Android apps** (one per Official Sales Demo `demo-*`) from t
 | Signing | Env vars only (`BF_ANDROID_*`) — never in Git |
 | Output | `D:\projekte\BusinessForge-Demo-Apps\public\` (`--public-api`) or `...\lan\` (LAN). Legacy top-level `demo-*` trees are moved into `lan/` without overwrite. |
 
-## Official Sales Demos (18)
+## Official Sales Demos (19)
 
-Includes `demo-restaurant`, `demo-village-store`, commerce demos through `demo-winery`, and nine appointment sales demos (`demo-hairdresser` … `demo-pet-grooming`).
-**Slug count:** **18** (`OFFICIAL_SALES_DEMO_SLUGS`). Technical `test-commerce-*` excluded.
+Includes `demo-restaurant`, `demo-village-store`, commerce demos through `demo-winery`, and ten appointment sales demos (`demo-hairdresser` … `demo-pet-grooming`, incl. `demo-piercing`).
+**Slug count:** **19** (`OFFICIAL_SALES_DEMO_SLUGS`). Technical `test-commerce-*` excluded.
 **Excluded:** `test-appointment-*` technical fixtures · `demo-workshop` (not provisioned).
 
 **Service Engine (2026-09-09):** Official batch remains appointment + commerce sales demos. There is **no** certified Service APK. `service_first` exists as Flutter design template; factory cannot build a Service sales app until a Service demo/test tenant is separately authorized. Certification authority: BusinessForge [SERVICE_ENGINE_CERTIFICATION_BASELINE_V1.md](../../BusinessForge/docs/architecture/SERVICE_ENGINE_CERTIFICATION_BASELINE_V1.md). Reference vertical `AUTO_WORKSHOP` — **not** in this sales set. Legacy Workshop excluded.

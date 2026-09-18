@@ -34,6 +34,10 @@
       "min_customer_app_version": "0.7.1",
       "supported_customer_app_refs": ["main", "v0.7.1"]
     },
+    "appointment_piercing": {
+      "min_customer_app_version": "0.7.1",
+      "supported_customer_app_refs": ["main", "v0.7.1"]
+    },
     "appointment_foot_care": {
       "min_customer_app_version": "0.7.1",
       "supported_customer_app_refs": ["main", "v0.7.1"]

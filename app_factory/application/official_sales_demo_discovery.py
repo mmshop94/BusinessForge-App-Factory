@@ -29,6 +29,7 @@ OFFICIAL_SALES_DEMO_SLUGS: tuple[str, ...] = (
     "demo-cosmetics",
     "demo-massage",
     "demo-tattoo",
+    "demo-piercing",
     "demo-lash-brow",
     "demo-foot-care",
     "demo-pet-grooming",
