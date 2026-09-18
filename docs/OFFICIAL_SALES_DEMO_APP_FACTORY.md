@@ -210,9 +210,13 @@ Commerce integrated payment terminal is a **shared** Backend capability
 POS terminal_pay bridge). `APP_FACTORY_PAYMENT_TERMINAL_REUSE: READY`;
 no `stripe-terminal@v1` package. Physical S700 remains NOT_EXECUTED;
 Stripe Terminal Connect testmode live proof NOT_CONFIGURED; Hosted
-Onboarding DEFERRED; server-driven offline card payment
+Onboarding Core PRESENT (human/testmode live account proofs remain
+NOT_EXECUTED / NOT_CONFIGURED); server-driven offline card payment
 NOT_SUPPORTED_V1; terminal production readiness remains
-BLOCKED_BY_CONNECTED_ACCOUNT or NOT_CONFIGURED; Flutter NOT_REQUIRED.
+BLOCKED_BY_CONNECTED_ACCOUNT or NOT_CONFIGURED until a usable Connected
+Account exists; Flutter NOT_REQUIRED.
+`APP_FACTORY_STRIPE_CONNECT_REUSE: READY` — shared Connect Account +
+Hosted Onboarding + payment readiness; no vertical package mutation.
 Never claim live Terminal / Physical S700 readiness from App Factory demos.
 Demos remain **11/11**; no app generation in this freeze.
 

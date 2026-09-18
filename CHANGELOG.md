@@ -1,7 +1,12 @@
+### Commerce Stripe Connect Hosted Onboarding Domain Boundary V1
+
+* Docs: shared Stripe Connect Account + Hosted Onboarding + Connected Account payment readiness; no vertical Connect package.
+* `APP_FACTORY_STRIPE_CONNECT_REUSE: READY`. Human onboarding / production account proofs NOT_EXECUTED; testmode account proof NOT_CONFIGURED; Real Online Payment Provider remains DEFERRED. Flutter NOT_REQUIRED. 11/11 sales demos unchanged. No app generation. No push.
+
 ### Commerce Integrated Payment Terminal Domain Boundary V1
 
 * Docs: shared backend integrated payment terminal (Stripe Terminal Connect Direct Charge + Simulated S700 software path); no `stripe-terminal@v1` package.
-* `APP_FACTORY_PAYMENT_TERMINAL_REUSE: READY`. Physical S700 NOT_EXECUTED; Stripe Terminal Connect testmode live proof NOT_CONFIGURED; Hosted Onboarding DEFERRED; server-driven offline NOT_SUPPORTED_V1; terminal production readiness BLOCKED_BY_CONNECTED_ACCOUNT or NOT_CONFIGURED. Flutter NOT_REQUIRED. 11/11 sales demos unchanged. No app generation. No push.
+* `APP_FACTORY_PAYMENT_TERMINAL_REUSE: READY`. Physical S700 NOT_EXECUTED; Stripe Terminal Connect testmode live proof NOT_CONFIGURED; Hosted Onboarding Core PRESENT (live account proofs separate); server-driven offline NOT_SUPPORTED_V1; terminal production readiness BLOCKED_BY_CONNECTED_ACCOUNT or NOT_CONFIGURED. Flutter NOT_REQUIRED. 11/11 sales demos unchanged. No app generation. No push.
 
 ### Commerce German Fiscalization / Certified TSE + DSFinV-K Domain Boundary V1
 
