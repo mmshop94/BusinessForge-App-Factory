@@ -1,3 +1,8 @@
+### Service HVAC Service Field Official Sales Demo V1
+
+* `demo-hvac-service` added to `OFFICIAL_SALES_DEMO_SLUGS` (25). Package `field_service_hvac` in `customer-app-compat-v1.json`.
+* `APP_FACTORY_HVAC_SERVICE: READY`. Proof tenant `test-service-*` excluded. No app generation. No push.
+
 ### Service Appliance Service Field Official Sales Demo V1
 
 * `demo-appliance-service` added to `OFFICIAL_SALES_DEMO_SLUGS` (24). Package `field_service_appliance` in `customer-app-compat-v1.json`.
