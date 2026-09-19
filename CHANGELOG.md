@@ -1,3 +1,8 @@
+### Sanitary Service Package + Versioned Vertical Certification V1
+
+* `demo-sanitary-service` added to `OFFICIAL_SALES_DEMO_SLUGS` (27). Package `field_service_sanitary` in `customer-app-compat-v1.json`.
+* `APP_FACTORY_SANITARY_SERVICE: READY`. Proof tenant `test-service-*` excluded. No app generation. No push.
+
 ### Service Auto Workshop Official Sales Demo V1
 
 * `demo-auto-workshop` added to `OFFICIAL_SALES_DEMO_SLUGS` (26). `demo-workshop` excluded. Package `service_auto_workshop` in `customer-app-compat-v1.json`.

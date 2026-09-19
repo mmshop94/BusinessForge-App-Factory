@@ -13,7 +13,7 @@ from app_factory.application.package_identity import android_application_id_from
 
 
 def test_official_sales_demo_slug_count() -> None:
-    assert len(OFFICIAL_SALES_DEMO_SLUGS) == 26
+    assert len(OFFICIAL_SALES_DEMO_SLUGS) == 27
     assert "demo-restaurant" in OFFICIAL_SALES_DEMO_SLUGS
     assert "demo-bakery" in OFFICIAL_SALES_DEMO_SLUGS
     assert "demo-florist" in OFFICIAL_SALES_DEMO_SLUGS
@@ -30,6 +30,7 @@ def test_official_sales_demo_slug_count() -> None:
     assert "demo-electrician" in OFFICIAL_SALES_DEMO_SLUGS
     assert "demo-appliance-service" in OFFICIAL_SALES_DEMO_SLUGS
     assert "demo-hvac-service" in OFFICIAL_SALES_DEMO_SLUGS
+    assert "demo-sanitary-service" in OFFICIAL_SALES_DEMO_SLUGS
     assert "demo-auto-workshop" in OFFICIAL_SALES_DEMO_SLUGS
     assert "demo-workshop" not in OFFICIAL_SALES_DEMO_SLUGS
     assert not any(slug.startswith("test-appointment-") for slug in OFFICIAL_SALES_DEMO_SLUGS)
