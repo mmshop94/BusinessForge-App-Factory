@@ -1,3 +1,8 @@
+### Commerce Fish Shop Versioned Certification + Official Sales Demo V1
+
+* `demo-fish-shop` added to `OFFICIAL_SALES_DEMO_SLUGS` (29). Runtime consume `village_store` (no `fish_shop` factory package).
+* `APP_FACTORY_FISH_SHOP: READY`. Proof tenant `test-commerce-*` excluded. No app generation. No push.
+
 ### Commerce Cheese Shop Versioned Certification + Official Sales Demo V1
 
 * `demo-cheese-shop` added to `OFFICIAL_SALES_DEMO_SLUGS` (28). Runtime consume `village_store` (no `cheese_shop` factory package).
