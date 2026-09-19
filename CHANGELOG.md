@@ -1,3 +1,8 @@
+### Commerce Pet Supply Versioned Certification + Official Sales Demo V1
+
+* `demo-pet-supply` added to `OFFICIAL_SALES_DEMO_SLUGS` (31). Runtime consume `village_store` (no `pet_supply` factory package). Distinct from `demo-pet-grooming`.
+* `APP_FACTORY_PET_SUPPLY: READY`. Proof tenant `test-commerce-*` excluded. No app generation. No push.
+
 ### Commerce Garden Center Versioned Certification + Official Sales Demo V1
 
 * `demo-garden-center` added to `OFFICIAL_SALES_DEMO_SLUGS` (30). Runtime consume `village_store` (no `garden_center` factory package).

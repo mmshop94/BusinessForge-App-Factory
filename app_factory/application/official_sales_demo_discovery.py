@@ -26,6 +26,7 @@ OFFICIAL_SALES_DEMO_SLUGS: tuple[str, ...] = (
     "demo-cheese-shop",
     "demo-fish-shop",
     "demo-garden-center",
+    "demo-pet-supply",
     "demo-hairdresser",
     "demo-barber",
     "demo-nail-studio",
@@ -60,6 +61,7 @@ _FALLBACK_BRANDING: dict[str, tuple[str, str, str]] = {
     "demo-cheese-shop": ("warm", "#B45309", "#FEF3C7"),
     "demo-fish-shop": ("warm", "#0369A1", "#E0F2FE"),
     "demo-garden-center": ("warm", "#166534", "#DCFCE7"),
+    "demo-pet-supply": ("warm", "#9A3412", "#FFEDD4"),
     "demo-bicycle-workshop": ("modern", "#C2410C", "#FFEDD5"),
     "demo-device-shop": ("modern", "#1E3A5F", "#DBEAFE"),
     "demo-motorcycle-workshop": ("modern", "#7F1D1D", "#FEE2E2"),
@@ -231,6 +233,8 @@ def discover_official_sales_demos(
             if slug == "demo-fish-shop":
                 runtime_package = runtime_package or "village_store"
             if slug == "demo-garden-center":
+                runtime_package = runtime_package or "village_store"
+            if slug == "demo-pet-supply":
                 runtime_package = runtime_package or "village_store"
             if slug == "demo-bicycle-workshop":
                 runtime_package = runtime_package or "service_bicycle_workshop"
