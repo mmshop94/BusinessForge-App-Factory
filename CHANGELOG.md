@@ -1,3 +1,8 @@
+### Service Cleaning Service Package + Versioned Vertical Certification V1
+
+* `demo-cleaning-service` added to `OFFICIAL_SALES_DEMO_SLUGS` (33). Package `field_service_cleaning` in `customer-app-compat-v1.json`.
+* `APP_FACTORY_CLEANING_SERVICE: READY`. Proof tenant `test-service-*` excluded. No app generation. No push.
+
 ### Service Vehicle Detailing Package + Versioned Vertical Certification V1
 
 * `demo-vehicle-detailing` added to `OFFICIAL_SALES_DEMO_SLUGS` (32). Package `service_vehicle_detailing` in `customer-app-compat-v1.json`.
