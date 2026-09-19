@@ -1,3 +1,8 @@
+### Service Auto Workshop Official Sales Demo V1
+
+* `demo-auto-workshop` added to `OFFICIAL_SALES_DEMO_SLUGS` (26). `demo-workshop` excluded. Package `service_auto_workshop` in `customer-app-compat-v1.json`.
+* `APP_FACTORY_AUTO_WORKSHOP: READY`. Proof tenant `test-service-*` excluded. No app generation. No push.
+
 ### Service HVAC Service Field Official Sales Demo V1
 
 * `demo-hvac-service` added to `OFFICIAL_SALES_DEMO_SLUGS` (25). Package `field_service_hvac` in `customer-app-compat-v1.json`.
