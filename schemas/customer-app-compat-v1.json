@@ -85,6 +85,10 @@
     "field_service_cleaning": {
       "min_customer_app_version": "0.7.1",
       "supported_customer_app_refs": ["main", "v0.7.1"]
+    },
+    "field_service_landscaping": {
+      "min_customer_app_version": "0.7.1",
+      "supported_customer_app_refs": ["main", "v0.7.1"]
     }
   }
 }

@@ -1,3 +1,8 @@
+### Service Landscaping Service Package + Versioned Vertical Certification V1
+
+* `demo-landscaping-service` added to `OFFICIAL_SALES_DEMO_SLUGS` (34). Package `field_service_landscaping` in `customer-app-compat-v1.json`.
+* `APP_FACTORY_LANDSCAPING_SERVICE: READY`. Proof tenant `test-service-*` excluded. Distinct from `demo-garden-center`. No app generation. No push.
+
 ### Service Cleaning Service Package + Versioned Vertical Certification V1
 
 * `demo-cleaning-service` added to `OFFICIAL_SALES_DEMO_SLUGS` (33). Package `field_service_cleaning` in `customer-app-compat-v1.json`.
