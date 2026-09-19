@@ -1,3 +1,8 @@
+### Service Motorcycle Workshop Official Sales Demo V1
+
+* `demo-motorcycle-workshop` added to `OFFICIAL_SALES_DEMO_SLUGS` (22). Package `service_motorcycle_workshop` in `customer-app-compat-v1.json`.
+* `APP_FACTORY_MOTORCYCLE_WORKSHOP: READY`. Proof tenant `test-service-*` excluded. No app generation. No push.
+
 ### Service Device Shop Official Sales Demo V1
 
 * `demo-device-shop` added to `OFFICIAL_SALES_DEMO_SLUGS` (21). Package `service_device_shop` in `customer-app-compat-v1.json`.
