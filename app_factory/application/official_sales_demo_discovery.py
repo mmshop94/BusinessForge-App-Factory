@@ -36,6 +36,7 @@ OFFICIAL_SALES_DEMO_SLUGS: tuple[str, ...] = (
     "demo-bicycle-workshop",
     "demo-device-shop",
     "demo-motorcycle-workshop",
+    "demo-electrician",
 )
 
 # Fallback branding when bootstrap omits colors (core demos).
@@ -52,6 +53,7 @@ _FALLBACK_BRANDING: dict[str, tuple[str, str, str]] = {
     "demo-bicycle-workshop": ("modern", "#C2410C", "#FFEDD5"),
     "demo-device-shop": ("modern", "#1E3A5F", "#DBEAFE"),
     "demo-motorcycle-workshop": ("modern", "#7F1D1D", "#FEE2E2"),
+    "demo-electrician": ("modern", "#1E3A8A", "#FEF3C7"),
 }
 
 DEFAULT_THEME = "modern"
@@ -216,6 +218,8 @@ def discover_official_sales_demos(
                 runtime_package = runtime_package or "service_device_shop"
             if slug == "demo-motorcycle-workshop":
                 runtime_package = runtime_package or "service_motorcycle_workshop"
+            if slug == "demo-electrician":
+                runtime_package = runtime_package or "field_service_electrician"
 
             records.append(
                 OfficialSalesDemoRecord(

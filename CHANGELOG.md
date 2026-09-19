@@ -1,3 +1,8 @@
+### Service Electrician Field Official Sales Demo V1
+
+* `demo-electrician` added to `OFFICIAL_SALES_DEMO_SLUGS` (23). Package `field_service_electrician` in `customer-app-compat-v1.json`.
+* `APP_FACTORY_ELECTRICIAN: READY`. Proof tenant `test-service-*` excluded. No app generation. No push.
+
 ### Service Motorcycle Workshop Official Sales Demo V1
 
 * `demo-motorcycle-workshop` added to `OFFICIAL_SALES_DEMO_SLUGS` (22). Package `service_motorcycle_workshop` in `customer-app-compat-v1.json`.
