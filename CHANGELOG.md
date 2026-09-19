@@ -1,3 +1,8 @@
+### Service Appliance Service Field Official Sales Demo V1
+
+* `demo-appliance-service` added to `OFFICIAL_SALES_DEMO_SLUGS` (24). Package `field_service_appliance` in `customer-app-compat-v1.json`.
+* `APP_FACTORY_APPLIANCE_SERVICE: READY`. Proof tenant `test-service-*` excluded. No app generation. No push.
+
 ### Service Electrician Field Official Sales Demo V1
 
 * `demo-electrician` added to `OFFICIAL_SALES_DEMO_SLUGS` (23). Package `field_service_electrician` in `customer-app-compat-v1.json`.

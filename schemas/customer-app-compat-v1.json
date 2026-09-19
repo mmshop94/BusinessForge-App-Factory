@@ -61,6 +61,10 @@
     "field_service_electrician": {
       "min_customer_app_version": "0.7.1",
       "supported_customer_app_refs": ["main", "v0.7.1"]
+    },
+    "field_service_appliance": {
+      "min_customer_app_version": "0.7.1",
+      "supported_customer_app_refs": ["main", "v0.7.1"]
     }
   }
 }
