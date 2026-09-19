@@ -1,3 +1,8 @@
+### Service Caretaker Package + Versioned Vertical Certification V1
+
+* `demo-caretaker` added to `OFFICIAL_SALES_DEMO_SLUGS` (35). Package `field_service_caretaker` in `customer-app-compat-v1.json`.
+* `APP_FACTORY_CARETAKER: READY`. Proof tenant `test-service-*` excluded. No app generation. No push.
+
 ### Service Landscaping Service Package + Versioned Vertical Certification V1
 
 * `demo-landscaping-service` added to `OFFICIAL_SALES_DEMO_SLUGS` (34). Package `field_service_landscaping` in `customer-app-compat-v1.json`.
