@@ -1,3 +1,8 @@
+### Commerce Cheese Shop Versioned Certification + Official Sales Demo V1
+
+* `demo-cheese-shop` added to `OFFICIAL_SALES_DEMO_SLUGS` (28). Runtime consume `village_store` (no `cheese_shop` factory package).
+* `APP_FACTORY_CHEESE_SHOP: READY`. Proof tenant `test-commerce-*` excluded. No app generation. No push.
+
 ### Sanitary Service Package + Versioned Vertical Certification V1
 
 * `demo-sanitary-service` added to `OFFICIAL_SALES_DEMO_SLUGS` (27). Package `field_service_sanitary` in `customer-app-compat-v1.json`.
