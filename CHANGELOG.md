@@ -1,3 +1,8 @@
+### Service Vehicle Detailing Package + Versioned Vertical Certification V1
+
+* `demo-vehicle-detailing` added to `OFFICIAL_SALES_DEMO_SLUGS` (32). Package `service_vehicle_detailing` in `customer-app-compat-v1.json`.
+* `APP_FACTORY_VEHICLE_DETAILING: READY`. Proof tenant `test-service-*` excluded. No app generation. No push.
+
 ### Commerce Pet Supply Versioned Certification + Official Sales Demo V1
 
 * `demo-pet-supply` added to `OFFICIAL_SALES_DEMO_SLUGS` (31). Runtime consume `village_store` (no `pet_supply` factory package). Distinct from `demo-pet-grooming`.
