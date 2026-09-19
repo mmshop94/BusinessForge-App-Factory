@@ -1,3 +1,8 @@
+### Commerce Garden Center Versioned Certification + Official Sales Demo V1
+
+* `demo-garden-center` added to `OFFICIAL_SALES_DEMO_SLUGS` (30). Runtime consume `village_store` (no `garden_center` factory package).
+* `APP_FACTORY_GARDEN_CENTER: READY`. Proof tenant `test-commerce-*` excluded. No app generation. No push.
+
 ### Commerce Fish Shop Versioned Certification + Official Sales Demo V1
 
 * `demo-fish-shop` added to `OFFICIAL_SALES_DEMO_SLUGS` (29). Runtime consume `village_store` (no `fish_shop` factory package).
