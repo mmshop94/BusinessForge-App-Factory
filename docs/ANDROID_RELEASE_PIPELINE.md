@@ -1,7 +1,7 @@
 # Android Release Pipeline — White-Label Store Foundation
 
 > **Stand:** 2026-08-29 · historical demo/owner-keystore operator flow  
-> **Customer production (2026-09-20):** [CUSTOMER_APP_RELEASE_INTAKE_V1.md](CUSTOMER_APP_RELEASE_INTAKE_V1.md) — per-customer signing references; shared Owner-Keystore **forbidden** for paid customer production.
+> **Customer production (2026-09-20):** [CUSTOMER_APP_RELEASE_INTAKE_V1.md](CUSTOMER_APP_RELEASE_INTAKE_V1.md) — per-customer signing references; shared Owner-Keystore **forbidden** for paid customer production. Internal test-track delivery: [ANDROID_CUSTOMER_PLAY_TEST_TRACK_DELIVERY_V1.md](ANDROID_CUSTOMER_PLAY_TEST_TRACK_DELIVERY_V1.md). Production track remains blocked.
 
 > **Repository:** BusinessForge App Factory  
 > **Google Play Publication:** **MANUAL_OPERATION** — keine Play-API-Automatisierung  

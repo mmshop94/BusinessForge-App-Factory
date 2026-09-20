@@ -32,14 +32,26 @@ REFERENCE_PREFIXES = ("ops://", "env://", "fixture://")
 class SecretReferenceResolver(Protocol):
     """Resolves signing material references. Implementations must never log values."""
 
-    def has(self, reference: str) -> bool: ...
+    def has(
+        self,
+        reference: str,
+        *,
+        tenant_id: str = "",
+        customer_app_id: str = "",
+    ) -> bool: ...
 
 
 class FailClosedSecretResolver:
     """Production default — references are unknown until an ops store is wired."""
 
-    def has(self, reference: str) -> bool:
-        del reference
+    def has(
+        self,
+        reference: str,
+        *,
+        tenant_id: str = "",
+        customer_app_id: str = "",
+    ) -> bool:
+        del reference, tenant_id, customer_app_id
         return False
 
 
@@ -49,10 +61,24 @@ class MappingSecretResolver:
     def __init__(self, mapping: Mapping[str, str]) -> None:
         self._mapping = dict(mapping)
 
-    def has(self, reference: str) -> bool:
+    def has(
+        self,
+        reference: str,
+        *,
+        tenant_id: str = "",
+        customer_app_id: str = "",
+    ) -> bool:
+        del tenant_id, customer_app_id
         return bool(reference) and reference in self._mapping
 
-    def resolve_value(self, reference: str) -> str:
+    def resolve_value(
+        self,
+        reference: str,
+        *,
+        tenant_id: str = "",
+        customer_app_id: str = "",
+    ) -> str:
+        del tenant_id, customer_app_id
         return self._mapping[reference]
 
 
@@ -71,6 +97,8 @@ def assert_customer_production_signing(
     resolver: SecretReferenceResolver,
     environ: Mapping[str, str] | None = None,
     allow_local_test: bool = False,
+    tenant_id: str = "",
+    customer_app_id: str = "",
 ) -> None:
     """Fail-closed: production customer releases must not use the shared Owner keystore."""
     env = environ if environ is not None else dict(os.environ)
@@ -97,7 +125,11 @@ def assert_customer_production_signing(
         raise SigningGuardError(SIGNING_CONFIGURATION_REQUIRED)
     if any(looks_like_shared_owner_reference(item) for item in required_refs):
         raise SigningGuardError(SHARED_OWNER_KEYSTORE_FORBIDDEN)
-    if not all(resolver.has(item) for item in required_refs if item):
+    if not all(
+        resolver.has(item, tenant_id=tenant_id, customer_app_id=customer_app_id)
+        for item in required_refs
+        if item
+    ):
         raise SigningGuardError(SIGNING_CONFIGURATION_REQUIRED)
 
     owner_path = env.get(KEYSTORE_PATH_ENV, "").strip()

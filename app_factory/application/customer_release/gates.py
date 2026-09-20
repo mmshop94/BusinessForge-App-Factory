@@ -210,10 +210,54 @@ def _android_signing_gate(
             profile.android_signing,
             resolver=resolver,
             allow_local_test=allow_local_test_signing and profile.channel != "production",
+            tenant_id=profile.tenant_id,
+            customer_app_id=profile.app_id,
         )
     except SigningGuardError as exc:
         return GateResult("ANDROID_SIGNING_READY", BLOCKED, (str(exc),))
     return GateResult("ANDROID_SIGNING_READY", READY, ())
+
+
+ANDROID_PRODUCTION_READY = "NOT_IMPLEMENTED"
+
+
+def compose_android_delivery(
+    *,
+    intake_readiness: dict[str, Any],
+    play_verification: dict[str, Any] | None = None,
+    aab_ready: bool = False,
+    upload_approved: bool = False,
+    test_released: bool = False,
+) -> dict[str, Any]:
+    """Android delivery gates. ANDROID_PRODUCTION_READY is never READY in this slice."""
+    play = play_verification or {}
+    play_status = str(play.get("status") or "NOT_CONFIGURED")
+    play_ready = play_status == "READY"
+    play_bound = play.get("play_app") in {"PLAY_APP_BOUND", "READY"} or play_ready
+    perm_ready = play.get("permission_status") == "READY" or play_ready
+    signing_ready = _named_ready(intake_readiness, "ANDROID_SIGNING_READY")
+    build_ready = signing_ready and _named_ready(intake_readiness, "ANDROID_CONFIG_READY")
+    test_upload_ready = play_ready and aab_ready and upload_approved
+    return {
+        "ANDROID_SIGNING_READY": "READY" if signing_ready else "BLOCKED",
+        "PLAY_CONNECTION_READY": play_status if play_status != "READY" else "READY",
+        "PLAY_APP_BOUND": "PLAY_APP_BOUND" if play_bound else play.get("play_app") or "NOT_CONFIGURED",
+        "PLAY_TEST_PERMISSION_READY": "READY" if perm_ready else play.get("permission_status") or "NOT_CONFIGURED",
+        "ANDROID_AAB_READY": "READY" if aab_ready else "BLOCKED",
+        "PLAY_TEST_UPLOAD_READY": "READY" if test_upload_ready else "BLOCKED",
+        "PLAY_TEST_RELEASE_READY": "READY" if test_released else "BLOCKED",
+        "ANDROID_BUILD_READY": "READY" if build_ready else "BLOCKED",
+        "ANDROID_TEST_DELIVERY_READY": "READY" if test_upload_ready else "BLOCKED",
+        "ANDROID_TEST_RELEASED": bool(test_released),
+        "ANDROID_PRODUCTION_READY": ANDROID_PRODUCTION_READY,
+    }
+
+
+def _named_ready(readiness: dict[str, Any], name: str) -> bool:
+    for gate in readiness.get("gates") or []:
+        if gate.get("name") == name:
+            return gate.get("status") == "READY"
+    return False
 
 
 def _https_url(value: str) -> bool:

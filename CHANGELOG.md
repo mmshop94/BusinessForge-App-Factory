@@ -1,3 +1,8 @@
+### Android Customer Play Connection + Test-Track Delivery V1
+
+* App-scoped Play publisher connection, INTERNAL test-track provider (fake proven, live fail-closed), per-customer upload-key fingerprint, production track hard-block. No production submission.
+* Docs: [ANDROID_CUSTOMER_PLAY_TEST_TRACK_DELIVERY_V1.md](docs/ANDROID_CUSTOMER_PLAY_TEST_TRACK_DELIVERY_V1.md).
+
 ### Customer App Release Intake + Android Signing Foundation V1
 
 * `prepare-customer-release`: immutable snapshot, ANDROID_ONLY / IOS_ONLY / ANDROID_AND_IOS gates, per-customer signing references, shared Owner-Keystore forbidden for production customers. 35/35 generate path retained. No Play upload.

@@ -51,6 +51,9 @@ def prepare_customer_release(
     skip_build: bool = True,
     apply_workspace: bool = True,
     allow_local_test_signing: bool = False,
+    flutter_runner: Any = None,
+    signing_environ: dict[str, str] | None = None,
+    upload_cert_sha256: str = "",
 ) -> dict[str, Any]:
     """Prepare a customer Android release candidate. Never writes secret values."""
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -136,6 +139,8 @@ def prepare_customer_release(
                 frozen.android_signing,
                 resolver=secret_resolver,
                 allow_local_test=False,
+                tenant_id=frozen.tenant_id,
+                customer_app_id=frozen.app_id,
             )
             steps.append({"name": "signing-check", "status": "succeeded"})
         except SigningGuardError as exc:
@@ -152,12 +157,57 @@ def prepare_customer_release(
         "artifact_format": "aab",
         "aab_path": None,
         "aab_sha256": None,
-        "reason": "SKIPPED_NO_PLAY_UPLOAD",
+        "reason": "SKIPPED",
+        "signing": None,
     }
     if skip_build or not signing_ok:
         steps.append({"name": "build", "status": "skipped"})
     else:
-        raise CustomerReleaseError("Live Gradle build is out of scope for this foundation slice")
+        from app_factory.application.customer_release.aab import build_customer_aab
+        from app_factory.infrastructure.flutter_runner import FlutterRunner
+
+        if workspace is None:
+            raise CustomerReleaseError("Customer workspace missing for AAB build")
+        runner = flutter_runner or FlutterRunner()
+        inspect = build_customer_aab(
+            workspace,
+            output_dir / "artifacts",
+            profile=frozen,
+            snapshot_id=snapshot["snapshot_id"],
+            flutter_runner=runner,
+            dart_defines={
+                "PUBLIC_APP_ID": frozen.public_app_id,
+                "API_BASE_URL": frozen.api_base_url,
+                "APP_NAME": frozen.display_name,
+                "PACKAGE_ID": frozen.vertical,
+                "PACKAGE_VERSION": frozen.package_version,
+            },
+            signing_environ=signing_environ or {},
+            upload_cert_sha256=upload_cert_sha256,
+        )
+        build_meta = {
+            "executed": True,
+            "artifact_format": "aab",
+            "aab_path": inspect["aab_path"],
+            "aab_sha256": inspect["aab_sha256"],
+            "signing": inspect["signing"],
+            "upload_certificate_sha256": inspect["upload_certificate_sha256"],
+            "package_name": inspect["package_name"],
+            "version_code": inspect["version_code"],
+            "version_name": inspect["version_name"],
+            "reason": None,
+        }
+        steps.append({"name": "build", "status": "succeeded", "inspect": {
+            key: inspect[key]
+            for key in (
+                "package_name",
+                "version_code",
+                "signing",
+                "aab_sha256",
+                "debug_signing",
+                "shared_owner_signing",
+            )
+        }})
 
     steps.append({"name": "verify", "status": "succeeded" if signing_ok else "blocked"})
 
@@ -181,6 +231,20 @@ def prepare_customer_release(
             "ios": frozen.ios_signing.to_public_dict(),
         },
         "build": build_meta,
+        "google_play": {
+            "connection_reference": None,
+            "package_name": frozen.package_name,
+            "target_track": None,
+            "edit_reference": None,
+            "version_code": frozen.version_code,
+            "bundle_sha256": build_meta.get("aab_sha256"),
+            "upload_status": "NOT_UPLOADED",
+            "validation_status": None,
+            "commit_status": None,
+            "release_status": None,
+            "verified_at": None,
+        },
+        "android_production_ready": "NOT_IMPLEMENTED",
         "generated_config": "workspace/build_config/app_factory_config.json" if workspace else None,
         "snapshot_path": str(snapshots_dir / f"{snapshot['snapshot_id']}.json"),
         "source_handoff": False,
@@ -261,6 +325,7 @@ def _write_extended_factory_config(
             "legal_imprint_url": profile.legal.imprint_url,
             "support_url": profile.legal.support_url,
             "journey": profile.journey,
+            "android_production_ready": False,
         }
     )
     config_path.parent.mkdir(parents=True, exist_ok=True)
@@ -272,12 +337,17 @@ def _patch_customer_signing_gradle(workspace: Path) -> None:
     if not gradle.is_file():
         return
     content = gradle.read_text(encoding="utf-8")
-    if "BF_CUSTOMER_ANDROID_KEYSTORE_PATH" in content:
-        return
-    snippet = gradle_customer_release_signing_snippet().strip()
-    if "buildTypes {" in content:
-        content = content.replace("buildTypes {", snippet + "\n    buildTypes {", 1)
-        gradle.write_text(content, encoding="utf-8")
+    if "BF_CUSTOMER_ANDROID_KEYSTORE_PATH" not in content:
+        snippet = gradle_customer_release_signing_snippet().strip()
+        if "buildTypes {" in content:
+            content = content.replace("buildTypes {", snippet + "\n    buildTypes {", 1)
+    if "signingConfigs.getByName(\"debug\")" in content:
+        content = content.replace(
+            'signingConfig = signingConfigs.getByName("debug")',
+            'signingConfig = signingConfigs.getByName("release")',
+            1,
+        )
+    gradle.write_text(content, encoding="utf-8")
 
 
 def _assert_no_secret_values(payload: dict[str, Any]) -> None:

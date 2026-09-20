@@ -24,6 +24,9 @@ dev = [
     "pytest>=8.3",
     "pytest-cov>=5.0",
 ]
+play = [
+    "google-auth>=2.29",
+]
 
 [project.scripts]
 app-factory = "app_factory.cli.main:cli"

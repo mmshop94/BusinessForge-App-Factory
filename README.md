@@ -42,6 +42,7 @@ app-factory build-android manifests/examples/dorfladen-hutthurm.yaml `
 | `build-android <manifest>` | Execute Slice 1 Android pipeline. `--e2e-test --debug` for fail-closed demo E2E APKs ([E2E_TEST_BUILD_V1.md](docs/E2E_TEST_BUILD_V1.md)) |
 | `build-official-sales-demos` | Batch-build Official Sales Demo apps. `--public-api` → `https://demo-api.bforge.de/api/v1` |
 | `prepare-customer-release` | Snapshot + gates + per-customer Android signing check (no Play upload). See [CUSTOMER_APP_RELEASE_INTAKE_V1.md](docs/CUSTOMER_APP_RELEASE_INTAKE_V1.md) |
+| `verify-play-connection` | App-scoped Play verification (no credential values printed) |
 | `inspect-build <report>` | Pretty-print build report |
 
 ## Repository layout

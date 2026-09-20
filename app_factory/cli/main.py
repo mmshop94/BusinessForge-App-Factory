@@ -266,6 +266,38 @@ def prepare_customer_release_cmd(
         raise SystemExit(1)
 
 
+@cli.command("verify-play-connection")
+@click.option("--package-name", required=True)
+@click.option("--tenant-id", required=True)
+@click.option("--app-id", required=True)
+@click.option("--credential-ref", default="")
+def verify_play_connection_cmd(
+    package_name: str,
+    tenant_id: str,
+    app_id: str,
+    credential_ref: str,
+) -> None:
+    """Verify app-scoped Play access. Never prints credential values."""
+    from app_factory.application.customer_release.play import GooglePlayPublisherConnection
+    from app_factory.application.customer_release.play.provider import GooglePlayPublisherProvider
+    from app_factory.application.customer_release.signing import FailClosedSecretResolver
+
+    connection = GooglePlayPublisherConnection(
+        customer_app_id=app_id,
+        tenant_id=tenant_id,
+        package_name=package_name,
+        developer_account_reference="ops://play/developer-account",
+        principal_reference="ops://play/principal",
+        credential_secret_reference=credential_ref,
+    )
+    result = GooglePlayPublisherProvider(FailClosedSecretResolver(), connection).verify_connection(
+        connection, expected_package=package_name
+    )
+    click.echo(json.dumps(result, indent=2, sort_keys=True))
+    if result.get("status") != "READY":
+        raise SystemExit(1)
+
+
 @cli.command("materialize-export")
 @click.argument("export_file", type=click.Path(exists=True, dir_okay=False, path_type=Path))
 @click.option(

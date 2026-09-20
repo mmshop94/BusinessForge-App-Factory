@@ -47,3 +47,23 @@ class PackageMutationError(CustomerReleaseError):
 
 class SnapshotImmutabilityError(CustomerReleaseError):
     """An existing release snapshot was mutated or rebuilt in place."""
+
+
+class TenantIsolationError(CustomerReleaseError):
+    """Tenant/app/package binding mismatch — hard block."""
+
+
+class PlayDeliveryError(CustomerReleaseError):
+    """Google Play test-track delivery failed without a production fallback."""
+
+
+class ProductionSubmissionBlocked(PlayDeliveryError):
+    """Production track writes are forbidden in this slice."""
+
+
+class ApprovalError(CustomerReleaseError):
+    """Test-upload approval is missing, consumed, or bound to another snapshot."""
+
+
+class PlayConnectionError(PlayDeliveryError):
+    """Publisher connection is not READY for the bound customer app."""
