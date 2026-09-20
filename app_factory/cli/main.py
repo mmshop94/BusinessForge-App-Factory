@@ -227,6 +227,45 @@ def signing_status_cmd() -> None:
     click.echo(json.dumps(signing_status().to_public_dict(), indent=2, sort_keys=True))
 
 
+@cli.command("prepare-customer-release")
+@click.argument("intake", type=click.Path(exists=True, dir_okay=False, path_type=Path))
+@click.option(
+    "--output-dir",
+    type=click.Path(file_okay=False, path_type=Path),
+    required=True,
+)
+@click.option(
+    "--customer-app",
+    type=click.Path(exists=True, file_okay=False, path_type=Path),
+    default=None,
+)
+@click.option("--skip-build/--build", default=True, show_default=True)
+def prepare_customer_release_cmd(
+    intake: Path,
+    output_dir: Path,
+    customer_app: Path | None,
+    skip_build: bool,
+) -> None:
+    """Validate, snapshot, and prepare a customer Android release (no Play upload)."""
+    from app_factory.application.customer_release.pipeline import prepare_customer_release
+    from app_factory.application.manifest_validator import ManifestLoader
+
+    payload = ManifestLoader().load(intake)
+    try:
+        result = prepare_customer_release(
+            payload,
+            output_dir,
+            customer_app_path=customer_app,
+            skip_build=skip_build,
+            apply_workspace=customer_app is not None,
+        )
+    except AppFactoryError as exc:
+        raise click.ClickException(str(exc)) from exc
+    click.echo(json.dumps({"store_release": result.get("store_release"), "path": str(output_dir / "release-manifest.json")}, indent=2))
+    if result.get("store_release") != "STORE_RELEASE_READY":
+        raise SystemExit(1)
+
+
 @cli.command("materialize-export")
 @click.argument("export_file", type=click.Path(exists=True, dir_okay=False, path_type=Path))
 @click.option(

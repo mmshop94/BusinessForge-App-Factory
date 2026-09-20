@@ -3,7 +3,7 @@
 > **Repository:** [BusinessForge-App-Factory](https://github.com/mmshop94/BusinessForge-App-Factory)  
 > **Stand:** 2026-08-14  
 > **Slice:** 1 — Foundation + Wave 1 store-ready pipeline  
-> **Status:** ✅ Runtime v1 qualified ([FACTORY_RUNTIME_V1.md](FACTORY_RUNTIME_V1.md)) · [ANDROID_RELEASE_PIPELINE.md](ANDROID_RELEASE_PIPELINE.md)
+> **Status:** ✅ Runtime v1 qualified ([FACTORY_RUNTIME_V1.md](FACTORY_RUNTIME_V1.md)) · [ANDROID_RELEASE_PIPELINE.md](ANDROID_RELEASE_PIPELINE.md) · [CUSTOMER_APP_RELEASE_INTAKE_V1.md](CUSTOMER_APP_RELEASE_INTAKE_V1.md)
 
 ---
 

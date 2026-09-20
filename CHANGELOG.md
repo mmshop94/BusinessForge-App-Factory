@@ -1,3 +1,8 @@
+### Customer App Release Intake + Android Signing Foundation V1
+
+* `prepare-customer-release`: immutable snapshot, ANDROID_ONLY / IOS_ONLY / ANDROID_AND_IOS gates, per-customer signing references, shared Owner-Keystore forbidden for production customers. 35/35 generate path retained. No Play upload.
+* Docs: [CUSTOMER_APP_RELEASE_INTAKE_V1.md](docs/CUSTOMER_APP_RELEASE_INTAKE_V1.md). Tests: `tests/test_customer_release_intake.py`.
+
 ### White-Label App + Store Delivery Readiness V1
 
 * Config proof: 35 official slugs map to a compatible package and Flutter journey (`tests/test_official_sales_generate_path.py`). No 35 native builds. No Play/App Store upload.

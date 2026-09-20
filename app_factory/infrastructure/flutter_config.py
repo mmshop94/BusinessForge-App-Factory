@@ -28,6 +28,7 @@ class FlutterConfigApplier:
         manifest: AppBuildManifest,
         dart_defines: dict[str, str],
         branding_assets_root: Path | None = None,
+        customer_production: bool = False,
     ) -> list[str]:
         changed: list[str] = []
         changed.extend(self._write_build_config(workspace, manifest, dart_defines))
@@ -37,7 +38,14 @@ class FlutterConfigApplier:
         changed.extend(self._patch_gradle_properties(workspace))
         if branding_assets_root:
             changed.extend(self._copy_branding_assets(workspace, manifest, branding_assets_root))
-        changed.extend(self._apply_native_branding(workspace, manifest, branding_assets_root))
+        changed.extend(
+            self._apply_native_branding(
+                workspace,
+                manifest,
+                branding_assets_root,
+                customer_production=customer_production,
+            )
+        )
         return changed
 
     def _write_build_config(
@@ -75,6 +83,8 @@ class FlutterConfigApplier:
                 "customer_app_ref": manifest.source.customer_app_ref,
                 "factory_compat_version": manifest.source.factory_compat_version,
             },
+            "customer_store_release": False,
+            "android_application_id": manifest.app.package_name_android,
         }
         config_path = config_dir / "app_factory_config.json"
         config_path.write_text(
@@ -198,6 +208,7 @@ class FlutterConfigApplier:
         workspace: Path,
         manifest: AppBuildManifest,
         branding_assets_root: Path | None,
+        customer_production: bool = False,
     ) -> list[str]:
         from app_factory.application.image_assets import generate_default_icon, validate_icon_file
         from app_factory.application.native_branding import NativeBrandingApplier
@@ -231,6 +242,7 @@ class FlutterConfigApplier:
             icon_bytes=icon_bytes,
             logo_bytes=logo_bytes,
             allow_default_icon=not production,
+            skip_owner_signing=customer_production,
         )
 
     def _patch_gradle_properties(self, workspace: Path) -> list[str]:

@@ -1,6 +1,8 @@
 # Android Release Pipeline — White-Label Store Foundation
 
-> **Stand:** 2026-08-29  
+> **Stand:** 2026-08-29 · historical demo/owner-keystore operator flow  
+> **Customer production (2026-09-20):** [CUSTOMER_APP_RELEASE_INTAKE_V1.md](CUSTOMER_APP_RELEASE_INTAKE_V1.md) — per-customer signing references; shared Owner-Keystore **forbidden** for paid customer production.
+
 > **Repository:** BusinessForge App Factory  
 > **Google Play Publication:** **MANUAL_OPERATION** — keine Play-API-Automatisierung  
 > **Friseur Pilot:** Signing this workstation `SIGNING_CONFIGURATION_REQUIRED` — kein Play-ready APK. Production customer app erst nach Owner-Input + `https://api.bforge.de/api/v1`. Public Demo-Apps (2026-08-28) enthalten noch nicht Loyalty/Delivery aus Flutter `main`.

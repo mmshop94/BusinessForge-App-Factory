@@ -23,6 +23,7 @@ class NativeBrandingApplier:
         icon_bytes: bytes,
         logo_bytes: bytes | None,
         allow_default_icon: bool,
+        skip_owner_signing: bool = False,
     ) -> list[str]:
         del allow_default_icon
         res = workspace / "android" / "app" / "src" / "main" / "res"
@@ -41,7 +42,8 @@ class NativeBrandingApplier:
                 output_res=res,
             )
         )
-        changed.extend(self._patch_signing(workspace))
+        if not skip_owner_signing:
+            changed.extend(self._patch_signing(workspace))
         return [str(Path(item).relative_to(workspace)) if Path(item).is_absolute() else item for item in changed]
 
     def _patch_signing(self, workspace: Path) -> list[str]:

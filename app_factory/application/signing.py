@@ -12,7 +12,13 @@ KEY_ALIAS_ENV = "BF_ANDROID_KEY_ALIAS"
 STORE_PASSWORD_ENV = "BF_ANDROID_STORE_PASSWORD"
 KEY_PASSWORD_ENV = "BF_ANDROID_KEY_PASSWORD"
 
+CUSTOMER_KEYSTORE_PATH_ENV = "BF_CUSTOMER_ANDROID_KEYSTORE_PATH"
+CUSTOMER_KEY_ALIAS_ENV = "BF_CUSTOMER_ANDROID_KEY_ALIAS"
+CUSTOMER_STORE_PASSWORD_ENV = "BF_CUSTOMER_ANDROID_STORE_UNLOCK"
+CUSTOMER_KEY_PASSWORD_ENV = "BF_CUSTOMER_ANDROID_KEY_UNLOCK"
+
 SIGNING_CONFIGURATION_REQUIRED = "SIGNING_CONFIGURATION_REQUIRED"
+SHARED_OWNER_KEYSTORE_FORBIDDEN = "SHARED_OWNER_KEYSTORE_FORBIDDEN"
 
 
 @dataclass(frozen=True)
@@ -60,6 +66,26 @@ def gradle_release_signing_snippet() -> str:
                 keyAlias = bfKeyAlias
                 keyPassword = System.getenv("BF_ANDROID_KEY_PASSWORD")
                     ?: System.getenv("BF_ANDROID_STORE_PASSWORD")
+                    ?: ""
+            }
+        }
+    }
+"""
+
+
+def gradle_customer_release_signing_snippet() -> str:
+    """Per-customer upload key — never the shared Owner env vars."""
+    return """
+    val bfCustomerKeystorePath = System.getenv("BF_CUSTOMER_ANDROID_KEYSTORE_PATH")
+    val bfCustomerKeyAlias = System.getenv("BF_CUSTOMER_ANDROID_KEY_ALIAS")
+    if (!bfCustomerKeystorePath.isNullOrBlank() && !bfCustomerKeyAlias.isNullOrBlank()) {
+        signingConfigs {
+            create("release") {
+                storeFile = file(bfCustomerKeystorePath)
+                storePassword = System.getenv("BF_CUSTOMER_ANDROID_STORE_UNLOCK") ?: ""
+                keyAlias = bfCustomerKeyAlias
+                keyPassword = System.getenv("BF_CUSTOMER_ANDROID_KEY_UNLOCK")
+                    ?: System.getenv("BF_CUSTOMER_ANDROID_STORE_UNLOCK")
                     ?: ""
             }
         }
