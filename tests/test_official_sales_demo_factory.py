@@ -218,3 +218,14 @@ def test_artifact_scan_reads_aab_base_paths(tmp_path) -> None:
     report = assert_public_artifact_origins(aab)
     assert report["factory_config_api_base_url"] == PUBLIC_DEMO_API_BASE_URL
     assert report["public_demo_origin_present"] is True
+
+
+def test_butcher_package_is_on_generate_path() -> None:
+    from app_factory.infrastructure.paths import compat_path
+
+    payload = json.loads(compat_path().read_text(encoding="utf-8"))
+    packages = payload["packages"]
+    assert "butcher" in packages
+    assert "village_store" in packages
+    assert "restaurant" in packages
+    assert packages["butcher"]["min_customer_app_version"] == packages["village_store"]["min_customer_app_version"]

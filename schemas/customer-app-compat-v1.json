@@ -6,6 +6,10 @@
       "min_customer_app_version": "0.5.10",
       "supported_customer_app_refs": ["v0.5.10", "main", "feat/village-store-pilot", "feat/build-contract-v1"]
     },
+    "butcher": {
+      "min_customer_app_version": "0.5.10",
+      "supported_customer_app_refs": ["v0.5.10", "main", "feat/village-store-pilot", "feat/build-contract-v1"]
+    },
     "restaurant": {
       "min_customer_app_version": "0.5.10",
       "supported_customer_app_refs": ["v0.5.10", "main"]

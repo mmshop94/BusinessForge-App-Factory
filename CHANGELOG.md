@@ -1,3 +1,7 @@
+### Official Demo Visual + Presentation Readiness V2
+
+* `butcher` added to `customer-app-compat-v1.json` (same floor as `village_store`). Official generate path 35/35. Store-grade still 0/35. No APK rebuild. No push.
+
 ### Service Caretaker Package + Versioned Vertical Certification V1
 
 * `demo-caretaker` added to `OFFICIAL_SALES_DEMO_SLUGS` (35). Package `field_service_caretaker` in `customer-app-compat-v1.json`.
