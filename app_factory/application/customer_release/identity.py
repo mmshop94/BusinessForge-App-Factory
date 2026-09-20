@@ -22,6 +22,7 @@ class CustomerAppIdentityRecord:
     bundle_identifier: str
     published: bool
     last_version_code: int
+    package_immutable: bool = False
 
 
 class CustomerAppIdentityRegistry:
@@ -59,11 +60,12 @@ class CustomerAppIdentityRegistry:
 
         existing_app = self._by_app.get(customer_app_id)
         if existing_app is not None:
-            if existing_app.published and existing_app.package_name_android != package:
+            frozen = existing_app.published or existing_app.package_immutable
+            if frozen and existing_app.package_name_android != package:
                 raise PackageMutationError(
                     "Published customer app must not change package_name_android"
                 )
-            if existing_app.published and existing_app.bundle_identifier != bundle_identifier:
+            if frozen and existing_app.bundle_identifier != bundle_identifier:
                 raise PackageMutationError(
                     "Published customer app must not change bundle_identifier"
                 )
@@ -80,12 +82,31 @@ class CustomerAppIdentityRegistry:
                     f"Android package collides with {other.customer_app_id}: {package}"
                 )
 
+        immutable = bool(existing_app and existing_app.package_immutable) or published
         record = CustomerAppIdentityRecord(
             customer_app_id=customer_app_id,
             package_name_android=package,
             bundle_identifier=bundle_identifier,
             published=published or bool(existing_app and existing_app.published),
             last_version_code=version_code,
+            package_immutable=immutable,
+        )
+        self._by_app[customer_app_id] = record
+        self._persist()
+        return record
+
+    def freeze_play_package(self, customer_app_id: str) -> CustomerAppIdentityRecord:
+        """After first successful Play package binding the applicationId is immutable."""
+        existing = self._by_app.get(customer_app_id)
+        if existing is None:
+            raise PackageMutationError("PACKAGE_NOT_REGISTERED")
+        record = CustomerAppIdentityRecord(
+            customer_app_id=existing.customer_app_id,
+            package_name_android=existing.package_name_android,
+            bundle_identifier=existing.bundle_identifier,
+            published=existing.published,
+            last_version_code=existing.last_version_code,
+            package_immutable=True,
         )
         self._by_app[customer_app_id] = record
         self._persist()
@@ -103,6 +124,7 @@ class CustomerAppIdentityRegistry:
                     "bundle_identifier": record.bundle_identifier,
                     "published": record.published,
                     "last_version_code": record.last_version_code,
+                    "package_immutable": record.package_immutable,
                 }
                 for record in self._by_app.values()
             ]
@@ -117,4 +139,5 @@ def _record_from_dict(item: dict[str, Any]) -> CustomerAppIdentityRecord:
         bundle_identifier=str(item["bundle_identifier"]),
         published=bool(item.get("published")),
         last_version_code=int(item.get("last_version_code") or 0),
+        package_immutable=bool(item.get("package_immutable") or item.get("published")),
     )

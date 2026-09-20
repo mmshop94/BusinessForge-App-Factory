@@ -45,6 +45,11 @@ STATUS_PACKAGE_ID_MISMATCH = "PACKAGE_ID_MISMATCH"
 STATUS_READY = "READY"
 STATUS_REVOKED = "REVOKED"
 STATUS_PLAY_POLICY_REQUIREMENT_PENDING = "PLAY_POLICY_REQUIREMENT_PENDING"
+STATUS_PLAY_ACCOUNT_REQUIREMENT_PENDING = "PLAY_ACCOUNT_REQUIREMENT_PENDING"
+
+OWNER_CUSTOMER = "CUSTOMER_OWNED"
+OWNER_REFERENCE = "BUSINESSFORGE_REFERENCE"
+VALID_OWNER_TYPES = frozenset({OWNER_CUSTOMER, OWNER_REFERENCE})
 
 
 @dataclass(frozen=True)
@@ -63,6 +68,11 @@ class GooglePlayPublisherConnection:
     last_error_code: str = ""
     created_at: str = ""
     updated_at: str = ""
+    owner_type: str = OWNER_CUSTOMER
+
+    def __post_init__(self) -> None:
+        if self.owner_type not in VALID_OWNER_TYPES:
+            raise TenantIsolationError("INVALID_PUBLISHER_OWNER_TYPE")
 
     def assert_bound(self, *, tenant_id: str, customer_app_id: str, package_name: str) -> None:
         if (
@@ -88,6 +98,10 @@ class GooglePlayPublisherConnection:
             "last_error_code": self.last_error_code,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
+            "publisher_owner_type": self.owner_type,
+            # Reference live-proof must never be read as customer-owned publishing.
+            "customer_owned_publishing_proven": False,
+            "reference_publisher": self.owner_type == OWNER_REFERENCE,
         }
 
 

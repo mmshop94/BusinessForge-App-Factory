@@ -298,6 +298,114 @@ def verify_play_connection_cmd(
         raise SystemExit(1)
 
 
+@cli.group("google-play")
+def google_play_group() -> None:
+    """Google Play onboarding, preflight, and internal-track proof. No production."""
+
+
+@google_play_group.command("setup-contract")
+@click.argument("intake", type=click.Path(exists=True, dir_okay=False, path_type=Path))
+@click.option("--principal-identity", default="ops://play/principal")
+@click.option("--owner-type", default="CUSTOMER_OWNED", show_default=True)
+def google_play_setup_contract_cmd(
+    intake: Path,
+    principal_identity: str,
+    owner_type: str,
+) -> None:
+    """Emit the one-time Play Console app-create contract. Does not create the Play app."""
+    from app_factory.application.customer_release.play.setup_contract import console_app_create_contract
+    from app_factory.application.customer_release.profile import profile_from_dict
+    from app_factory.application.manifest_validator import ManifestLoader
+
+    profile = profile_from_dict(ManifestLoader().load(intake))
+    click.echo(
+        json.dumps(
+            console_app_create_contract(
+                profile,
+                principal_identity=principal_identity,
+                owner_type=owner_type,
+            ),
+            indent=2,
+            sort_keys=True,
+        )
+    )
+
+
+@google_play_group.command("onboarding")
+@click.option("--states-json", type=click.Path(exists=True, dir_okay=False, path_type=Path), required=True)
+def google_play_onboarding_cmd(states_json: Path) -> None:
+    """Print CUSTOMER_PLAY_ONBOARDING status and instruction steps. No secrets."""
+    from app_factory.application.customer_release.play.onboarding import (
+        evaluate_customer_play_onboarding,
+    )
+
+    states = json.loads(states_json.read_text(encoding="utf-8"))
+    click.echo(json.dumps(evaluate_customer_play_onboarding(states), indent=2, ensure_ascii=False))
+
+
+@google_play_group.command("preflight")
+@click.argument("intake", type=click.Path(exists=True, dir_okay=False, path_type=Path))
+@click.option("--snapshot-id", default="")
+@click.option("--tenant-id", required=True)
+@click.option("--app-id", required=True)
+@click.option("--package-name", required=True)
+@click.option("--credential-ref", default="")
+@click.option("--upload-key-ref", default="")
+@click.option("--owner-type", default="CUSTOMER_OWNED", show_default=True)
+@click.option("--track", default="internal", show_default=True)
+def google_play_preflight_cmd(
+    intake: Path,
+    snapshot_id: str,
+    tenant_id: str,
+    app_id: str,
+    package_name: str,
+    credential_ref: str,
+    upload_key_ref: str,
+    owner_type: str,
+    track: str,
+) -> None:
+    """Check LIVE_INTERNAL_UPLOAD_READY. Never prints credential values. No production writes."""
+    from app_factory.application.customer_release.identity import CustomerAppIdentityRegistry
+    from app_factory.application.customer_release.play import GooglePlayPublisherConnection
+    from app_factory.application.customer_release.play.approval import ApprovalRegistry
+    from app_factory.application.customer_release.play.preflight import PlayPreflightInput, run_preflight
+    from app_factory.application.customer_release.play.provider import GooglePlayPublisherProvider
+    from app_factory.application.customer_release.profile import profile_from_dict
+    from app_factory.application.customer_release.signing import FailClosedSecretResolver
+    from app_factory.application.manifest_validator import ManifestLoader
+
+    profile = profile_from_dict(ManifestLoader().load(intake))
+    connection = GooglePlayPublisherConnection(
+        customer_app_id=app_id,
+        tenant_id=tenant_id,
+        package_name=package_name,
+        developer_account_reference="ops://play/developer-account",
+        principal_reference="ops://play/principal",
+        credential_secret_reference=credential_ref,
+        owner_type=owner_type,
+    )
+    resolver = FailClosedSecretResolver()
+    result = run_preflight(
+        PlayPreflightInput(
+            profile=profile,
+            snapshot_id=snapshot_id or profile.release_snapshot_id,
+            snapshot_immutable=bool(snapshot_id or profile.release_snapshot_id),
+            connection=connection,
+            resolver=resolver,
+            provider=GooglePlayPublisherProvider(resolver, connection),
+            approvals=ApprovalRegistry(),
+            identity=CustomerAppIdentityRegistry(),
+            upload_key_reference=upload_key_ref,
+            track=track,
+        )
+    )
+    click.echo(json.dumps(result, indent=2, sort_keys=True, default=str))
+    if result.get("status") == "PRODUCTION_SUBMISSION_BLOCKED":
+        raise SystemExit(2)
+    if result.get("live_internal_upload_ready") is not True:
+        raise SystemExit(1)
+
+
 @cli.command("materialize-export")
 @click.argument("export_file", type=click.Path(exists=True, dir_okay=False, path_type=Path))
 @click.option(

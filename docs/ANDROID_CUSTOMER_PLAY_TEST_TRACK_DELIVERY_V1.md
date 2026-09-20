@@ -1,7 +1,8 @@
 # Android Customer Play Connection + Internal Test-Track Delivery V1
 
 > Stand: 2026-09-20 · **no production submission** · no secrets in git  
-> Prior intake (unchanged): [CUSTOMER_APP_RELEASE_INTAKE_V1.md](CUSTOMER_APP_RELEASE_INTAKE_V1.md)
+> Prior intake (unchanged): [CUSTOMER_APP_RELEASE_INTAKE_V1.md](CUSTOMER_APP_RELEASE_INTAKE_V1.md)  
+> Successor (onboarding gate + live-proof contract): [ANDROID_GOOGLE_PLAY_ONBOARDING_GATE_V1.md](ANDROID_GOOGLE_PLAY_ONBOARDING_GATE_V1.md)
 
 ```text
 frozen snapshot
@@ -87,7 +88,12 @@ External requirements: customer Play developer account, Console app with the fro
 
 ```text
 app-factory verify-play-connection --package-name … --tenant-id … --app-id …
+app-factory google-play preflight …
+app-factory google-play setup-contract …
+app-factory google-play onboarding --states-json …
 app-factory prepare-customer-release … --build   # AAB, still no Play upload
 ```
+
+Live Google without `REAL_GOOGLE_PLAY_INTERNAL_TEST=1` and a wired app-scoped credential remains `LIVE_PLAY_PROOF_BLOCKED_EXTERNAL`.
 
 Provider isolation: `PublisherProvider` → `FakePlayPublisherProvider` (tests) / `GooglePlayPublisherProvider` (live fail-closed).

@@ -1,3 +1,8 @@
+### First Live Google Play Internal Track Proof + Customer Onboarding Gate V1
+
+* Canonical Play external setup contract, `CUSTOMER_OWNED` vs `BUSINESSFORGE_REFERENCE` owner types, `google-play preflight` / setup-contract / onboarding CLI, package immutability after bind, tester group references, live evidence without secrets. Live Google remains `BLOCKED_EXTERNAL` until `REAL_GOOGLE_PLAY_INTERNAL_TEST=1` and a wired app-scoped credential exist. Production still `NOT_IMPLEMENTED`.
+* Docs: [ANDROID_GOOGLE_PLAY_ONBOARDING_GATE_V1.md](docs/ANDROID_GOOGLE_PLAY_ONBOARDING_GATE_V1.md). Tests: `tests/test_play_onboarding_gate.py` (live test skipped by default).
+
 ### Android Customer Play Connection + Test-Track Delivery V1
 
 * App-scoped Play publisher connection, INTERNAL test-track provider (fake proven, live fail-closed), per-customer upload-key fingerprint, production track hard-block. No production submission.
