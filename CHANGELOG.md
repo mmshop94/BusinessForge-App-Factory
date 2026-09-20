@@ -1,3 +1,7 @@
+### White-Label App + Store Delivery Readiness V1
+
+* Config proof: 35 official slugs map to a compatible package and Flutter journey (`tests/test_official_sales_generate_path.py`). No 35 native builds. No Play/App Store upload.
+
 ### Official Demo Visual + Presentation Readiness V2
 
 * `butcher` added to `customer-app-compat-v1.json` (same floor as `village_store`). Official generate path 35/35. Store-grade still 0/35. No APK rebuild. No push.
