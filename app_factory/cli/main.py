@@ -304,19 +304,40 @@ def google_play_group() -> None:
 
 
 @google_play_group.command("setup-contract")
-@click.argument("intake", type=click.Path(exists=True, dir_okay=False, path_type=Path))
+@click.argument("intake", required=False, type=click.Path(exists=True, dir_okay=False, path_type=Path))
 @click.option("--principal-identity", default="ops://play/principal")
 @click.option("--owner-type", default="CUSTOMER_OWNED", show_default=True)
+@click.option(
+    "--reference",
+    "reference_identity",
+    is_flag=True,
+    help="Emit the BusinessForge reference Play identity contract. Does not create a Play app.",
+)
 def google_play_setup_contract_cmd(
-    intake: Path,
+    intake: Path | None,
     principal_identity: str,
     owner_type: str,
+    reference_identity: bool,
 ) -> None:
     """Emit the one-time Play Console app-create contract. Does not create the Play app."""
-    from app_factory.application.customer_release.play.setup_contract import console_app_create_contract
+    from app_factory.application.customer_release.play.setup_contract import (
+        console_app_create_contract,
+        reference_console_app_create_contract,
+    )
     from app_factory.application.customer_release.profile import profile_from_dict
     from app_factory.application.manifest_validator import ManifestLoader
 
+    if reference_identity:
+        click.echo(
+            json.dumps(
+                reference_console_app_create_contract(principal_identity=principal_identity),
+                indent=2,
+                sort_keys=True,
+            )
+        )
+        return
+    if intake is None:
+        raise click.UsageError("INTAKE is required unless --reference is set")
     profile = profile_from_dict(ManifestLoader().load(intake))
     click.echo(
         json.dumps(
@@ -404,6 +425,26 @@ def google_play_preflight_cmd(
         raise SystemExit(2)
     if result.get("live_internal_upload_ready") is not True:
         raise SystemExit(1)
+
+
+@google_play_group.command("live-proof-audit")
+@click.option(
+    "--output",
+    type=click.Path(dir_okay=False, path_type=Path),
+    default=None,
+    help="Write public evidence JSON. Never contains credentials.",
+)
+def google_play_live_proof_audit_cmd(output: Path | None) -> None:
+    """Audit this workspace for a real Google Play internal-track proof. No secrets."""
+    from app_factory.application.customer_release.play.evidence import write_internal_live_proof
+    from app_factory.application.customer_release.play.live_audit import (
+        audit_workspace_play_live_preconditions,
+    )
+
+    payload = audit_workspace_play_live_preconditions()
+    click.echo(json.dumps(payload, indent=2, sort_keys=True))
+    if output is not None:
+        write_internal_live_proof(output, payload)
 
 
 @cli.command("materialize-export")

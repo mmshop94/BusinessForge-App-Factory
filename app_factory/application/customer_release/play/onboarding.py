@@ -8,6 +8,8 @@ from app_factory.application.customer_release.play.setup_contract import (
     ACTION_REQUIRED,
     BF_PRINCIPAL_GRANTED,
     FAILED,
+    INTERNAL_TESTER_CONFIGURATION,
+    NOT_APPLICABLE,
     NOT_STARTED,
     PACKAGE_BOUND,
     PLAY_APP_CREATED,
@@ -116,6 +118,15 @@ _INSTRUCTIONS: tuple[dict[str, Any], ...] = (
         "blocking": True,
         "prerequisite": PACKAGE_BOUND,
     },
+    {
+        "step_id": "internal_tester_configuration",
+        "title": "Internal-Tester-Gruppe (optional)",
+        "description": "Tester-Gruppe nur, wenn ein Installationsnachweis gewünscht ist. Fehlt sie, bleibt der technische Upload-Proof möglich.",
+        "required_value": INTERNAL_TESTER_CONFIGURATION,
+        "verification_method": "tester_group_reference",
+        "blocking": False,
+        "prerequisite": INTERNAL_TESTER_CONFIGURATION,
+    },
 )
 
 
@@ -200,7 +211,9 @@ def evaluate_customer_play_onboarding(
         "status": PLAY_EXTERNAL_SETUP_READY if evaluated["play_external_setup_ready"] else "ONBOARDING_INCOMPLETE",
         "instructions": instruction_steps(states),
         "failed": any(state == FAILED for state in prereq.values()),
-        "not_started": all(state == NOT_STARTED for state in prereq.values()),
+        "not_started": all(
+            state == NOT_STARTED for state in prereq.values() if state != NOT_APPLICABLE
+        ),
     }
 
 

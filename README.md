@@ -43,6 +43,8 @@ app-factory build-android manifests/examples/dorfladen-hutthurm.yaml `
 | `build-official-sales-demos` | Batch-build Official Sales Demo apps. `--public-api` → `https://demo-api.bforge.de/api/v1` |
 | `prepare-customer-release` | Snapshot + gates + per-customer Android signing check (no Play upload). See [CUSTOMER_APP_RELEASE_INTAKE_V1.md](docs/CUSTOMER_APP_RELEASE_INTAKE_V1.md) |
 | `verify-play-connection` | App-scoped Play verification (no credential values printed) |
+| `google-play setup-contract` | Play Console app-create contract (`--reference` = BusinessForge identity) |
+| `google-play live-proof-audit` | Honest workspace live-proof status (no secrets; no invented VERIFIED) |
 | `inspect-build <report>` | Pretty-print build report |
 
 ## Repository layout

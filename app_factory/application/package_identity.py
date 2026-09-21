@@ -12,11 +12,17 @@ GENERIC_ANDROID_PACKAGE_PATTERN = re.compile(r"^[a-z][a-z0-9_]*(\.[a-z][a-z0-9_]
 RESERVED_ANDROID_PREFIXES = (
     "de.bforge.app.",
     "de.bforge.customer.",
+    "de.bforge.reference.",
     "com.businessforge.",
     "com.example.",
     "io.flutter.",
     "org.chromium.",
 )
+
+# Platform live-proof only. Never a customer production applicationId.
+REFERENCE_ANDROID_PREFIX = "de.bforge.reference."
+REFERENCE_INTERNAL_PACKAGE = "de.bforge.reference.internal"
+REFERENCE_PACKAGE_PATTERN = re.compile(r"^de\.bforge\.reference\.[a-z][a-z0-9_]*$")
 
 
 def android_application_id_from_public_app_id(public_app_id: str) -> str:
@@ -46,6 +52,20 @@ def validate_android_package_format(value: str) -> str:
 def is_reserved_android_package(value: str) -> bool:
     normalized = value.strip().lower()
     return any(normalized.startswith(prefix) for prefix in RESERVED_ANDROID_PREFIXES)
+
+
+def is_reference_android_package(value: str) -> bool:
+    return value.strip().lower().startswith(REFERENCE_ANDROID_PREFIX)
+
+
+def validate_reference_application_id(value: str) -> str:
+    """BusinessForge reference Play apps only. Not customer production. Not demo ULID packages."""
+    normalized = validate_android_package_format(value)
+    if not REFERENCE_PACKAGE_PATTERN.match(normalized):
+        raise ValueError(f"Invalid BusinessForge reference Android package: {normalized}")
+    if normalized == "de.hutthurm.dorfladen":
+        raise ValueError("Customer-shaped packages are not a BusinessForge reference identity")
+    return normalized
 
 
 def validate_customer_production_application_id(value: str) -> str:

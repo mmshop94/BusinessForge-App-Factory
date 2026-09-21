@@ -1,0 +1,120 @@
+{
+  "AAB_BUILT": "NOT_RUN",
+  "ANDROID_PRODUCTION_READY": "NOT_IMPLEMENTED",
+  "CUSTOMER_OWNED_PUBLISHING_PROVEN": false,
+  "INSTALLATION_PROOF": "INSTALLATION_PROOF_NOT_RUN",
+  "INTERNAL_TRACK_UPLOAD": "NOT_RUN",
+  "LIVE_GOOGLE_PLAY_PROOF": "BLOCKED_EXTERNAL",
+  "PLAY_APP_BOUND": false,
+  "PRODUCTION_SUBMISSION": "PRODUCTION_SUBMISSION_BLOCKED",
+  "REFERENCE_PUBLISHER_LIVE_PROOF": false,
+  "audited_at": "2026-09-21T08:59:21.919500+00:00",
+  "developer_account_auto_created": false,
+  "forbidden_permissions": [
+    "PLAY_ADMIN",
+    "ACCOUNT_WIDE_ADMIN",
+    "PRODUCTION_RELEASE",
+    "FINANCIAL_DATA"
+  ],
+  "google_auth_extra": "play",
+  "google_auth_present": false,
+  "httpx_present": true,
+  "kind": "GOOGLE_PLAY_LIVE_PUBLISHER_PROOF_AUDIT_V1",
+  "live_flag_set": false,
+  "live_test_gate": "REAL_GOOGLE_PLAY_INTERNAL_TEST",
+  "notes": [
+    "No Play developer account was created by this audit.",
+    "No credential values or private keys are included.",
+    "BUSINESSFORGE_REFERENCE must never be read as CUSTOMER_OWNED_PUBLISHING_PROVEN.",
+    "Production track writes remain PRODUCTION_SUBMISSION_BLOCKED before any Google write."
+  ],
+  "ops_secret_dir_configured": false,
+  "optional_permissions": [
+    "MANAGE_TESTERS"
+  ],
+  "play_app_auto_created": false,
+  "prerequisites": {
+    "BF_PRINCIPAL_GRANTED": "BLOCKED_EXTERNAL",
+    "INTERNAL_TESTER_CONFIGURATION": "NOT_APPLICABLE",
+    "PACKAGE_BOUND": "BLOCKED_EXTERNAL",
+    "PLAY_APP_CREATED": "BLOCKED_EXTERNAL",
+    "PLAY_APP_SIGNING_TERMS_ACCEPTED": "BLOCKED_EXTERNAL",
+    "PLAY_DEVELOPER_ACCOUNT": "BLOCKED_EXTERNAL",
+    "PUBLISHER_CREDENTIAL_AVAILABLE": "ACTION_REQUIRED",
+    "TEST_RELEASE_PERMISSION_GRANTED": "BLOCKED_EXTERNAL",
+    "VIEW_APP_INFORMATION_GRANTED": "BLOCKED_EXTERNAL"
+  },
+  "publisher_owner_type": "BUSINESSFORGE_REFERENCE",
+  "reference_identity": {
+    "customer_app_id": "bforge-reference-internal",
+    "customer_package_forbidden": "de.hutthurm.dorfladen",
+    "package_name": "de.bforge.reference.internal",
+    "recyclable_as_customer_app": false,
+    "tenant_id": "tenant-bforge-reference"
+  },
+  "reference_setup_contract": {
+    "created_by_businessforge": false,
+    "customer_owned_publishing_proven": false,
+    "external_publisher_action_required": true,
+    "forbidden_permissions": [
+      "PLAY_ADMIN",
+      "ACCOUNT_WIDE_ADMIN",
+      "PRODUCTION_RELEASE",
+      "FINANCIAL_DATA"
+    ],
+    "optional_permissions": [
+      "MANAGE_TESTERS"
+    ],
+    "package_name": "de.bforge.reference.internal",
+    "publisher_owner_type": "BUSINESSFORGE_REFERENCE",
+    "required_permissions": [
+      "VIEW_APP_INFORMATION",
+      "MANAGE_TEST_RELEASES"
+    ]
+  },
+  "required_permissions": [
+    "VIEW_APP_INFORMATION",
+    "MANAGE_TEST_RELEASES"
+  ],
+  "setup": {
+    "blanket_google_connected": false,
+    "failed": [],
+    "missing": [
+      "PLAY_DEVELOPER_ACCOUNT",
+      "PLAY_APP_CREATED",
+      "PLAY_APP_SIGNING_TERMS_ACCEPTED",
+      "PACKAGE_BOUND",
+      "BF_PRINCIPAL_GRANTED",
+      "VIEW_APP_INFORMATION_GRANTED",
+      "TEST_RELEASE_PERMISSION_GRANTED",
+      "PUBLISHER_CREDENTIAL_AVAILABLE"
+    ],
+    "play_external_setup_ready": false,
+    "prerequisites": {
+      "BF_PRINCIPAL_GRANTED": "BLOCKED_EXTERNAL",
+      "INTERNAL_TESTER_CONFIGURATION": "NOT_APPLICABLE",
+      "PACKAGE_BOUND": "BLOCKED_EXTERNAL",
+      "PLAY_APP_CREATED": "BLOCKED_EXTERNAL",
+      "PLAY_APP_SIGNING_TERMS_ACCEPTED": "BLOCKED_EXTERNAL",
+      "PLAY_DEVELOPER_ACCOUNT": "BLOCKED_EXTERNAL",
+      "PUBLISHER_CREDENTIAL_AVAILABLE": "ACTION_REQUIRED",
+      "TEST_RELEASE_PERMISSION_GRANTED": "BLOCKED_EXTERNAL",
+      "VIEW_APP_INFORMATION_GRANTED": "BLOCKED_EXTERNAL"
+    },
+    "status": "PLAY_EXTERNAL_SETUP_INCOMPLETE"
+  },
+  "source_baseline": {
+    "appfactory": "cb4337b2ef4a35e2dc82a4c4399cd6e0f78c8266",
+    "businessforge": "7954deb488648ffd8708b5c600aaef9adc09866d",
+    "dashboard": "9a889042ef017d9ca20cf553948168b37d4f7831",
+    "flutter_release": "6aab4b86ad83bbb488f2978f0ccbbd2630f5bf5e",
+    "marketing_live": "20260921-084040-fd78a41",
+    "marketing_source": "b4092d124b569b1b7b4b0884d06f6611044104a1"
+  },
+  "workspace_wiring": {
+    "BF_OPS_SECRET_DIR": "ACTION_REQUIRED",
+    "GOOGLE_AUTH_LIBRARY": "ACTION_REQUIRED",
+    "HTTPX": "VERIFIED",
+    "REAL_GOOGLE_PLAY_INTERNAL_TEST": "ACTION_REQUIRED"
+  }
+}

@@ -120,6 +120,7 @@ def classify_permissions(granted: list[str] | tuple[str, ...]) -> dict[str, Any]
         "production_permission_required": False,
         "production_permission_present": "PRODUCTION_RELEASE" in granted_set,
         "production_permission_used": False,
+        "EXTRA_PERMISSION_PRESENT": bool(forbidden_present),
         "ready_for_internal_track": ready,
     }
 

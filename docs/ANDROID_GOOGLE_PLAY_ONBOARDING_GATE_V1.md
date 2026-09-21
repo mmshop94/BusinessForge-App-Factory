@@ -1,19 +1,22 @@
 # Google Play Onboarding Gate + Internal Live Proof V1
 
-> Stand: 2026-09-20 · **no production submission** · no secrets in git  
-> Prior (unchanged): [ANDROID_CUSTOMER_PLAY_TEST_TRACK_DELIVERY_V1.md](ANDROID_CUSTOMER_PLAY_TEST_TRACK_DELIVERY_V1.md)
+> Stand: 2026-09-21 · **no production submission** · no secrets in git  
+> Prior (unchanged): [ANDROID_CUSTOMER_PLAY_TEST_TRACK_DELIVERY_V1.md](ANDROID_CUSTOMER_PLAY_TEST_TRACK_DELIVERY_V1.md)  
+> Live publisher proof (this workspace): [ANDROID_GOOGLE_PLAY_LIVE_PUBLISHER_PROOF_V1.md](ANDROID_GOOGLE_PLAY_LIVE_PUBLISHER_PROOF_V1.md)
 
 ```text
 IMPLEMENTATION_COMPLETE
 ONBOARDING_CONTRACT_READY
+REFERENCE_IDENTITY_RESERVED = de.bforge.reference.internal
 LIVE_GOOGLE_PLAY_PROOF = BLOCKED_EXTERNAL
+CUSTOMER_OWNED_PUBLISHING_PROVEN = FALSE
 ```
 
-No Play Console app is created by AppFactory. No customer-owned publisher was wired in this slice. A BusinessForge **reference** publisher may be used later for a platform live-proof only — that is **not** `CUSTOMER_OWNED_PUBLISHING_PROVEN`.
+No Play Console app is created by AppFactory. No customer-owned publisher was wired in this slice. The reserved BusinessForge **reference** identity is `de.bforge.reference.internal` (`BUSINESSFORGE_REFERENCE` only). That is **not** `CUSTOMER_OWNED_PUBLISHING_PROVEN`.
 
 ## External setup contract
 
-Each prerequisite has its own state (`NOT_STARTED` / `ACTION_REQUIRED` / `VERIFYING` / `VERIFIED` / `FAILED` / `NOT_APPLICABLE`):
+Each prerequisite has its own state (`NOT_STARTED` / `ACTION_REQUIRED` / `VERIFYING` / `VERIFIED` / `FAILED` / `NOT_APPLICABLE` / `BLOCKED_EXTERNAL`):
 
 ```text
 PLAY_DEVELOPER_ACCOUNT
@@ -24,9 +27,10 @@ BF_PRINCIPAL_GRANTED
 VIEW_APP_INFORMATION_GRANTED
 TEST_RELEASE_PERMISSION_GRANTED
 PUBLISHER_CREDENTIAL_AVAILABLE
+INTERNAL_TESTER_CONFIGURATION   (optional; default NOT_APPLICABLE)
 ```
 
-`PLAY_EXTERNAL_SETUP_READY` only when every required item is `VERIFIED` or `NOT_APPLICABLE`. There is no blanket “Google connected” flag.
+`PLAY_EXTERNAL_SETUP_READY` only when every required item is `VERIFIED` or `NOT_APPLICABLE`. `BLOCKED_EXTERNAL` is never ready. There is no blanket “Google connected” flag.
 
 ## One-time Play Console app-create
 
@@ -53,11 +57,13 @@ Architecture is identical. Ownership is an authority/evidence property.
 
 ```text
 app-factory google-play preflight <intake.json> --tenant-id … --app-id … --package-name …
+app-factory google-play setup-contract --reference
 app-factory google-play setup-contract <intake.json>
 app-factory google-play onboarding --states-json states.json
+app-factory google-play live-proof-audit
 ```
 
-Result: `LIVE_INTERNAL_UPLOAD_READY` or concrete blockers. Live Google without `REAL_GOOGLE_PLAY_INTERNAL_TEST=1` and a wired credential is `BLOCKED_EXTERNAL` (not a silent PASS).
+Result: `LIVE_INTERNAL_UPLOAD_READY` or concrete blockers. Live Google without `REAL_GOOGLE_PLAY_INTERNAL_TEST=1` and a wired credential is `BLOCKED_EXTERNAL` (not a silent PASS). Reference identity for a later live test: `de.bforge.reference.internal` — never `de.hutthurm.dorfladen`.
 
 `track=production` returns `PRODUCTION_SUBMISSION_BLOCKED` before any Google write.
 
@@ -107,7 +113,7 @@ Instruction rows: `step_id`, `title`, `description`, `required_value`, `verifica
 REAL_GOOGLE_PLAY_INTERNAL_TEST=1
 ```
 
-Unset (this workspace): skipped, `LIVE_GOOGLE_PLAY_PROOF = BLOCKED_EXTERNAL`. Must not fail the default suite and must not claim PASS.
+Unset (this workspace): skipped, `LIVE_GOOGLE_PLAY_PROOF = BLOCKED_EXTERNAL`. Expected package is `de.bforge.reference.internal`. Must not fail the default suite and must not claim PASS.
 
 ## Security
 

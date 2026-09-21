@@ -8,9 +8,11 @@ from pathlib import Path
 from typing import Any
 
 from app_factory.application.package_identity import (
+    is_reference_android_package,
     is_reserved_android_package,
     validate_android_package_format,
     validate_customer_production_application_id,
+    validate_reference_application_id,
 )
 from app_factory.domain.errors import IdentityCollisionError, PackageMutationError
 
@@ -53,6 +55,8 @@ class CustomerAppIdentityRegistry:
         package = validate_android_package_format(package_name_android)
         if production:
             package = validate_customer_production_application_id(package)
+        elif is_reference_android_package(package):
+            package = validate_reference_application_id(package)
         elif is_reserved_android_package(package) and not package.startswith("de.bforge.app.u"):
             raise IdentityCollisionError(
                 f"Reserved Android namespace is not allowed: {package}"

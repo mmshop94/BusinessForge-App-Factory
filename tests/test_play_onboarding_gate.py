@@ -44,6 +44,9 @@ from app_factory.application.customer_release.play.provider import (
 from app_factory.application.customer_release.play.setup_contract import (
     ACTION_REQUIRED,
     BF_PRINCIPAL_GRANTED,
+    BLOCKED_EXTERNAL as SETUP_BLOCKED_EXTERNAL,
+    INTERNAL_TESTER_CONFIGURATION,
+    NOT_APPLICABLE,
     PACKAGE_BOUND,
     PLAY_APP_CREATED,
     PLAY_APP_SIGNING_TERMS_ACCEPTED,
@@ -55,7 +58,16 @@ from app_factory.application.customer_release.play.setup_contract import (
     VIEW_APP_INFORMATION_GRANTED,
     console_app_create_contract,
     evaluate_setup_states,
+    reference_console_app_create_contract,
     rotate_publisher_credential,
+)
+from app_factory.application.customer_release.play.live_audit import (
+    audit_workspace_play_live_preconditions,
+)
+from app_factory.application.package_identity import (
+    REFERENCE_INTERNAL_PACKAGE,
+    validate_customer_production_application_id,
+    validate_reference_application_id,
 )
 from app_factory.application.customer_release.play.testers import (
     TESTER_GROUP_NOT_CONFIGURED,
@@ -108,7 +120,7 @@ def test_external_setup_contract_generation(tmp_path: Path) -> None:
     contract = console_app_create_contract(
         profile,
         principal_identity="ops://play/principal",
-        owner_type=OWNER_REFERENCE,
+        owner_type=OWNER_CUSTOMER,
     )
     assert contract["created_by_businessforge"] is False
     assert contract["package_name"] == "de.hutthurm.dorfladen"
@@ -144,7 +156,7 @@ def test_reference_publisher_cannot_claim_customer_owned_proof() -> None:
         release_id="rel-1",
         snapshot_id="snap-1",
         publisher_owner_type=OWNER_REFERENCE,
-        package_name="de.hutthurm.dorfladen",
+        package_name="de.bforge.reference.internal",
         version_code=1,
         version_name="1.0.0",
         aab_sha256="abc",
@@ -162,7 +174,7 @@ def test_reference_publisher_cannot_claim_customer_owned_proof() -> None:
             release_id="rel-1",
             snapshot_id="snap-1",
             publisher_owner_type=OWNER_REFERENCE,
-            package_name="de.hutthurm.dorfladen",
+            package_name="de.bforge.reference.internal",
             version_code=1,
             version_name="1.0.0",
             aab_sha256="abc",
@@ -182,7 +194,7 @@ def test_live_evidence_rejects_secrets() -> None:
             release_id="rel-1",
             snapshot_id="snap-1",
             publisher_owner_type=OWNER_REFERENCE,
-            package_name="de.hutthurm.dorfladen",
+            package_name="de.bforge.reference.internal",
             version_code=1,
             version_name="1.0.0",
             aab_sha256="abc",
@@ -491,14 +503,117 @@ def test_edit_create_failure() -> None:
         provider.create_edit("de.hutthurm.dorfladen")
 
 
+def test_reference_package_is_not_customer_production() -> None:
+    package = validate_reference_application_id(REFERENCE_INTERNAL_PACKAGE)
+    assert package == "de.bforge.reference.internal"
+    with pytest.raises(ValueError):
+        validate_reference_application_id("de.hutthurm.dorfladen")
+    with pytest.raises(ValueError):
+        validate_customer_production_application_id(REFERENCE_INTERNAL_PACKAGE)
+    registry = CustomerAppIdentityRegistry()
+    record = registry.validate_and_register(
+        customer_app_id="bforge-reference-internal",
+        package_name_android=REFERENCE_INTERNAL_PACKAGE,
+        bundle_identifier=REFERENCE_INTERNAL_PACKAGE,
+        published=False,
+        version_code=1,
+        production=False,
+    )
+    assert record.package_name_android == REFERENCE_INTERNAL_PACKAGE
+    with pytest.raises(ValueError):
+        registry.validate_and_register(
+            customer_app_id="customer-would-recycle",
+            package_name_android=REFERENCE_INTERNAL_PACKAGE,
+            bundle_identifier=REFERENCE_INTERNAL_PACKAGE,
+            published=False,
+            version_code=1,
+            production=True,
+        )
+    frozen = registry.freeze_play_package("bforge-reference-internal")
+    assert frozen.package_immutable is True
+
+
+def test_reference_setup_contract_is_not_customer_owned() -> None:
+    contract = reference_console_app_create_contract(principal_identity="ops://play/principal")
+    assert contract["created_by_businessforge"] is False
+    assert contract["package_name"] == REFERENCE_INTERNAL_PACKAGE
+    assert contract["publisher_owner_type"] == OWNER_REFERENCE
+    assert contract["customer_owned_publishing_proven"] is False
+    assert contract["recyclable_as_customer_app"] is False
+    assert "PRODUCTION_RELEASE" in contract["forbidden_permissions"]
+
+
+def test_customer_package_cannot_be_reference_setup_contract(tmp_path: Path) -> None:
+    profile = _profile(tmp_path)
+    with pytest.raises(PlayConnectionError):
+        console_app_create_contract(
+            profile,
+            principal_identity="ops://play/principal",
+            owner_type=OWNER_REFERENCE,
+        )
+
+
+def test_blocked_external_is_not_setup_ready() -> None:
+    blocked = evaluate_setup_states(
+        {
+            PLAY_DEVELOPER_ACCOUNT: SETUP_BLOCKED_EXTERNAL,
+            PLAY_APP_CREATED: SETUP_BLOCKED_EXTERNAL,
+            PLAY_APP_SIGNING_TERMS_ACCEPTED: SETUP_BLOCKED_EXTERNAL,
+            PACKAGE_BOUND: SETUP_BLOCKED_EXTERNAL,
+            BF_PRINCIPAL_GRANTED: SETUP_BLOCKED_EXTERNAL,
+            VIEW_APP_INFORMATION_GRANTED: SETUP_BLOCKED_EXTERNAL,
+            TEST_RELEASE_PERMISSION_GRANTED: SETUP_BLOCKED_EXTERNAL,
+            PUBLISHER_CREDENTIAL_AVAILABLE: ACTION_REQUIRED,
+        }
+    )
+    assert blocked["play_external_setup_ready"] is False
+    assert blocked["prerequisites"][INTERNAL_TESTER_CONFIGURATION] == NOT_APPLICABLE
+    ready = evaluate_setup_states(_verified_states())
+    assert ready["play_external_setup_ready"] is True
+    assert ready["prerequisites"][INTERNAL_TESTER_CONFIGURATION] == NOT_APPLICABLE
+
+
+def test_workspace_live_proof_audit_is_blocked_external() -> None:
+    payload = audit_workspace_play_live_preconditions(
+        environ={
+            "REAL_GOOGLE_PLAY_INTERNAL_TEST": "",
+            "BF_OPS_SECRET_DIR": "",
+        }
+    )
+    assert payload["LIVE_GOOGLE_PLAY_PROOF"] == BLOCKED_EXTERNAL
+    assert payload["CUSTOMER_OWNED_PUBLISHING_PROVEN"] is False
+    assert payload["REFERENCE_PUBLISHER_LIVE_PROOF"] is False
+    assert payload["PLAY_APP_BOUND"] is False
+    assert payload["AAB_BUILT"] == "NOT_RUN"
+    assert payload["INTERNAL_TRACK_UPLOAD"] == "NOT_RUN"
+    assert payload["ANDROID_PRODUCTION_READY"] == "NOT_IMPLEMENTED"
+    assert payload["reference_identity"]["package_name"] == REFERENCE_INTERNAL_PACKAGE
+    assert payload["prerequisites"][PLAY_DEVELOPER_ACCOUNT] == SETUP_BLOCKED_EXTERNAL
+    assert payload["prerequisites"][PUBLISHER_CREDENTIAL_AVAILABLE] == ACTION_REQUIRED
+    assert payload["prerequisites"][INTERNAL_TESTER_CONFIGURATION] == NOT_APPLICABLE
+    assert payload["developer_account_auto_created"] is False
+    dumped = json.dumps(payload)
+    assert "BEGIN PRIVATE" not in dumped
+    assert "private_key" not in dumped
+    assert "refresh_token" not in dumped
+
+
 @pytest.mark.skipif(
     os.environ.get("REAL_GOOGLE_PLAY_INTERNAL_TEST") != "1",
     reason="LIVE_GOOGLE_PLAY_PROOF = BLOCKED_EXTERNAL",
 )
 def test_real_google_play_internal_live() -> None:
-    connection = _connection(owner_type=OWNER_REFERENCE)
+    from app_factory.application.package_identity import REFERENCE_INTERNAL_PACKAGE
+
+    connection = _connection(
+        owner_type=OWNER_REFERENCE,
+        customer_app_id="bforge-reference-internal",
+        tenant_id="tenant-bforge-reference",
+        package_name=REFERENCE_INTERNAL_PACKAGE,
+    )
     result = GooglePlayPublisherProvider(FailClosedSecretResolver(), connection).verify_connection(
-        connection, expected_package="de.hutthurm.dorfladen"
+        connection, expected_package=REFERENCE_INTERNAL_PACKAGE
     )
     assert result.get("status") == STATUS_READY
     assert result.get("live_proof") != "LIVE_PLAY_PROOF_BLOCKED_EXTERNAL"
+    assert result.get("CUSTOMER_OWNED_PUBLISHING_PROVEN") is not True

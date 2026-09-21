@@ -1,3 +1,8 @@
+### White-Label Google Play Live Publisher Proof V1
+
+* Reserved reference identity `de.bforge.reference.internal` (`BUSINESSFORGE_REFERENCE` only; never customer production; never `de.hutthurm.dorfladen`). Setup states include `BLOCKED_EXTERNAL` and optional `INTERNAL_TESTER_CONFIGURATION`. CLI `google-play live-proof-audit` / `setup-contract --reference`. This workspace has no wired publisher, so **LIVE_GOOGLE_PLAY_PROOF remains BLOCKED_EXTERNAL**. `CUSTOMER_OWNED_PUBLISHING_PROVEN` stays false. Production still `NOT_IMPLEMENTED`.
+* Docs: [ANDROID_GOOGLE_PLAY_LIVE_PUBLISHER_PROOF_V1.md](docs/ANDROID_GOOGLE_PLAY_LIVE_PUBLISHER_PROOF_V1.md). Tests: `tests/test_play_onboarding_gate.py`.
+
 ### First Live Google Play Internal Track Proof + Customer Onboarding Gate V1
 
 * Canonical Play external setup contract, `CUSTOMER_OWNED` vs `BUSINESSFORGE_REFERENCE` owner types, `google-play preflight` / setup-contract / onboarding CLI, package immutability after bind, tester group references, live evidence without secrets. Live Google remains `BLOCKED_EXTERNAL` until `REAL_GOOGLE_PLAY_INTERNAL_TEST=1` and a wired app-scoped credential exist. Production still `NOT_IMPLEMENTED`.
