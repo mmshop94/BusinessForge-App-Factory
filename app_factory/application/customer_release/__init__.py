@@ -2,6 +2,7 @@
 
 from app_factory.application.customer_release.change_class import (
     APP_RELEASE_REQUIRED_CHANGE,
+    IOS_STORE_RELEASE_REQUIRED_CHANGE,
     LIVE_CONTENT_CHANGE,
     classify_intake_delta,
 )
@@ -13,6 +14,7 @@ from app_factory.application.customer_release.snapshot import freeze_snapshot, l
 
 __all__ = [
     "APP_RELEASE_REQUIRED_CHANGE",
+    "IOS_STORE_RELEASE_REQUIRED_CHANGE",
     "LIVE_CONTENT_CHANGE",
     "CustomerAppReleaseProfile",
     "PlatformSelection",

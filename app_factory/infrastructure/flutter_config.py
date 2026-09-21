@@ -35,6 +35,7 @@ class FlutterConfigApplier:
         changed.extend(self._patch_pubspec(workspace, manifest))
         changed.extend(self._patch_pubspec_assets(workspace))
         changed.extend(self._patch_android(workspace, manifest))
+        changed.extend(self._patch_ios(workspace, manifest))
         changed.extend(self._patch_gradle_properties(workspace))
         if branding_assets_root:
             changed.extend(self._copy_branding_assets(workspace, manifest, branding_assets_root))
@@ -175,6 +176,43 @@ class FlutterConfigApplier:
                 )
             manifest_xml.write_text(content, encoding="utf-8")
             changed.append(str(manifest_xml.relative_to(workspace)))
+        return changed
+
+    def _patch_ios(self, workspace: Path, manifest: AppBuildManifest) -> list[str]:
+        changed: list[str] = []
+        bundle = manifest.app.bundle_id_ios or manifest.app.package_name_android
+        if not bundle:
+            return changed
+        pbxproj = workspace / "ios" / "Runner.xcodeproj" / "project.pbxproj"
+        if pbxproj.is_file():
+            content = pbxproj.read_text(encoding="utf-8")
+            rewritten: list[str] = []
+            for line in content.splitlines(keepends=True):
+                if "PRODUCT_BUNDLE_IDENTIFIER" in line:
+                    if "RunnerTests" in line:
+                        rewritten.append(
+                            re.sub(r"= [^;]+;", f"= {bundle}.RunnerTests;", line)
+                        )
+                    else:
+                        rewritten.append(re.sub(r"= [^;]+;", f"= {bundle};", line))
+                else:
+                    rewritten.append(line)
+            updated = "".join(rewritten)
+            if updated != content:
+                pbxproj.write_text(updated, encoding="utf-8")
+                changed.append(str(pbxproj.relative_to(workspace)))
+        info = workspace / "ios" / "Runner" / "Info.plist"
+        if info.is_file():
+            content = info.read_text(encoding="utf-8")
+            updated = re.sub(
+                r"(<key>CFBundleDisplayName</key>\s*<string>)[^<]+",
+                rf"\g<1>{_xml_attr(manifest.app.display_name)}",
+                content,
+                count=1,
+            )
+            if updated != content:
+                info.write_text(updated, encoding="utf-8")
+                changed.append(str(info.relative_to(workspace)))
         return changed
 
     def _copy_branding_assets(

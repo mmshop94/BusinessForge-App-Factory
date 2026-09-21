@@ -42,7 +42,7 @@ CLI: `app-factory prepare-customer-release intake.json --output-dir ./work`
 
 Unbooked platform status is **`NOT_SUBSCRIBED`**, never `FAILED` / `BLOCKED`.
 
-An Android-only customer is not blocked by missing Apple setup. iOS generate/signing remain PARTIAL; iOS-only customers are modelled but cannot become `STORE_RELEASE_READY` until a later iOS slice.
+An Android-only customer is not blocked by missing Apple setup. iOS identity/signing/setup-contract are modelled; live archive/TestFlight stay `BLOCKED_EXTERNAL` without macOS + Apple credentials. iOS-only customers cannot become `STORE_RELEASE_READY` until signing + executor + TestFlight are wired.
 
 ## Readiness gates
 

@@ -7,6 +7,7 @@ from pathlib import Path
 
 from app_factory.application.image_assets import (
     generate_android_icons,
+    generate_ios_appiconset,
     generate_splash,
     write_play_store_icon,
 )
@@ -44,6 +45,11 @@ class NativeBrandingApplier:
         )
         if not skip_owner_signing:
             changed.extend(self._patch_signing(workspace))
+        ios_iconset = (
+            workspace / "ios" / "Runner" / "Assets.xcassets" / "AppIcon.appiconset"
+        )
+        if ios_iconset.parent.is_dir() or (workspace / "ios").is_dir():
+            changed.extend(generate_ios_appiconset(icon_bytes, ios_iconset))
         return [str(Path(item).relative_to(workspace)) if Path(item).is_absolute() else item for item in changed]
 
     def _patch_signing(self, workspace: Path) -> list[str]:

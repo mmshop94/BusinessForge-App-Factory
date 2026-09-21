@@ -102,6 +102,11 @@ class IosSigningIntake:
     status: str = "NOT_SUBSCRIBED"
     team_reference: str = ""
     profile_reference: str = ""
+    team_id_reference: str = ""
+    distribution_certificate_reference: str = ""
+    key_material_reference: str = ""
+    provisioning_profile_reference: str = ""
+    signing_mode: str = ""
 
     def to_public_dict(self) -> dict[str, Any]:
         return {
@@ -109,6 +114,12 @@ class IosSigningIntake:
             "status": self.status,
             "team_reference": self.team_reference,
             "profile_reference": self.profile_reference,
+            "team_id_reference": self.team_id_reference or self.team_reference,
+            "distribution_certificate_reference": self.distribution_certificate_reference,
+            "key_material_reference": self.key_material_reference,
+            "provisioning_profile_reference": self.provisioning_profile_reference
+            or self.profile_reference,
+            "signing_mode": self.signing_mode,
         }
 
 
@@ -283,6 +294,15 @@ def profile_from_dict(data: dict[str, Any]) -> CustomerAppReleaseProfile:
                 status=str(ios_signing.get("status") or "NOT_SUBSCRIBED"),
                 team_reference=str(ios_signing.get("team_reference") or ""),
                 profile_reference=str(ios_signing.get("profile_reference") or ""),
+                team_id_reference=str(ios_signing.get("team_id_reference") or ""),
+                distribution_certificate_reference=str(
+                    ios_signing.get("distribution_certificate_reference") or ""
+                ),
+                key_material_reference=str(ios_signing.get("key_material_reference") or ""),
+                provisioning_profile_reference=str(
+                    ios_signing.get("provisioning_profile_reference") or ""
+                ),
+                signing_mode=str(ios_signing.get("signing_mode") or ""),
             ),
             content=ContentIntake(
                 has_customer_offerings=bool(content.get("has_customer_offerings")),

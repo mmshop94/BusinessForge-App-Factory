@@ -19,10 +19,12 @@ RESERVED_ANDROID_PREFIXES = (
     "org.chromium.",
 )
 
-# Platform live-proof only. Never a customer production applicationId.
+# Platform live-proof only. Never a customer production applicationId / bundle ID.
 REFERENCE_ANDROID_PREFIX = "de.bforge.reference."
 REFERENCE_INTERNAL_PACKAGE = "de.bforge.reference.internal"
 REFERENCE_PACKAGE_PATTERN = re.compile(r"^de\.bforge\.reference\.[a-z][a-z0-9_]*$")
+REFERENCE_IOS_BUNDLE = "de.bforge.reference.internal.ios"
+REFERENCE_IOS_BUNDLE_PATTERN = re.compile(r"^de\.bforge\.reference\.[a-z][a-z0-9_]*\.ios$")
 
 
 def android_application_id_from_public_app_id(public_app_id: str) -> str:
@@ -65,6 +67,31 @@ def validate_reference_application_id(value: str) -> str:
         raise ValueError(f"Invalid BusinessForge reference Android package: {normalized}")
     if normalized == "de.hutthurm.dorfladen":
         raise ValueError("Customer-shaped packages are not a BusinessForge reference identity")
+    return normalized
+
+
+def is_reference_ios_bundle(value: str) -> bool:
+    return bool(REFERENCE_IOS_BUNDLE_PATTERN.match(value.strip().lower()))
+
+
+def validate_ios_bundle_format(value: str) -> str:
+    return validate_android_package_format(value)
+
+
+def validate_reference_ios_bundle_id(value: str) -> str:
+    normalized = validate_ios_bundle_format(value)
+    if not is_reference_ios_bundle(normalized):
+        raise ValueError(f"Invalid BusinessForge reference iOS bundle: {normalized}")
+    return normalized
+
+
+def validate_customer_production_bundle_id(value: str) -> str:
+    """Production customer iOS apps must own a non-reserved reverse-DNS bundle ID."""
+    normalized = validate_ios_bundle_format(value)
+    if is_reserved_android_package(normalized):
+        raise ValueError(
+            f"Reserved iOS namespace is not allowed for customer production: {normalized}"
+        )
     return normalized
 
 

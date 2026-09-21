@@ -6,6 +6,7 @@ from typing import Any, Mapping
 
 LIVE_CONTENT_CHANGE = "LIVE_CONTENT_CHANGE"
 APP_RELEASE_REQUIRED_CHANGE = "APP_RELEASE_REQUIRED_CHANGE"
+IOS_STORE_RELEASE_REQUIRED_CHANGE = "IOS_STORE_RELEASE_REQUIRED_CHANGE"
 
 RELEASE_REQUIRED_KEYS = frozenset(
     {
@@ -38,6 +39,8 @@ LIVE_CONTENT_KEYS = frozenset(
         "orders",
         "bookings",
         "menu",
+        "inventory",
+        "offerings",
     }
 )
 
@@ -51,6 +54,8 @@ def classify_intake_delta(
     if not changed:
         return LIVE_CONTENT_CHANGE
     if changed & RELEASE_REQUIRED_KEYS:
+        if changed & {"bundle_identifier", "ios_enabled"}:
+            return IOS_STORE_RELEASE_REQUIRED_CHANGE
         return APP_RELEASE_REQUIRED_CHANGE
     if changed <= LIVE_CONTENT_KEYS:
         return LIVE_CONTENT_CHANGE

@@ -1,0 +1,97 @@
+{
+  "APPLE_ONBOARDING_CONTRACT_READY": true,
+  "APP_STORE_PRODUCTION": "NOT_IMPLEMENTED",
+  "CUSTOMER_OWNED_PUBLISHING_PROVEN": false,
+  "IOS_BUILD_BLOCKED_NO_MACOS_EXECUTOR": true,
+  "IOS_IMPLEMENTATION_READY": true,
+  "IPA_BUILT": "NOT_RUN",
+  "LIVE_APPLE_PROOF": "BLOCKED_EXTERNAL",
+  "REFERENCE_PUBLISHER_LIVE_PROOF": false,
+  "TESTFLIGHT_UPLOAD": "NOT_RUN",
+  "app_record_auto_created": false,
+  "developer_account_auto_created": false,
+  "executor": {
+    "cocoapods": "NOT_AVAILABLE",
+    "export_tooling": "NOT_AVAILABLE",
+    "fake_ipa_pass": false,
+    "flutter_sdk": "ACTION_REQUIRED",
+    "keychain": "NOT_AVAILABLE",
+    "macos": false,
+    "notes": [
+      "This workspace is not macOS. Store IPAs cannot be produced here.",
+      "Reuse an existing macOS runner later; do not invent paid CI in this slice."
+    ],
+    "provider": null,
+    "status": "IOS_BUILD_EXECUTOR_REQUIRED",
+    "xcode": "NOT_AVAILABLE"
+  },
+  "google_status_unchanged": {
+    "ANDROID_PRODUCTION_READY": "NOT_IMPLEMENTED",
+    "CUSTOMER_OWNED_PUBLISHING_PROVEN": false,
+    "LIVE_GOOGLE_PLAY_PROOF": "BLOCKED_EXTERNAL"
+  },
+  "kind": "APPLE_TESTFLIGHT_LIVE_PROOF_AUDIT_V1",
+  "notes": [
+    "No Apple Developer account was created by this audit.",
+    "No private keys or provisioning profiles are included.",
+    "Production App Store submission remains APP_STORE_PRODUCTION_SUBMISSION_BLOCKED."
+  ],
+  "prerequisites": {
+    "AGREEMENTS_ACCEPTED": "BLOCKED_EXTERNAL",
+    "APPLE_DEVELOPER_ACCOUNT": "BLOCKED_EXTERNAL",
+    "APP_RECORD_CREATED": "BLOCKED_EXTERNAL",
+    "APP_STORE_CONNECT_API_ACCESS": "ACTION_REQUIRED",
+    "BF_USER_OR_API_ACCESS_GRANTED": "BLOCKED_EXTERNAL",
+    "BUNDLE_ID_REGISTERED": "BLOCKED_EXTERNAL",
+    "MACOS_BUILD_EXECUTOR_AVAILABLE": "BLOCKED_EXTERNAL",
+    "SIGNING_MATERIAL_AVAILABLE": "ACTION_REQUIRED"
+  },
+  "publisher_owner_type": "BUSINESSFORGE_REFERENCE",
+  "reference_identity": {
+    "bundle_identifier": "de.bforge.reference.internal.ios",
+    "recyclable_as_customer_app": false
+  },
+  "reference_setup_contract": {
+    "bundle_identifier": "de.bforge.reference.internal.ios",
+    "created_by_businessforge": false,
+    "customer_owned_publishing_proven": false,
+    "publisher_owner_type": "BUSINESSFORGE_REFERENCE"
+  },
+  "setup": {
+    "apple_external_setup_ready": false,
+    "blanket_apple_connected": false,
+    "missing": [
+      "APPLE_DEVELOPER_ACCOUNT",
+      "APP_STORE_CONNECT_API_ACCESS",
+      "AGREEMENTS_ACCEPTED",
+      "BUNDLE_ID_REGISTERED",
+      "APP_RECORD_CREATED",
+      "BF_USER_OR_API_ACCESS_GRANTED",
+      "SIGNING_MATERIAL_AVAILABLE",
+      "MACOS_BUILD_EXECUTOR_AVAILABLE"
+    ],
+    "prerequisites": {
+      "AGREEMENTS_ACCEPTED": "BLOCKED_EXTERNAL",
+      "APPLE_DEVELOPER_ACCOUNT": "BLOCKED_EXTERNAL",
+      "APP_RECORD_CREATED": "BLOCKED_EXTERNAL",
+      "APP_STORE_CONNECT_API_ACCESS": "ACTION_REQUIRED",
+      "BF_USER_OR_API_ACCESS_GRANTED": "BLOCKED_EXTERNAL",
+      "BUNDLE_ID_REGISTERED": "BLOCKED_EXTERNAL",
+      "MACOS_BUILD_EXECUTOR_AVAILABLE": "BLOCKED_EXTERNAL",
+      "SIGNING_MATERIAL_AVAILABLE": "ACTION_REQUIRED"
+    },
+    "status": "APPLE_EXTERNAL_SETUP_INCOMPLETE"
+  },
+  "source_baseline": {
+    "appfactory": "ceb6466bd177ddb804c507001ed6a64bda00af3b",
+    "businessforge": "46e85a88ea9d7d3a48d2457735d8902a00bec629",
+    "dashboard": "9a889042ef017d9ca20cf553948168b37d4f7831",
+    "flutter_release": "6aab4b86ad83bbb488f2978f0ccbbd2630f5bf5e",
+    "marketing_live": "20260921-084040-fd78a41",
+    "marketing_source": "b4092d124b569b1b7b4b0884d06f6611044104a1"
+  },
+  "workspace_wiring": {
+    "BF_OPS_SECRET_DIR": "ACTION_REQUIRED",
+    "REAL_APPLE_TESTFLIGHT_TEST": "ACTION_REQUIRED"
+  }
+}

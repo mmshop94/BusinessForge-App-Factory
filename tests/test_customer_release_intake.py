@@ -9,6 +9,7 @@ import pytest
 
 from app_factory.application.customer_release.change_class import (
     APP_RELEASE_REQUIRED_CHANGE,
+    IOS_STORE_RELEASE_REQUIRED_CHANGE,
     LIVE_CONTENT_CHANGE,
     classify_intake_delta,
 )
@@ -81,6 +82,7 @@ def _intake(
     app_id: str = "dorfladen-hutthurm",
     display_name: str = "Dorfladen Hutthurm",
     package_name: str = "de.hutthurm.dorfladen",
+    bundle_identifier: str | None = None,
     vertical: str = "village_store",
     platforms: str = "ANDROID_ONLY",
     version_code: int = 1,
@@ -125,7 +127,7 @@ def _intake(
         "version_code": version_code,
         "display_name": display_name,
         "package_name": package_name,
-        "bundle_identifier": package_name,
+        "bundle_identifier": bundle_identifier or package_name,
         "platforms": {"selection": platforms},
         "branding": {
             "logo": "branding/logo.png",
@@ -184,7 +186,7 @@ def test_android_only_customer_release_ready(tmp_path: Path) -> None:
 def test_ios_only_not_blocked_by_android(tmp_path: Path) -> None:
     _write_assets(tmp_path)
     result = prepare_customer_release(
-        _intake(tmp_path, platforms="IOS_ONLY", package_name="de.bforge.app.u01jabcdefghjkmnpqrstvwxyz0"),
+        _intake(tmp_path, platforms="IOS_ONLY", package_name="de.hutthurm.dorfladen"),
         tmp_path / "out",
         resolver=_resolver(),
         apply_workspace=False,
@@ -192,8 +194,10 @@ def test_ios_only_not_blocked_by_android(tmp_path: Path) -> None:
     assert _gate_status(result, "ANDROID_CONFIG_READY") == "NOT_SUBSCRIBED"
     assert _gate_status(result, "ANDROID_SIGNING_READY") == "NOT_SUBSCRIBED"
     assert _gate_status(result, "ANDROID_ASSETS_READY") == "NOT_SUBSCRIBED"
-    assert _gate_status(result, "IOS_CONFIG_READY") == "BLOCKED"
+    assert _gate_status(result, "IOS_CONFIG_READY") == "READY"
+    assert _gate_status(result, "IOS_SIGNING_READY") == "BLOCKED"
     assert "FAILED" not in json.dumps(result["readiness"]["gates"])
+    assert result["apple"]["app_store_production_ready"] == "NOT_IMPLEMENTED"
 
 
 def test_android_and_ios_modelled(tmp_path: Path) -> None:
@@ -205,7 +209,9 @@ def test_android_and_ios_modelled(tmp_path: Path) -> None:
         apply_workspace=False,
     )
     assert _gate_status(result, "ANDROID_SIGNING_READY") == "READY"
-    assert _gate_status(result, "IOS_CONFIG_READY") == "BLOCKED"
+    assert _gate_status(result, "IOS_CONFIG_READY") == "READY"
+    assert _gate_status(result, "IOS_SIGNING_READY") == "BLOCKED"
+    assert "FAILED" not in json.dumps(result["readiness"]["gates"])
     assert result["store_release"] == "STORE_RELEASE_NOT_READY"
 
 
@@ -384,6 +390,11 @@ def test_live_content_does_not_require_store_release() -> None:
     assert classify_intake_delta(previous, current) == LIVE_CONTENT_CHANGE
     renamed = {"display_name": "Neuer Name", "products": previous["products"]}
     assert classify_intake_delta(previous, renamed) == APP_RELEASE_REQUIRED_CHANGE
+    ios_id = {"display_name": "Dorfladen", "bundle_identifier": "de.kunde.app"}
+    assert (
+        classify_intake_delta({"display_name": "Dorfladen", "bundle_identifier": "de.alt.app"}, ios_id)
+        == IOS_STORE_RELEASE_REQUIRED_CHANGE
+    )
 
 
 def test_customer_apply_writes_identity_without_owner_keystore(tmp_path: Path) -> None:

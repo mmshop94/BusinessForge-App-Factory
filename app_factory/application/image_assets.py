@@ -148,3 +148,83 @@ def generate_splash(
         encoding="utf-8",
     )
     return [str(splash_path), str(launch_background), str(colors)]
+
+
+IOS_APPICON_SPECS = (
+    ("Icon-App-20x20@2x.png", 40),
+    ("Icon-App-20x20@3x.png", 60),
+    ("Icon-App-29x29@1x.png", 29),
+    ("Icon-App-29x29@2x.png", 58),
+    ("Icon-App-29x29@3x.png", 87),
+    ("Icon-App-40x40@2x.png", 80),
+    ("Icon-App-40x40@3x.png", 120),
+    ("Icon-App-60x60@2x.png", 120),
+    ("Icon-App-60x60@3x.png", 180),
+    ("Icon-App-20x20@1x.png", 20),
+    ("Icon-App-40x40@1x.png", 40),
+    ("Icon-App-76x76@1x.png", 76),
+    ("Icon-App-76x76@2x.png", 152),
+    ("Icon-App-83.5x83.5@2x.png", 167),
+    ("Icon-App-1024x1024@1x.png", 1024),
+)
+
+
+def generate_ios_appiconset(source: bytes, output_dir: Path) -> list[str]:
+    """Fill AppIcon.appiconset from a customer PNG. Does not invent demo icons."""
+    validate_icon_bytes(source)
+    output_dir.mkdir(parents=True, exist_ok=True)
+    written: list[str] = []
+    with Image.open(io.BytesIO(source)) as image:
+        rgba = image.convert("RGBA")
+        for filename, px in IOS_APPICON_SPECS:
+            target = output_dir / filename
+            rgba.resize((px, px), Image.Resampling.LANCZOS).save(target, format="PNG")
+            written.append(str(target))
+    contents = output_dir / "Contents.json"
+    if not contents.is_file():
+        contents.write_text(
+            '{"images":[],"info":{"version":1,"author":"xcode"}}\n',
+            encoding="utf-8",
+        )
+        written.append(str(contents))
+    return written
+
+
+IOS_APPICON_SPECS = (
+    ("Icon-App-20x20@2x.png", 40),
+    ("Icon-App-20x20@3x.png", 60),
+    ("Icon-App-29x29@1x.png", 29),
+    ("Icon-App-29x29@2x.png", 58),
+    ("Icon-App-29x29@3x.png", 87),
+    ("Icon-App-40x40@2x.png", 80),
+    ("Icon-App-40x40@3x.png", 120),
+    ("Icon-App-60x60@2x.png", 120),
+    ("Icon-App-60x60@3x.png", 180),
+    ("Icon-App-20x20@1x.png", 20),
+    ("Icon-App-40x40@1x.png", 40),
+    ("Icon-App-76x76@1x.png", 76),
+    ("Icon-App-76x76@2x.png", 152),
+    ("Icon-App-83.5x83.5@2x.png", 167),
+    ("Icon-App-1024x1024@1x.png", 1024),
+)
+
+
+def generate_ios_appiconset(source: bytes, output_dir: Path) -> list[str]:
+    """Fill AppIcon.appiconset from a customer PNG. Does not invent demo icons."""
+    validate_icon_bytes(source)
+    output_dir.mkdir(parents=True, exist_ok=True)
+    written: list[str] = []
+    with Image.open(io.BytesIO(source)) as image:
+        rgba = image.convert("RGBA")
+        for filename, px in IOS_APPICON_SPECS:
+            target = output_dir / filename
+            rgba.resize((px, px), Image.Resampling.LANCZOS).save(target, format="PNG")
+            written.append(str(target))
+    contents = output_dir / "Contents.json"
+    if not contents.is_file():
+        contents.write_text(
+            '{"images":[],"info":{"version":1,"author":"xcode"}}\n',
+            encoding="utf-8",
+        )
+        written.append(str(contents))
+    return written

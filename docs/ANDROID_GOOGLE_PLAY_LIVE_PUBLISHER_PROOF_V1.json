@@ -104,12 +104,17 @@
     "status": "PLAY_EXTERNAL_SETUP_INCOMPLETE"
   },
   "source_baseline": {
-    "appfactory": "cb4337b2ef4a35e2dc82a4c4399cd6e0f78c8266",
-    "businessforge": "7954deb488648ffd8708b5c600aaef9adc09866d",
+    "appfactory": "ceb6466bd177ddb804c507001ed6a64bda00af3b",
+    "businessforge": "46e85a88ea9d7d3a48d2457735d8902a00bec629",
     "dashboard": "9a889042ef017d9ca20cf553948168b37d4f7831",
     "flutter_release": "6aab4b86ad83bbb488f2978f0ccbbd2630f5bf5e",
     "marketing_live": "20260921-084040-fd78a41",
     "marketing_source": "b4092d124b569b1b7b4b0884d06f6611044104a1"
+  },
+  "source_baseline_repaired": true,
+  "source_baseline_previous": {
+    "appfactory": "cb4337b2ef4a35e2dc82a4c4399cd6e0f78c8266",
+    "businessforge": "7954deb488648ffd8708b5c600aaef9adc09866d"
   },
   "workspace_wiring": {
     "BF_OPS_SECRET_DIR": "ACTION_REQUIRED",

@@ -1,3 +1,8 @@
+### iOS Factory + App Store Connect Publishing Foundation V1
+
+* iOS customer identity, reserved `de.bforge.reference.internal.ios`, per-customer Apple signing references, macOS executor boundary (`IOS_BUILD_EXECUTOR_REQUIRED` on Windows, never a fake IPA PASS), App Store Connect connection + setup contract, TestFlight delivery foundation, production hard-block. Live Apple remains **BLOCKED_EXTERNAL**. Google live proof unchanged **BLOCKED_EXTERNAL**.
+* Docs: [IOS_FACTORY_APP_STORE_CONNECT_FOUNDATION_V1.md](docs/IOS_FACTORY_APP_STORE_CONNECT_FOUNDATION_V1.md). Tests: `tests/test_apple_ios_foundation.py`.
+
 ### White-Label Google Play Live Publisher Proof V1
 
 * Reserved reference identity `de.bforge.reference.internal` (`BUSINESSFORGE_REFERENCE` only; never customer production; never `de.hutthurm.dorfladen`). Setup states include `BLOCKED_EXTERNAL` and optional `INTERNAL_TESTER_CONFIGURATION`. CLI `google-play live-proof-audit` / `setup-contract --reference`. This workspace has no wired publisher, so **LIVE_GOOGLE_PLAY_PROOF remains BLOCKED_EXTERNAL**. `CUSTOMER_OWNED_PUBLISHING_PROVEN` stays false. Production still `NOT_IMPLEMENTED`.

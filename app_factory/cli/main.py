@@ -447,6 +447,70 @@ def google_play_live_proof_audit_cmd(output: Path | None) -> None:
         write_internal_live_proof(output, payload)
 
 
+@cli.group("ios")
+def ios_group() -> None:
+    """iOS identity, Apple setup contract, and TestFlight foundation. No App Store production."""
+
+
+@ios_group.command("setup-contract")
+@click.argument("intake", required=False, type=click.Path(exists=True, dir_okay=False, path_type=Path))
+@click.option("--principal-identity", default="ops://apple/principal")
+@click.option("--owner-type", default="CUSTOMER_OWNED", show_default=True)
+@click.option("--reference", "reference_identity", is_flag=True)
+def ios_setup_contract_cmd(
+    intake: Path | None,
+    principal_identity: str,
+    owner_type: str,
+    reference_identity: bool,
+) -> None:
+    """Emit the App Store Connect app-create contract. Does not create the Apple app."""
+    from app_factory.application.customer_release.apple.setup_contract import (
+        console_app_create_contract,
+        reference_console_app_create_contract,
+    )
+    from app_factory.application.customer_release.profile import profile_from_dict
+    from app_factory.application.manifest_validator import ManifestLoader
+
+    if reference_identity:
+        click.echo(
+            json.dumps(
+                reference_console_app_create_contract(principal_identity=principal_identity),
+                indent=2,
+                sort_keys=True,
+            )
+        )
+        return
+    if intake is None:
+        raise click.UsageError("INTAKE is required unless --reference is set")
+    profile = profile_from_dict(ManifestLoader().load(intake))
+    click.echo(
+        json.dumps(
+            console_app_create_contract(
+                profile,
+                principal_identity=principal_identity,
+                owner_type=owner_type,
+            ),
+            indent=2,
+            sort_keys=True,
+        )
+    )
+
+
+@ios_group.command("live-proof-audit")
+@click.option("--output", type=click.Path(dir_okay=False, path_type=Path), default=None)
+def ios_live_proof_audit_cmd(output: Path | None) -> None:
+    """Audit this workspace for a real TestFlight proof. No secrets. No fake IPA."""
+    from app_factory.application.customer_release.apple.evidence import write_public_evidence
+    from app_factory.application.customer_release.apple.live_audit import (
+        audit_workspace_apple_live_preconditions,
+    )
+
+    payload = audit_workspace_apple_live_preconditions()
+    click.echo(json.dumps(payload, indent=2, sort_keys=True))
+    if output is not None:
+        write_public_evidence(output, payload)
+
+
 @cli.command("materialize-export")
 @click.argument("export_file", type=click.Path(exists=True, dir_okay=False, path_type=Path))
 @click.option(

@@ -67,3 +67,15 @@ class ApprovalError(CustomerReleaseError):
 
 class PlayConnectionError(PlayDeliveryError):
     """Publisher connection is not READY for the bound customer app."""
+
+
+class AppleDeliveryError(CustomerReleaseError):
+    """App Store Connect / TestFlight delivery failed without a production fallback."""
+
+
+class AppStoreProductionSubmissionBlocked(AppleDeliveryError):
+    """App Store production / App Review writes are forbidden in this slice."""
+
+
+class AppleConnectionError(AppleDeliveryError):
+    """App Store Connect connection is not READY for the bound customer app."""

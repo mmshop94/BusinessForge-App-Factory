@@ -7,6 +7,15 @@ from pathlib import Path
 from typing import Any
 from urllib.parse import urlparse
 
+from app_factory.application.customer_release.apple.assets import (
+    IOS_ASSETS_READY as IOS_ASSETS_CATALOG_READY,
+    evaluate_ios_assets,
+)
+from app_factory.application.customer_release.apple.signing import (
+    APPLE_SIGNING_CONFIGURATION_REQUIRED,
+    assert_customer_ios_signing,
+    profile_from_intake,
+)
 from app_factory.application.customer_release.assets import (
     ANDROID_ASSETS_READY,
     evaluate_android_assets,
@@ -46,6 +55,7 @@ GATE_NAMES = (
     "ANDROID_ASSETS_READY",
     "IOS_CONFIG_READY",
     "IOS_SIGNING_READY",
+    "IOS_ASSETS_READY",
 )
 
 
@@ -68,6 +78,7 @@ def evaluate_readiness(
 ) -> dict[str, Any]:
     uniqueness = evaluate_uniqueness(profile)
     assets = evaluate_android_assets(profile, asset_root)
+    ios_assets = evaluate_ios_assets(profile, asset_root)
     secret_resolver = resolver or FailClosedSecretResolver()
 
     content = _content_gate(profile)
@@ -100,19 +111,21 @@ def evaluate_readiness(
         android_assets = GateResult("ANDROID_ASSETS_READY", NOT_SUBSCRIBED, ())
 
     if ios_booked:
-        ios_config = GateResult(
-            "IOS_CONFIG_READY",
-            BLOCKED,
-            ("IOS_GENERATE_PARTIAL",),
+        ios_config = _ios_config_gate(profile)
+        ios_signing = _ios_signing_gate(
+            profile,
+            secret_resolver,
+            allow_local_test_signing=allow_local_test_signing,
         )
-        ios_signing = GateResult(
-            "IOS_SIGNING_READY",
-            BLOCKED,
-            ("IOS_SIGNING_ABSENT",),
+        ios_assets_gate = GateResult(
+            "IOS_ASSETS_READY",
+            READY if ios_assets["status"] == IOS_ASSETS_CATALOG_READY else BLOCKED,
+            () if ios_assets["status"] == IOS_ASSETS_CATALOG_READY else ("IOS_ASSETS_INCOMPLETE",),
         )
     else:
         ios_config = GateResult("IOS_CONFIG_READY", NOT_SUBSCRIBED, ())
         ios_signing = GateResult("IOS_SIGNING_READY", NOT_SUBSCRIBED, ())
+        ios_assets_gate = GateResult("IOS_ASSETS_READY", NOT_SUBSCRIBED, ())
 
     gates = (
         content,
@@ -124,6 +137,7 @@ def evaluate_readiness(
         android_assets,
         ios_config,
         ios_signing,
+        ios_assets_gate,
     )
     blocking = [
         gate
@@ -141,6 +155,7 @@ def evaluate_readiness(
         "gates": [gate.to_dict() for gate in gates],
         "uniqueness": uniqueness.to_dict(),
         "android_assets": assets,
+        "ios_assets": ios_assets if ios_booked else {"status": NOT_SUBSCRIBED},
         "blockers": [item for gate in blocking for item in gate.blockers] or [
             gate.name for gate in blocking
         ],
@@ -216,6 +231,49 @@ def _android_signing_gate(
     except SigningGuardError as exc:
         return GateResult("ANDROID_SIGNING_READY", BLOCKED, (str(exc),))
     return GateResult("ANDROID_SIGNING_READY", READY, ())
+
+
+def _ios_config_gate(profile: CustomerAppReleaseProfile) -> GateResult:
+    blockers: list[str] = []
+    from app_factory.application.package_identity import (
+        GENERIC_ANDROID_PACKAGE_PATTERN,
+        is_reserved_android_package,
+    )
+
+    if not GENERIC_ANDROID_PACKAGE_PATTERN.match(profile.bundle_identifier):
+        blockers.append("BUNDLE_IDENTIFIER_INVALID")
+    if profile.channel == "production" and is_reserved_android_package(profile.bundle_identifier):
+        blockers.append("BUNDLE_RESERVED_NAMESPACE")
+    if not profile.release_version or profile.version_code < 1:
+        blockers.append("VERSION_INVALID")
+    return GateResult("IOS_CONFIG_READY", READY if not blockers else BLOCKED, tuple(blockers))
+
+
+def _ios_signing_gate(
+    profile: CustomerAppReleaseProfile,
+    resolver: SecretReferenceResolver,
+    *,
+    allow_local_test_signing: bool,
+) -> GateResult:
+    signing = profile_from_intake(
+        profile.ios_signing,
+        customer_app_id=profile.app_id,
+        tenant_id=profile.tenant_id,
+        bundle_identifier=profile.bundle_identifier,
+    )
+    try:
+        assert_customer_ios_signing(
+            signing,
+            resolver=resolver,
+            allow_local_test=allow_local_test_signing and profile.channel != "production",
+        )
+    except SigningGuardError:
+        return GateResult(
+            "IOS_SIGNING_READY",
+            BLOCKED,
+            (APPLE_SIGNING_CONFIGURATION_REQUIRED,),
+        )
+    return GateResult("IOS_SIGNING_READY", READY, ())
 
 
 ANDROID_PRODUCTION_READY = "NOT_IMPLEMENTED"

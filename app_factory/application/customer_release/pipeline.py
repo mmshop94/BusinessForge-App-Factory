@@ -13,7 +13,7 @@ from app_factory.application.customer_release.gates import (
     evaluate_readiness,
 )
 from app_factory.application.customer_release.identity import CustomerAppIdentityRegistry
-from app_factory.application.customer_release.platforms import android_enabled
+from app_factory.application.customer_release.platforms import android_enabled, ios_enabled
 from app_factory.application.customer_release.profile import (
     CustomerAppReleaseProfile,
     profile_from_dict,
@@ -68,6 +68,7 @@ def prepare_customer_release(
         published=profile.published,
         version_code=profile.version_code,
         production=profile.channel == "production" and android_enabled(profile.platforms),
+        ios_production=profile.channel == "production" and ios_enabled(profile.platforms),
     )
     steps.append({"name": "validate", "status": "succeeded"})
 
@@ -93,7 +94,8 @@ def prepare_customer_release(
 
     applied: list[str] = []
     workspace: Path | None = None
-    if apply_workspace and android_enabled(frozen.platforms) and customer_app_path is not None:
+    native_booked = android_enabled(frozen.platforms) or ios_enabled(frozen.platforms)
+    if apply_workspace and native_booked and customer_app_path is not None:
         workspace = output_dir / "workspace"
         if workspace.exists():
             shutil.rmtree(workspace)
@@ -244,6 +246,13 @@ def prepare_customer_release(
             "release_status": None,
             "verified_at": None,
         },
+        "apple": {
+            "connection_reference": None,
+            "bundle_identifier": frozen.bundle_identifier,
+            "upload_status": "NOT_UPLOADED",
+            "destination": "testflight",
+            "app_store_production_ready": "NOT_IMPLEMENTED",
+        },
         "android_production_ready": "NOT_IMPLEMENTED",
         "generated_config": "workspace/build_config/app_factory_config.json" if workspace else None,
         "snapshot_path": str(snapshots_dir / f"{snapshot['snapshot_id']}.json"),
@@ -321,11 +330,15 @@ def _write_extended_factory_config(
             "release_snapshot_id": snapshot_id,
             "release_id": profile.release_id,
             "android_application_id": profile.package_name,
+            "bundle_id_ios": profile.bundle_identifier,
+            "ios_production_ready": False,
             "legal_privacy_url": profile.legal.privacy_url,
             "legal_imprint_url": profile.legal.imprint_url,
             "support_url": profile.legal.support_url,
             "journey": profile.journey,
             "android_production_ready": False,
+            "ios_production_ready": False,
+            "bundle_id_ios": profile.bundle_identifier,
         }
     )
     config_path.parent.mkdir(parents=True, exist_ok=True)
