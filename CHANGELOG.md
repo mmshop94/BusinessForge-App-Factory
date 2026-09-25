@@ -1,3 +1,8 @@
+### Trial + Customer Surface Audit V1 — PlatformSelection gap pointer
+
+* Docs-only pointer: AppFactory `PlatformSelection` (ANDROID_ONLY / IOS_ONLY / ANDROID_AND_IOS + snapshots) exists; public bforge.de Google/Apple select + backend persist = **NO**. Selection ≠ publication as public flow = **NOT_PROVEN**. Product READY 35/35 UNCHANGED.
+* Docs: [TRIAL_CUSTOMER_SURFACE_PLATFORM_SELECTION_GAP_POINTER_V1.md](docs/TRIAL_CUSTOMER_SURFACE_PLATFORM_SELECTION_GAP_POINTER_V1.md). Authority: BusinessForge_hq_ops `TRIAL_CUSTOMER_SURFACE_USAGE_ANALYTICS_AUDIT_V1`.
+
 ### iOS Factory + App Store Connect Publishing Foundation V1
 
 * iOS customer identity, reserved `de.bforge.reference.internal.ios`, per-customer Apple signing references, macOS executor boundary (`IOS_BUILD_EXECUTOR_REQUIRED` on Windows, never a fake IPA PASS), App Store Connect connection + setup contract, TestFlight delivery foundation, production hard-block. Live Apple remains **BLOCKED_EXTERNAL**. Google live proof unchanged **BLOCKED_EXTERNAL**.
