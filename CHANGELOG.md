@@ -1,5 +1,11 @@
 ### Trial + Customer Surface Audit V1 — PlatformSelection gap pointer
 
+### Customer Surface Store Selection Backend SoT Mapping V1
+
+* Map backend `NONE|GOOGLE_PLAY|APPLE_APP_STORE|BOTH` → AppFactory `ANDROID_ONLY|IOS_ONLY|ANDROID_AND_IOS` (or skip). Snapshots remain freeze artifacts; selection ≠ publication. Product READY 35/35 unchanged.
+* Module: `app_factory/application/customer_release/backend_selection.py`.
+
+
 * Docs-only pointer: AppFactory `PlatformSelection` (ANDROID_ONLY / IOS_ONLY / ANDROID_AND_IOS + snapshots) exists; public bforge.de Google/Apple select + backend persist = **NO**. Selection ≠ publication as public flow = **NOT_PROVEN**. Product READY 35/35 UNCHANGED.
 * Docs: [TRIAL_CUSTOMER_SURFACE_PLATFORM_SELECTION_GAP_POINTER_V1.md](docs/TRIAL_CUSTOMER_SURFACE_PLATFORM_SELECTION_GAP_POINTER_V1.md). Authority: BusinessForge_hq_ops `TRIAL_CUSTOMER_SURFACE_USAGE_ANALYTICS_AUDIT_V1`.
 
