@@ -1,7 +1,8 @@
 # iOS Factory + App Store Connect Publishing Foundation V1
 
 > Stand: 2026-09-21 · **no App Store production** · no secrets in git  
-> Prior Android: [ANDROID_GOOGLE_PLAY_ONBOARDING_GATE_V1.md](ANDROID_GOOGLE_PLAY_ONBOARDING_GATE_V1.md)
+> Prior Android: [ANDROID_GOOGLE_PLAY_ONBOARDING_GATE_V1.md](ANDROID_GOOGLE_PLAY_ONBOARDING_GATE_V1.md)  
+> Customer connection SoT (hq_ops, not this repo): [STORE_ACCOUNT_CONNECTION_AUTHORITY_BOUNDARY_V1.md](STORE_ACCOUNT_CONNECTION_AUTHORITY_BOUNDARY_V1.md)
 
 ```text
 IOS_IMPLEMENTATION_READY
