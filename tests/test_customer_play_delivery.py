@@ -107,6 +107,17 @@ def test_insufficient_permission_blocks() -> None:
     assert result["status"] == STATUS_PERMISSION_INCOMPLETE
 
 
+def test_hq_ops_permission_alias_manage_testing_releases() -> None:
+    """hq_ops SoT spelling MANAGE_TESTING_RELEASES ≡ MANAGE_TEST_RELEASES."""
+    from app_factory.application.customer_release.play import classify_permissions
+
+    result = classify_permissions(
+        ["VIEW_APP_INFORMATION", "MANAGE_TESTING_RELEASES"]
+    )
+    assert result["ready_for_internal_track"] is True
+    assert result["required_missing"] == []
+
+
 def test_valid_app_scoped_test_permission_pass() -> None:
     provider = FakePlayPublisherProvider()
     provider.register_app("de.hutthurm.dorfladen")

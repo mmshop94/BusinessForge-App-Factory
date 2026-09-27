@@ -1,3 +1,9 @@
+### Store Account Connection Authority Boundary V1
+
+* Docs: hq_ops owns customer-facing `StoreConnectionState` (migration 113 / customer-surface APIs); AppFactory owns the publisher pipeline only. Guide completion ≠ `VERIFIED`. Deprecated client terms: `VERIFICATION_PENDING`, `CREDENTIALS_PENDING`, flat `/guide-progress`, `guide_url` as connection field.
+* Permission alias: hq_ops `MANAGE_TESTING_RELEASES` ≡ AppFactory `MANAGE_TEST_RELEASES` in `classify_permissions`. Product READY 35/35 UNCHANGED. LIVE Google/Apple probes remain **LIVE_PENDING**.
+* Docs: [STORE_ACCOUNT_CONNECTION_AUTHORITY_BOUNDARY_V1.md](docs/STORE_ACCOUNT_CONNECTION_AUTHORITY_BOUNDARY_V1.md). Evidence JSON: [STORE_ACCOUNT_CONNECTION_AUTHORITY_BOUNDARY_V1.json](docs/STORE_ACCOUNT_CONNECTION_AUTHORITY_BOUNDARY_V1.json).
+
 ### Trial + Customer Surface Audit V1 — PlatformSelection gap pointer
 
 ### Customer Surface Store Selection Backend SoT Mapping V1

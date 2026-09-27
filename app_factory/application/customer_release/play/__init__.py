@@ -16,6 +16,11 @@ REQUIRED_TEST_PERMISSIONS = frozenset(
         "MANAGE_TEST_RELEASES",
     }
 )
+# hq_ops customer SoT uses MANAGE_TESTING_RELEASES for the same Play Console
+# capability (STORE_PROVIDER_PERMISSION_MATRIX_V1). Accept both spellings.
+PERMISSION_ALIASES: dict[str, str] = {
+    "MANAGE_TESTING_RELEASES": "MANAGE_TEST_RELEASES",
+}
 OPTIONAL_TEST_PERMISSIONS = frozenset(
     {
         "MANAGE_TESTERS",
@@ -105,8 +110,20 @@ class GooglePlayPublisherConnection:
         }
 
 
+def _normalize_permission_token(token: str) -> str:
+    upper = token.strip().upper()
+    return PERMISSION_ALIASES.get(upper, upper)
+
+
 def classify_permissions(granted: list[str] | tuple[str, ...]) -> dict[str, Any]:
-    granted_set = {item.strip().upper() for item in granted if item.strip()}
+    """Classify granted Play permissions for the publisher pipeline.
+
+    Customer-facing connection state remains hq_ops StoreConnectionState.
+    This helper only answers: is the publisher credential usable for INTERNAL track?
+    """
+    granted_set = {
+        _normalize_permission_token(item) for item in granted if item and item.strip()
+    }
     required_missing = sorted(REQUIRED_TEST_PERMISSIONS - granted_set)
     optional_present = sorted(OPTIONAL_TEST_PERMISSIONS & granted_set)
     forbidden_present = sorted(FORBIDDEN_PERMISSIONS & granted_set)

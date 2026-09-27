@@ -1,0 +1,60 @@
+{
+  "schema": "store-account-connection-authority-boundary-v1",
+  "generated_at": "2026-09-27",
+  "status": "FOUNDATION_READY",
+  "live_status": "LIVE_PENDING",
+  "deploy": "NOT_RUN",
+  "product_ready_unchanged": "35/35",
+  "hq_ops_authority": "STORE_ACCOUNT_ONBOARDING_AND_VERIFICATION_V1",
+  "owners": {
+    "customer_facing_connection_state": "hq_ops",
+    "publisher_pipeline": "app_factory"
+  },
+  "hq_ops_store_connection_states": [
+    "NOT_SELECTED",
+    "SETUP_REQUIRED",
+    "GUIDE_IN_PROGRESS",
+    "USER_CONFIRMED_SETUP",
+    "VERIFYING",
+    "VERIFIED",
+    "PARTIAL",
+    "NEEDS_ACTION",
+    "FAILED",
+    "REVOKED"
+  ],
+  "invariants": [
+    "Guide completion yields USER_CONFIRMED_SETUP, never VERIFIED.",
+    "VERIFIED / PARTIAL / REVOKED originate only from a provider answer.",
+    "AppFactory CONNECTION_VERIFIED is a publisher pipeline stage, not StoreConnectionState.",
+    "Selection and delivery statuses are independent of connection state."
+  ],
+  "permission_aliases": {
+    "GOOGLE_PLAY": {
+      "hq_ops": ["VIEW_APP_INFORMATION", "MANAGE_TESTING_RELEASES"],
+      "app_factory_pipeline": ["VIEW_APP_INFORMATION", "MANAGE_TEST_RELEASES"],
+      "note": "MANAGE_TESTING_RELEASES and MANAGE_TEST_RELEASES are the same Play Console capability."
+    },
+    "APPLE_APP_STORE": {
+      "hq_ops": ["APP_MANAGER", "CLOUD_MANAGED_APP_DISTRIBUTION"],
+      "app_factory_pipeline": ["APP_MANAGER", "CLOUD_MANAGED_APP_DISTRIBUTION"]
+    }
+  },
+  "deprecated_client_terms": [
+    "VERIFICATION_PENDING",
+    "CREDENTIALS_PENDING",
+    "guide_url_as_connection_field",
+    "flat_/guide-progress_without_provider"
+  ],
+  "customer_api": [
+    "GET /api/v1/customer-surface/store-connections",
+    "POST /api/v1/customer-surface/store-connections/{provider}/guide-progress",
+    "POST /api/v1/customer-surface/store-connections/{provider}/verify",
+    "PUT /api/v1/customer-surface/store-connections/{provider}/credentials"
+  ],
+  "live_pending": [
+    "GOOGLE_LIVE_VIA_APPFACTORY_PORT",
+    "APPLE_JWT_SIGNING",
+    "REAL_CUSTOMER_PROVIDER_UPLOADS",
+    "DEPLOY"
+  ]
+}
